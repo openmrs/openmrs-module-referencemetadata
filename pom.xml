@@ -21,11 +21,11 @@
 		<url>http://openmrs.org</url>
 	</organization>
 
-	<scm>
-		<connection>scm:svn:https://svn.openmrs.org/openmrs-modules/referencemetadata/trunk/</connection>
-		<developerConnection>scm:svn:https://svn.openmrs.org/openmrs-modules/referencemetadata/trunk/</developerConnection>
-		<url>https://svn.openmrs.org/openmrs-modules/referencemetadata/trunk/</url>
-	</scm>
+    <scm>
+        <connection>scm:git:git@github.com:openmrs/openmrs-module-referencemetadata.git</connection>
+        <developerConnection>scm:git:git@github.com:openmrs/openmrs-module-referencemetadata.git</developerConnection>
+        <url>scm:git:git@github.com:openmrs/openmrs-module-referencemetadata.git</url>
+    </scm>
 
 	<modules>
 		<module>api</module>
@@ -131,5 +131,18 @@
 			</snapshots>
 		</pluginRepository>
 	</pluginRepositories>
+
+    <distributionManagement>
+        <repository>
+            <id>openmrs-repo-modules</id>
+            <name>Modules</name>
+            <url>http://mavenrepo.openmrs.org/nexus/content/repositories/modules</url>
+        </repository>
+        <snapshotRepository>
+            <id>openmrs-repo-snapshots</id>
+            <name>OpenMRS Snapshots</name>
+            <url>http://mavenrepo.openmrs.org/nexus/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
 
 </project>
