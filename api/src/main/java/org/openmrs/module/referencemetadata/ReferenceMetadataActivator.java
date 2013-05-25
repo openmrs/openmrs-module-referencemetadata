@@ -24,7 +24,6 @@ import org.openmrs.api.context.Context;
 import org.openmrs.module.BaseModuleActivator;
 import org.openmrs.module.emrapi.EmrApiConstants;
 import org.openmrs.module.idgen.AutoGenerationOption;
-import org.openmrs.module.idgen.IdentifierSource;
 import org.openmrs.module.idgen.SequentialIdentifierGenerator;
 import org.openmrs.module.idgen.service.IdentifierSourceService;
 import org.openmrs.module.idgen.validator.LuhnMod30IdentifierValidator;
@@ -35,71 +34,64 @@ import org.openmrs.module.idgen.validator.LuhnMod30IdentifierValidator;
 public class ReferenceMetadataActivator extends BaseModuleActivator {
 	
 	protected Log log = LogFactory.getLog(getClass());
-
-    @Override
-    public void started() {
-        setupOpenmrsId(Context.getAdministrationService(), Context.getPatientService(), Context.getService(IdentifierSourceService.class));
-        setupEmrApiModule(Context.getAdministrationService(), Context.getPatientService());
-        setupRegistrationModules(Context.getAdministrationService(), Context.getService(IdentifierSourceService.class));
-    }
-
-    public void setupOpenmrsId(AdministrationService administrationService, PatientService patientService, IdentifierSourceService identifierSourceService) {
-
-        PatientIdentifierType openmrsIdType = patientService.getPatientIdentifierTypeByName(ReferenceMetadataConstants.OPENMRS_ID_NAME);
-        if (openmrsIdType == null) {
-            openmrsIdType = new PatientIdentifierType();
-            openmrsIdType.setName(ReferenceMetadataConstants.OPENMRS_ID_NAME);
-            openmrsIdType.setDescription(ReferenceMetadataConstants.OPENMRS_ID_DESCRIPION);
-            openmrsIdType.setCheckDigit(true);
-            openmrsIdType.setRequired(true);
-            openmrsIdType.setValidator(LuhnMod30IdentifierValidator.class.getName());
-            openmrsIdType.setUuid(ReferenceMetadataConstants.OPENMRS_ID_UUID);
-            patientService.savePatientIdentifierType(openmrsIdType);
-        }
-
-        SequentialIdentifierGenerator openmrsIdGenerator = (SequentialIdentifierGenerator) identifierSourceService.getIdentifierSourceByUuid(ReferenceMetadataConstants.OPENMRS_ID_GENERATOR_UUID);
-        if (openmrsIdGenerator == null) {
-            openmrsIdGenerator = new SequentialIdentifierGenerator();
-            openmrsIdGenerator.setIdentifierType(openmrsIdType);
-            openmrsIdGenerator.setName(ReferenceMetadataConstants.OPENMRS_ID_GENERATOR_NAME);
-            openmrsIdGenerator.setUuid(ReferenceMetadataConstants.OPENMRS_ID_GENERATOR_UUID);
-            openmrsIdGenerator.setBaseCharacterSet(new LuhnMod30IdentifierValidator().getBaseCharacters());
-            openmrsIdGenerator.setLength(6);
-            openmrsIdGenerator.setFirstIdentifierBase("10000");
-            identifierSourceService.saveIdentifierSource(openmrsIdGenerator);
-        }
-
-        AutoGenerationOption openmrsIdOptions = identifierSourceService.getAutoGenerationOption(openmrsIdType);
-        if (openmrsIdOptions == null) {
-            openmrsIdOptions = new AutoGenerationOption();
-            openmrsIdOptions.setIdentifierType(openmrsIdType);
-            openmrsIdOptions.setSource(openmrsIdGenerator);
-            openmrsIdOptions.setManualEntryEnabled(false);
-            openmrsIdOptions.setAutomaticGenerationEnabled(true);
-            identifierSourceService.saveAutoGenerationOption(openmrsIdOptions);
-        }
-
-        setGlobalProperty(administrationService, EmrApiConstants.PRIMARY_IDENTIFIER_TYPE, ReferenceMetadataConstants.OPENMRS_ID_UUID);
-    }
-
-    private void setupEmrApiModule(AdministrationService administrationService, PatientService patientService) {
-        PatientIdentifierType openmrsIdType = patientService.getPatientIdentifierTypeByName(ReferenceMetadataConstants.OPENMRS_ID_NAME);
-        setGlobalProperty(administrationService, EmrApiConstants.PRIMARY_IDENTIFIER_TYPE, openmrsIdType.getUuid());
-    }
-
-    private void setupRegistrationModules(AdministrationService administrationService, IdentifierSourceService identifierSourceService) {
-        IdentifierSource openmrsIdGenerator = identifierSourceService.getIdentifierSourceByUuid(ReferenceMetadataConstants.OPENMRS_ID_GENERATOR_UUID);
-        setGlobalProperty(administrationService, "registrationcore.identifierSourceId", openmrsIdGenerator.getId().toString());
-    }
-
-    private void setGlobalProperty(AdministrationService administrationService, String name, String value) {
-        GlobalProperty gpObject = administrationService.getGlobalPropertyObject(name);
-        if (gpObject == null) {
-            gpObject = new GlobalProperty();
-            gpObject.setProperty(name);
-        }
-        gpObject.setPropertyValue(value);
-        administrationService.saveGlobalProperty(gpObject);
-    }
-
+	
+	@Override
+	public void started() {
+		setupOpenmrsId(Context.getAdministrationService(), Context.getPatientService(),
+		    Context.getService(IdentifierSourceService.class));
+	}
+	
+	public void setupOpenmrsId(AdministrationService administrationService, PatientService patientService,
+	                           IdentifierSourceService identifierSourceService) {
+		
+		PatientIdentifierType openmrsIdType = patientService
+		        .getPatientIdentifierTypeByName(ReferenceMetadataConstants.OPENMRS_ID_NAME);
+		if (openmrsIdType == null) {
+			openmrsIdType = new PatientIdentifierType();
+			openmrsIdType.setName(ReferenceMetadataConstants.OPENMRS_ID_NAME);
+			openmrsIdType.setDescription(ReferenceMetadataConstants.OPENMRS_ID_DESCRIPION);
+			openmrsIdType.setCheckDigit(true);
+			openmrsIdType.setRequired(true);
+			openmrsIdType.setValidator(LuhnMod30IdentifierValidator.class.getName());
+			openmrsIdType.setUuid(ReferenceMetadataConstants.OPENMRS_ID_UUID);
+			patientService.savePatientIdentifierType(openmrsIdType);
+		}
+		
+		SequentialIdentifierGenerator openmrsIdGenerator = (SequentialIdentifierGenerator) identifierSourceService
+		        .getIdentifierSourceByUuid(ReferenceMetadataConstants.OPENMRS_ID_GENERATOR_UUID);
+		if (openmrsIdGenerator == null) {
+			openmrsIdGenerator = new SequentialIdentifierGenerator();
+			openmrsIdGenerator.setIdentifierType(openmrsIdType);
+			openmrsIdGenerator.setName(ReferenceMetadataConstants.OPENMRS_ID_GENERATOR_NAME);
+			openmrsIdGenerator.setUuid(ReferenceMetadataConstants.OPENMRS_ID_GENERATOR_UUID);
+			openmrsIdGenerator.setBaseCharacterSet(new LuhnMod30IdentifierValidator().getBaseCharacters());
+			openmrsIdGenerator.setLength(6);
+			openmrsIdGenerator.setFirstIdentifierBase("10000");
+			identifierSourceService.saveIdentifierSource(openmrsIdGenerator);
+		}
+		
+		AutoGenerationOption openmrsIdOptions = identifierSourceService.getAutoGenerationOption(openmrsIdType);
+		if (openmrsIdOptions == null) {
+			openmrsIdOptions = new AutoGenerationOption();
+			openmrsIdOptions.setIdentifierType(openmrsIdType);
+			openmrsIdOptions.setSource(openmrsIdGenerator);
+			openmrsIdOptions.setManualEntryEnabled(false);
+			openmrsIdOptions.setAutomaticGenerationEnabled(true);
+			identifierSourceService.saveAutoGenerationOption(openmrsIdOptions);
+		}
+		
+		setGlobalProperty(administrationService, EmrApiConstants.PRIMARY_IDENTIFIER_TYPE,
+		    ReferenceMetadataConstants.OPENMRS_ID_UUID);
+	}
+	
+	private void setGlobalProperty(AdministrationService administrationService, String name, String value) {
+		GlobalProperty gpObject = administrationService.getGlobalPropertyObject(name);
+		if (gpObject == null) {
+			gpObject = new GlobalProperty();
+			gpObject.setProperty(name);
+		}
+		gpObject.setPropertyValue(value);
+		administrationService.saveGlobalProperty(gpObject);
+	}
+	
 }

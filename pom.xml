@@ -37,6 +37,7 @@
         <openmrsCoreVersion>1.9.1</openmrsCoreVersion>
         <emrapiModuleVersion>1.0-SNAPSHOT</emrapiModuleVersion>
         <idgenModuleVersion>2.5</idgenModuleVersion>
+        <metadatasharingModuleVersion>1.1.8</metadatasharingModuleVersion>
 
         <providermanagementModuleVersion>1.1.3</providermanagementModuleVersion>
     </properties>
@@ -75,6 +76,12 @@
                 <groupId>org.openmrs.module</groupId>
                 <artifactId>idgen-api</artifactId>
                 <version>${idgenModuleVersion}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.openmrs.module</groupId>
+                <artifactId>metadatasharing-api</artifactId>
+                <version>${metadatasharingModuleVersion}</version>
                 <scope>provided</scope>
             </dependency>
 
