@@ -13,7 +13,6 @@
  */
 package org.openmrs.module.referencemetadata;
 
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.GlobalProperty;
@@ -22,7 +21,10 @@ import org.openmrs.api.AdministrationService;
 import org.openmrs.api.PatientService;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.BaseModuleActivator;
+import org.openmrs.module.ModuleException;
+import org.openmrs.module.ModuleFactory;
 import org.openmrs.module.emrapi.EmrApiConstants;
+import org.openmrs.module.emrapi.utils.MetadataUtil;
 import org.openmrs.module.idgen.AutoGenerationOption;
 import org.openmrs.module.idgen.SequentialIdentifierGenerator;
 import org.openmrs.module.idgen.service.IdentifierSourceService;
@@ -39,6 +41,12 @@ public class ReferenceMetadataActivator extends BaseModuleActivator {
 	public void started() {
 		setupOpenmrsId(Context.getAdministrationService(), Context.getPatientService(),
 		    Context.getService(IdentifierSourceService.class));
+		try {
+			MetadataUtil.setupStandardMetadata(ModuleFactory.getModuleClassLoader("referencemetadata"));
+		}
+		catch (Exception e) {
+			throw new ModuleException("Failed to load Visit Diagnosis concept package", e);
+		}
 	}
 	
 	public void setupOpenmrsId(AdministrationService administrationService, PatientService patientService,

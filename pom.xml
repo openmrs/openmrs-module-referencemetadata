@@ -38,7 +38,6 @@
         <emrapiModuleVersion>1.0-SNAPSHOT</emrapiModuleVersion>
         <idgenModuleVersion>2.5</idgenModuleVersion>
         <metadatasharingModuleVersion>1.1.8</metadatasharingModuleVersion>
-
         <providermanagementModuleVersion>1.1.3</providermanagementModuleVersion>
     </properties>
 
