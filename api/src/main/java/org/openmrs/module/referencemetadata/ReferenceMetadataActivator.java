@@ -24,6 +24,7 @@ import org.openmrs.api.context.Context;
 import org.openmrs.module.BaseModuleActivator;
 import org.openmrs.module.emrapi.EmrApiConstants;
 import org.openmrs.module.idgen.AutoGenerationOption;
+import org.openmrs.module.idgen.IdentifierSource;
 import org.openmrs.module.idgen.SequentialIdentifierGenerator;
 import org.openmrs.module.idgen.service.IdentifierSourceService;
 import org.openmrs.module.idgen.validator.LuhnMod30IdentifierValidator;
@@ -38,6 +39,8 @@ public class ReferenceMetadataActivator extends BaseModuleActivator {
     @Override
     public void started() {
         setupOpenmrsId(Context.getAdministrationService(), Context.getPatientService(), Context.getService(IdentifierSourceService.class));
+        setupEmrApiModule(Context.getAdministrationService(), Context.getPatientService());
+        setupRegistrationModules(Context.getAdministrationService(), Context.getService(IdentifierSourceService.class));
     }
 
     public void setupOpenmrsId(AdministrationService administrationService, PatientService patientService, IdentifierSourceService identifierSourceService) {
@@ -77,6 +80,16 @@ public class ReferenceMetadataActivator extends BaseModuleActivator {
         }
 
         setGlobalProperty(administrationService, EmrApiConstants.PRIMARY_IDENTIFIER_TYPE, ReferenceMetadataConstants.OPENMRS_ID_UUID);
+    }
+
+    private void setupEmrApiModule(AdministrationService administrationService, PatientService patientService) {
+        PatientIdentifierType openmrsIdType = patientService.getPatientIdentifierTypeByName(ReferenceMetadataConstants.OPENMRS_ID_NAME);
+        setGlobalProperty(administrationService, EmrApiConstants.PRIMARY_IDENTIFIER_TYPE, openmrsIdType.getUuid());
+    }
+
+    private void setupRegistrationModules(AdministrationService administrationService, IdentifierSourceService identifierSourceService) {
+        IdentifierSource openmrsIdGenerator = identifierSourceService.getIdentifierSourceByUuid(ReferenceMetadataConstants.OPENMRS_ID_GENERATOR_UUID);
+        setGlobalProperty(administrationService, "registrationcore.identifierSourceId", openmrsIdGenerator.getId().toString());
     }
 
     private void setGlobalProperty(AdministrationService administrationService, String name, String value) {
