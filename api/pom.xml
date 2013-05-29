@@ -13,15 +13,6 @@
 	<name>Reference Metadata Module API</name>
 	<description>API project for ReferenceMetadata</description>
 
-	<dependencies>
-        <dependency>
-            <groupId>org.openmrs.module</groupId>
-            <artifactId>metadatasharing-api</artifactId>
-            <version>${metadatasharingModuleVersion}</version>
-            <scope>provided</scope>
-        </dependency>
-	</dependencies>
-	
 	<build>
 		<resources>
 			<resource>
