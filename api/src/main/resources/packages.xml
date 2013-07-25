@@ -1,13 +1,19 @@
-<!--
-	Defines the Visit Diagnosis metadata packages
--->
 <org.openmrs.module.emrapi.metadata.MetadataPackagesConfig>
     <packages>
+
         <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
             <filenameBase>PatientDashboard_Metadata</filenameBase>
             <groupUuid>3a876256-222f-4143-bdf7-cfd48f457b7e</groupUuid>
             <version>1</version>
             <importMode>PEER_TO_PEER</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
+
+        <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
+            <filenameBase>Reference_Application_Roles_and_Privileges</filenameBase>
+            <groupUuid>c8fa4735-a1c1-441c-b4cc-972677379f44</groupUuid>
+            <version>1</version>
+            <importMode>MIRROR</importMode>
+        </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
+
     </packages>
 </org.openmrs.module.emrapi.metadata.MetadataPackagesConfig>

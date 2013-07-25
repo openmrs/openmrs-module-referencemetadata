@@ -23,7 +23,6 @@ import org.openmrs.api.PatientService;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.BaseModuleActivator;
 import org.openmrs.module.ModuleException;
-import org.openmrs.module.ModuleFactory;
 import org.openmrs.module.emrapi.EmrApiConstants;
 import org.openmrs.module.emrapi.utils.MetadataUtil;
 import org.openmrs.module.idgen.AutoGenerationOption;
@@ -41,11 +40,15 @@ public class ReferenceMetadataActivator extends BaseModuleActivator {
     @Override
     public void started() {
         setupOpenmrsId(Context.getAdministrationService(), Context.getPatientService(), Context.getService(IdentifierSourceService.class));
+        installMetadataPackages();
+    }
+
+    public void installMetadataPackages() {
         try {
-            MetadataUtil.setupStandardMetadata(ModuleFactory.getModuleClassLoader("referencemetadata"));
+            MetadataUtil.setupStandardMetadata(getClass().getClassLoader());
         }
         catch (Exception e) {
-            throw new ModuleException("Failed to load Visit Diagnosis concept package", e);
+            throw new ModuleException("Failed to load MDS packages", e);
         }
     }
 
