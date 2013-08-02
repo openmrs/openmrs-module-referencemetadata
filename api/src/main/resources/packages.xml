@@ -21,5 +21,13 @@
             <version>1</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
+
+        <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
+            <filenameBase>Reference_Application_Visit_and_Encounter_Types</filenameBase>
+            <groupUuid>d7c66f64-c3ee-4012-af48-2644909e25f4</groupUuid>
+            <version>3</version>
+            <importMode>MIRROR</importMode>
+        </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
+
     </packages>
 </org.openmrs.module.emrapi.metadata.MetadataPackagesConfig>
