@@ -2,10 +2,45 @@
     <packages>
 
         <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
-            <filenameBase>PatientDashboard_Metadata</filenameBase>
-            <groupUuid>3a876256-222f-4143-bdf7-cfd48f457b7e</groupUuid>
+            <filenameBase>Reference_Application_Location_Tags</filenameBase>
+            <groupUuid>561eae04-ad7d-455f-b255-1dd82ac056b9</groupUuid>
             <version>1</version>
-            <importMode>PEER_TO_PEER</importMode>
+            <importMode>MIRROR</importMode>
+        </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
+
+        <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
+            <filenameBase>Reference_Application_Person_Attribute_Types</filenameBase>
+            <groupUuid>d5fb6341-caca-4742-b230-c9d979911793</groupUuid>
+            <version>1</version>
+            <importMode>MIRROR</importMode>
+        </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
+
+        <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
+            <filenameBase>Reference_Application_Visit_Diagnoses_Concept</filenameBase>
+            <groupUuid>e72bf7c8-5685-4da3-8265-05e9d11bea81</groupUuid>
+            <version>1</version>
+            <importMode>MIRROR</importMode>
+        </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
+
+        <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
+            <filenameBase>Reference_Application_Visit_Types</filenameBase>
+            <groupUuid>a745ec2b-032c-4815-b091-d0339667b919</groupUuid>
+            <version>1</version>
+            <importMode>MIRROR</importMode>
+        </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
+
+        <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
+            <filenameBase>Reference_Application_Concepts</filenameBase>
+            <groupUuid>656d8730-8c20-4f13-a868-8268a34d5ff6</groupUuid>
+            <version>1</version>
+            <importMode>MIRROR</importMode>
+        </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
+
+        <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
+            <filenameBase>Reference_Application_Encounter_Types</filenameBase>
+            <groupUuid>56b191a8-0f71-44e9-b0ea-651f9da955ce</groupUuid>
+            <version>1</version>
+            <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 
         <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
