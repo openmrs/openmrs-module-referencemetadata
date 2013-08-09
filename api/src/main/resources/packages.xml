@@ -3,7 +3,7 @@
 
         <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
             <filenameBase>Reference_Application_Location_Tags</filenameBase>
-            <groupUuid>561eae04-ad7d-455f-b255-1dd82ac056b9</groupUuid>
+            <groupUuid>5987fa0f-9526-461c-8d43-28cb2e14933e</groupUuid>
             <version>1</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
