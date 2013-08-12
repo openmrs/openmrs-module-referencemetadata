@@ -56,6 +56,13 @@
             <version>3</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
+        
+        <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
+            <filenameBase>Reference_Application_Vitals_Encounter_Type</filenameBase>
+            <groupUuid>de302b34-fb0e-426a-9a01-23a757bcde97</groupUuid>
+            <version>1</version>
+            <importMode>MIRROR</importMode>
+        </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 
     </packages>
 </org.openmrs.module.emrapi.metadata.MetadataPackagesConfig>
