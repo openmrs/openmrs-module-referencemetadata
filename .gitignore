@@ -1,6 +1,7 @@
 *.iml
 *.project
 *.classpath
+.settings
 
 api/target
 omod/target
