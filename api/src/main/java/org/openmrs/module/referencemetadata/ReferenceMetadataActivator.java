@@ -40,7 +40,7 @@ public class ReferenceMetadataActivator extends BaseModuleActivator {
     @Override
     public void started() {
         setupOpenmrsId(Context.getAdministrationService(), Context.getPatientService(), Context.getService(IdentifierSourceService.class));
-        //installMetadataPackages();
+        installMetadataPackages();
     }
 
     public void installMetadataPackages() {

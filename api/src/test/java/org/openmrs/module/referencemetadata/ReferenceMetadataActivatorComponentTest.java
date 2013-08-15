@@ -41,7 +41,7 @@ public class ReferenceMetadataActivatorComponentTest extends BaseModuleContextSe
     // loading MDS packages is expensive, so we do everything in a single test. This is typically not best practice, but it speeds the build significantly.
     @Test
     public void testEverything() throws Exception {
-        /*initializeInMemoryDatabase();
+        initializeInMemoryDatabase();
         executeDataSet("requiredDataTestDataset.xml");
         authenticate();
         activator = new ReferenceMetadataActivator();
@@ -52,7 +52,7 @@ public class ReferenceMetadataActivatorComponentTest extends BaseModuleContextSe
 
         verifyMetadataPackagesConfigured();
 
-        verifySentinelData();*/
+        verifySentinelData();
     }
 
     private void verifyMetadataPackagesConfigured() throws Exception {
