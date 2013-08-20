@@ -32,7 +32,7 @@
         <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
             <filenameBase>Reference_Application_Encounter_Types</filenameBase>
             <groupUuid>56b191a8-0f71-44e9-b0ea-651f9da955ce</groupUuid>
-            <version>1</version>
+            <version>2</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 
@@ -54,13 +54,6 @@
             <filenameBase>Reference_Application_Visit_and_Encounter_Types</filenameBase>
             <groupUuid>d7c66f64-c3ee-4012-af48-2644909e25f4</groupUuid>
             <version>3</version>
-            <importMode>MIRROR</importMode>
-        </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
-        
-        <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
-            <filenameBase>Reference_Application_Vitals_Encounter_Type</filenameBase>
-            <groupUuid>de302b34-fb0e-426a-9a01-23a757bcde97</groupUuid>
-            <version>1</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
         
