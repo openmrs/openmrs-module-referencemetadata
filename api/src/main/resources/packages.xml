@@ -63,6 +63,13 @@
             <version>1</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
+        
+        <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
+            <filenameBase>Reference_Application_Encounter_Roles</filenameBase>
+            <groupUuid>3f63eef6-faab-436f-a284-6c0870670542</groupUuid>
+            <version>1</version>
+            <importMode>MIRROR</importMode>
+        </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 
     </packages>
 </org.openmrs.module.emrapi.metadata.MetadataPackagesConfig>
