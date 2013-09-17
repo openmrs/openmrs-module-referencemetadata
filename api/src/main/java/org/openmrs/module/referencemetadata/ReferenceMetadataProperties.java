@@ -18,6 +18,7 @@ public class ReferenceMetadataProperties extends ModuleProperties {
     public static final String TRANSFER_ENCOUNTER_TYPE_UUID = "7b68d557-85ef-4fc8-b767-4fa4f5eb5c23";
     public static final String CHECK_IN_ENCOUNTER_TYPE_UUID = "ca3aed11-1aa4-42a1-b85c-8332fc8001fc";
     public static final String CHECK_OUT_ENCOUNTER_TYPE_UUID = "25a042b2-60bc-4940-a909-debd098b7d82";
+    public static final String ICPC_DIAGNOSIS_CATEGORIES_CONCEPT_UUID = "160167AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
 
     public VisitType getFacilityVisitType() {
         return getVisitTypeByUuid(FACILITY_VISIT_TYPE_UUID, true);
