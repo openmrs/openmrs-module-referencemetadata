@@ -12,4 +12,6 @@ public class ReferenceMetadataConstants {
     public final static String OPENMRS_ID_GENERATOR_UUID = "691eed12-c0f1-11e2-94be-8c13b969e334";
     public final static String OPENMRS_ID_GENERATOR_NAME = "Generator for " + OPENMRS_ID_NAME;
 
+    public final static String UNKNOWN_LOCATION_UUID = "8d6c993e-c2cc-11de-8d13-0010c6dffd0f";
+
 }
