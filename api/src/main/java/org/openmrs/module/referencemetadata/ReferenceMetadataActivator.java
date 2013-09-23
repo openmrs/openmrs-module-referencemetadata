@@ -99,6 +99,10 @@ public class ReferenceMetadataActivator extends BaseModuleActivator {
 		UserService userService = Context.getUserService();
 		Role fullAPILevelRole = userService.getRoleByUuid(EmrApiConstants.PRIVILEGE_LEVEL_FULL_UUID);
 
+		if (fullAPILevelRole == null) {
+			return; //This is the case when running tests due to EMRAPI activator not being run.
+		}
+
 		for (Role role : Context.getUserService().getAllRoles()) {
 			if (role.getName().startsWith("Application:")) {
 				role.getInheritedRoles().add(fullAPILevelRole);
