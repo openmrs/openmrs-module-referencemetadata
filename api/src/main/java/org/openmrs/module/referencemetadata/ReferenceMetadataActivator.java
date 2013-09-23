@@ -18,8 +18,10 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.GlobalProperty;
 import org.openmrs.PatientIdentifierType;
+import org.openmrs.Role;
 import org.openmrs.api.AdministrationService;
 import org.openmrs.api.PatientService;
+import org.openmrs.api.UserService;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.BaseModuleActivator;
 import org.openmrs.module.ModuleException;
@@ -41,9 +43,11 @@ public class ReferenceMetadataActivator extends BaseModuleActivator {
     public void started() {
         setupOpenmrsId(Context.getAdministrationService(), Context.getPatientService(), Context.getService(IdentifierSourceService.class));
         installMetadataPackages();
+
+		setupFullAPILevelPrivilegesOnApplicationRoles();
     }
 
-    public void installMetadataPackages() {
+	public void installMetadataPackages() {
         try {
             MetadataUtil.setupStandardMetadata(getClass().getClassLoader());
         }
@@ -90,6 +94,19 @@ public class ReferenceMetadataActivator extends BaseModuleActivator {
 
         setGlobalProperty(administrationService, EmrApiConstants.PRIMARY_IDENTIFIER_TYPE, ReferenceMetadataConstants.OPENMRS_ID_UUID);
     }
+
+	public void setupFullAPILevelPrivilegesOnApplicationRoles() {
+		UserService userService = Context.getUserService();
+		Role fullAPILevelRole = userService.getRoleByUuid(EmrApiConstants.PRIVILEGE_LEVEL_FULL_UUID);
+
+		for (Role role : Context.getUserService().getAllRoles()) {
+			if (role.getName().startsWith("Application:")) {
+				role.getInheritedRoles().add(fullAPILevelRole);
+				userService.saveRole(role);
+			}
+		}
+
+	}
 
     private void setGlobalProperty(AdministrationService administrationService, String name, String value) {
         GlobalProperty gpObject = administrationService.getGlobalPropertyObject(name);
