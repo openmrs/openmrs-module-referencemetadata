@@ -99,7 +99,7 @@ public class ReferenceMetadataActivatorComponentTest extends BaseModuleContextSe
 
     private void verifySentinelData() {
         // Verify a few pieces of sentinel data that should have been in the packages
-        assertNotNull(userService.getRole("Application Role: Doctor"));
+        assertNotNull(userService.getRole("Organizational: Doctor"));
     }
 
 }
