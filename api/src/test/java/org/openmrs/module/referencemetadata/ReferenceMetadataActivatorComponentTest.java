@@ -3,9 +3,11 @@ package org.openmrs.module.referencemetadata;
 import org.apache.commons.io.IOUtils;
 import org.junit.Test;
 import org.openmrs.Concept;
+import org.openmrs.ConceptSource;
 import org.openmrs.api.ConceptService;
 import org.openmrs.api.UserService;
 import org.openmrs.api.context.Context;
+import org.openmrs.module.emrapi.EmrApiActivator;
 import org.openmrs.module.emrapi.metadata.MetadataPackageConfig;
 import org.openmrs.module.emrapi.metadata.MetadataPackagesConfig;
 import org.openmrs.module.emrapi.utils.MetadataUtil;
@@ -20,8 +22,10 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 
 /**
@@ -44,6 +48,10 @@ public class ReferenceMetadataActivatorComponentTest extends BaseModuleContextSe
         initializeInMemoryDatabase();
         executeDataSet("requiredDataTestDataset.xml");
         authenticate();
+
+        // we need to make sure that if emrapi has already created its concept source, we don't duplicate it
+        ConceptSource emrapiSource = new EmrApiActivator().createConceptSource(conceptService);
+
         activator = new ReferenceMetadataActivator();
         activator.willRefreshContext();
         activator.contextRefreshed();
@@ -53,6 +61,16 @@ public class ReferenceMetadataActivatorComponentTest extends BaseModuleContextSe
         verifyMetadataPackagesConfigured();
 
         verifySentinelData();
+
+        // verify there's only one concept source representing the emrapi module (and we haven't duplicated it)
+        int count = 0;
+        for (ConceptSource candidate : conceptService.getAllConceptSources()) {
+            if (candidate.getName().equals(emrapiSource.getName())) {
+                ++count;
+            }
+        }
+        assertThat(count, is(1));
+
     }
 
     private void verifyMetadataPackagesConfigured() throws Exception {
