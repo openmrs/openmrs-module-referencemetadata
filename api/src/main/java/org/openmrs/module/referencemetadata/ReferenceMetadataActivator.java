@@ -45,6 +45,7 @@ public class ReferenceMetadataActivator extends BaseModuleActivator {
         installMetadataPackages();
 
 		setupFullAPILevelPrivilegesOnApplicationRoles();
+        log.info("Started Reference Metadata module");
     }
 
 	public void installMetadataPackages() {
