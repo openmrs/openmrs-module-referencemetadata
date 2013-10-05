@@ -25,7 +25,7 @@
         <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
             <filenameBase>Reference_Application_Concepts</filenameBase>
             <groupUuid>3697b0fb-99ed-456b-b9ff-285eac616fef</groupUuid>
-            <version>7</version>
+            <version>8</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 
