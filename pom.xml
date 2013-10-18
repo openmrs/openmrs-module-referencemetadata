@@ -22,9 +22,9 @@
 	</organization>
 
     <scm>
-        <connection>scm:git:git@github.com:openmrs/openmrs-module-referencemetadata.git</connection>
-        <developerConnection>scm:git:git@github.com:openmrs/openmrs-module-referencemetadata.git</developerConnection>
-        <url>scm:git:git@github.com:openmrs/openmrs-module-referencemetadata.git</url>
+        <connection>scm:git:https://github.com/openmrs/openmrs-module-referencemetadata</connection>
+        <developerConnection>scm:git:https://github.com/openmrs/openmrs-module-referencemetadata</developerConnection>
+        <url>scm:git:https://github.com/openmrs/openmrs-module-referencemetadata</url>
     </scm>
 
 	<modules>
