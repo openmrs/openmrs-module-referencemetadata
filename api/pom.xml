@@ -11,32 +11,4 @@
 	<packaging>jar</packaging>
 	<name>Reference Metadata Module API</name>
 	<description>API project for ReferenceMetadata</description>
-
-	<build>
-		<resources>
-			<resource>
-				<directory>src/main/resources</directory>
-                <includes>
-                    <include>**/*.properties</include>
-                    <include>**/*.xml</include>
-                </includes>
-				<filtering>true</filtering>
-			</resource>
-            <resource>
-                <directory>src/main/resources</directory>
-                <includes>
-                    <include>**/*.zip</include>
-                </includes>
-                <filtering>false</filtering>
-            </resource>
-		</resources>
-
-		<testResources>
-			<testResource>
-				<directory>src/test/resources</directory>
-				<filtering>true</filtering>
-			</testResource>
-		</testResources>
-	</build>
-
 </project>
