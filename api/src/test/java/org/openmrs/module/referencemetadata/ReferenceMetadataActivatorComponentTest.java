@@ -118,6 +118,9 @@ public class ReferenceMetadataActivatorComponentTest extends BaseModuleContextSe
     private void verifySentinelData() {
         // Verify a few pieces of sentinel data that should have been in the packages
         assertNotNull(userService.getRole("Organizational: Doctor"));
+        
+        assertThat(conceptService.getConcept(5085).getUuid(), is("5085AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"));
+        assertThat(conceptService.getConcept(159947).getUuid(), is("159947AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"));
     }
 
 }

@@ -14,6 +14,10 @@
 package org.openmrs.module.referencemetadata;
 
 
+import java.util.Arrays;
+import java.util.List;
+
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.GlobalProperty;
@@ -49,6 +53,15 @@ public class ReferenceMetadataActivator extends BaseModuleActivator {
     }
 
 	public void installMetadataPackages() {
+		List<String> preserveIds = Arrays.asList("org.openmrs.Concept", 
+				"org.openmrs.ConceptComplex", "org.openmrs.ConceptNumeric");
+		GlobalProperty preserveIdsGP = Context.getAdministrationService().getGlobalPropertyObject("metadatasharing.persistIdsForClasses");
+		if (preserveIdsGP == null) {
+			preserveIdsGP = new GlobalProperty("metadatasharing.persistIdsForClasses");
+		}
+		preserveIdsGP.setPropertyValue(StringUtils.join(preserveIds, ", "));
+		Context.getAdministrationService().saveGlobalProperty(preserveIdsGP);
+		
         try {
             MetadataUtil.setupStandardMetadata(getClass().getClassLoader());
         }
