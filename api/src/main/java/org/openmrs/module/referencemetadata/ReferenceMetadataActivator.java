@@ -84,9 +84,8 @@ public class ReferenceMetadataActivator extends BaseModuleActivator {
         if (cielEmrConceptSource != null) {
         	ConceptSource emrConceptSource = conceptService.getConceptSourceByUuid(EmrApiConstants.EMR_CONCEPT_SOURCE_UUID);
         	
-        	List<ConceptMap> cielConcepts = conceptService.getConceptsByConceptSource(cielEmrConceptSource);
-        	for (ConceptMap conceptMap : cielConcepts) {
-        		ConceptReferenceTerm term = conceptMap.getConceptReferenceTerm();
+        	List<ConceptReferenceTerm> terms = conceptService.getConceptReferenceTerms(null, cielEmrConceptSource, null, null, true);
+        	for (ConceptReferenceTerm term : terms) {
 				term.setConceptSource(emrConceptSource);
 				conceptService.saveConceptReferenceTerm(term);
 			}
