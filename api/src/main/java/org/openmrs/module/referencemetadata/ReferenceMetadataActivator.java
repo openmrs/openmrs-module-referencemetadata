@@ -14,21 +14,24 @@
 package org.openmrs.module.referencemetadata;
 
 
-import java.util.Arrays;
 import java.util.List;
 
-import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.openmrs.ConceptMap;
+import org.openmrs.ConceptReferenceTerm;
+import org.openmrs.ConceptSource;
 import org.openmrs.GlobalProperty;
 import org.openmrs.PatientIdentifierType;
 import org.openmrs.Role;
 import org.openmrs.api.AdministrationService;
+import org.openmrs.api.ConceptService;
 import org.openmrs.api.PatientService;
 import org.openmrs.api.UserService;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.BaseModuleActivator;
 import org.openmrs.module.ModuleException;
+import org.openmrs.module.dataexchange.DataImporter;
 import org.openmrs.module.emrapi.EmrApiConstants;
 import org.openmrs.module.emrapi.utils.MetadataUtil;
 import org.openmrs.module.idgen.AutoGenerationOption;
@@ -46,22 +49,53 @@ public class ReferenceMetadataActivator extends BaseModuleActivator {
     @Override
     public void started() {
         setupOpenmrsId(Context.getAdministrationService(), Context.getPatientService(), Context.getService(IdentifierSourceService.class));
+        
+        installConcepts();
+        
+        mergeCielAndEmrConceptSource();
+        
         installMetadataPackages();
 
 		setupFullAPILevelPrivilegesOnApplicationRoles();
         log.info("Started Reference Metadata module");
     }
 
+	private void installConcepts() {
+		GlobalProperty installedVersion = Context.getAdministrationService().getGlobalPropertyObject(ReferenceMetadataConstants.INSTALLED_VERSION_GP);
+        if (installedVersion == null) {
+        	installedVersion = new GlobalProperty(ReferenceMetadataConstants.INSTALLED_VERSION_GP, "0");
+        }
+        
+        if (Integer.valueOf(installedVersion.getPropertyValue()) < ReferenceMetadataConstants.METADATA_VERSION) {
+        	DataImporter dataImporter = Context.getRegisteredComponent("dataImporter", DataImporter.class);
+            dataImporter.importData("Reference_Application_Diagnoses.xml");
+            dataImporter.importData("Reference_Application_Concepts.xml");
+            
+            installedVersion.setPropertyValue(ReferenceMetadataConstants.METADATA_VERSION.toString());
+        }
+        
+        Context.getAdministrationService().saveGlobalProperty(installedVersion);
+	}
+
+	private void mergeCielAndEmrConceptSource() {
+		ConceptService conceptService = Context.getConceptService();
+        //We need to make sure that there's only one EMRAPI concept source
+        ConceptSource cielEmrConceptSource = conceptService.getConceptSourceByUuid("23ADDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
+        if (cielEmrConceptSource != null) {
+        	ConceptSource emrConceptSource = conceptService.getConceptSourceByUuid(EmrApiConstants.EMR_CONCEPT_SOURCE_UUID);
+        	
+        	List<ConceptMap> cielConcepts = conceptService.getConceptsByConceptSource(cielEmrConceptSource);
+        	for (ConceptMap conceptMap : cielConcepts) {
+        		ConceptReferenceTerm term = conceptMap.getConceptReferenceTerm();
+				term.setConceptSource(emrConceptSource);
+				conceptService.saveConceptReferenceTerm(term);
+			}
+        	
+        	conceptService.purgeConceptSource(cielEmrConceptSource);
+        }
+	}
+
 	public void installMetadataPackages() {
-		List<String> preserveIds = Arrays.asList("org.openmrs.Concept", 
-				"org.openmrs.ConceptComplex", "org.openmrs.ConceptNumeric");
-		GlobalProperty preserveIdsGP = Context.getAdministrationService().getGlobalPropertyObject("metadatasharing.persistIdsForClasses");
-		if (preserveIdsGP == null) {
-			preserveIdsGP = new GlobalProperty("metadatasharing.persistIdsForClasses");
-		}
-		preserveIdsGP.setPropertyValue(StringUtils.join(preserveIds, ", "));
-		Context.getAdministrationService().saveGlobalProperty(preserveIdsGP);
-		
         try {
             MetadataUtil.setupStandardMetadata(getClass().getClassLoader());
         }

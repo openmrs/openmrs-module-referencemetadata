@@ -21,5 +21,12 @@ public class ReferenceMetadataConstants {
 	public static final String TRANSFER_LOCATION_TAG_UUID = "8d4626ca-7abd-42ad-be48-56767bbcf272";
 	
 	public static final String LOGIN_LOCATION_TAG_UUID = "b8bbf83e-645f-451f-8efe-a0db56f09676";
+	
+	public static final String INSTALLED_VERSION_GP = "referencemetadata.installedVersion";
+	
+	/**
+	 * Should be set to a higher version in case of any changes in bundled metadata
+	 */
+	public static final Integer METADATA_VERSION = 1;
 
 }

@@ -24,6 +24,9 @@
         <require_module version="${idgenModuleVersion}">
             org.openmrs.module.idgen
         </require_module>
+        <require_module version="${dataexchangeModuleVersion}">
+            org.openmrs.module.dataexchange
+        </require_module>
 	</require_modules>
 	<!-- / Required Modules -->
 	
