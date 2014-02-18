@@ -83,6 +83,9 @@ public class ReferenceMetadataActivator extends BaseModuleActivator {
         ConceptSource cielEmrConceptSource = conceptService.getConceptSourceByUuid("23ADDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
         if (cielEmrConceptSource != null) {
         	ConceptSource emrConceptSource = conceptService.getConceptSourceByUuid(EmrApiConstants.EMR_CONCEPT_SOURCE_UUID);
+        	if (emrConceptSource == null) {
+        		throw new IllegalStateException("EMR ConceptSource does not exist");
+        	}
         	
         	List<ConceptReferenceTerm> terms = conceptService.getConceptReferenceTerms(null, cielEmrConceptSource, null, null, true);
         	for (ConceptReferenceTerm term : terms) {
