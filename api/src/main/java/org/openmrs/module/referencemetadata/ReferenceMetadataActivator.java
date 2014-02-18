@@ -14,12 +14,8 @@
 package org.openmrs.module.referencemetadata;
 
 
-import java.util.List;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.openmrs.ConceptMap;
-import org.openmrs.ConceptReferenceTerm;
 import org.openmrs.ConceptSource;
 import org.openmrs.GlobalProperty;
 import org.openmrs.PatientIdentifierType;
@@ -52,8 +48,6 @@ public class ReferenceMetadataActivator extends BaseModuleActivator {
         
         installConcepts();
         
-        mergeCielAndEmrConceptSource();
-        
         installMetadataPackages();
 
 		setupFullAPILevelPrivilegesOnApplicationRoles();
@@ -67,6 +61,13 @@ public class ReferenceMetadataActivator extends BaseModuleActivator {
         }
         
         if (Integer.valueOf(installedVersion.getPropertyValue()) < ReferenceMetadataConstants.METADATA_VERSION) {
+        	ConceptService conceptService = Context.getConceptService();
+        	ConceptSource emrSource = conceptService.getConceptSourceByUuid(EmrApiConstants.EMR_CONCEPT_SOURCE_UUID);
+        	if (emrSource != null) {
+        		//CIEL comes with the EMR concept source thus we need to purge it here
+        		conceptService.purgeConceptSource(emrSource);
+        	}
+        	
         	DataImporter dataImporter = Context.getRegisteredComponent("dataImporter", DataImporter.class);
             dataImporter.importData("Reference_Application_Diagnoses.xml");
             dataImporter.importData("Reference_Application_Concepts.xml");
@@ -75,26 +76,6 @@ public class ReferenceMetadataActivator extends BaseModuleActivator {
         }
         
         Context.getAdministrationService().saveGlobalProperty(installedVersion);
-	}
-
-	private void mergeCielAndEmrConceptSource() {
-		ConceptService conceptService = Context.getConceptService();
-        //We need to make sure that there's only one EMRAPI concept source
-        ConceptSource cielEmrConceptSource = conceptService.getConceptSourceByUuid("23ADDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
-        if (cielEmrConceptSource != null) {
-        	ConceptSource emrConceptSource = conceptService.getConceptSourceByUuid(EmrApiConstants.EMR_CONCEPT_SOURCE_UUID);
-        	if (emrConceptSource == null) {
-        		throw new IllegalStateException("EMR ConceptSource does not exist");
-        	}
-        	
-        	List<ConceptReferenceTerm> terms = conceptService.getConceptReferenceTerms(null, cielEmrConceptSource, null, null, true);
-        	for (ConceptReferenceTerm term : terms) {
-				term.setConceptSource(emrConceptSource);
-				conceptService.saveConceptReferenceTerm(term);
-			}
-        	
-        	conceptService.purgeConceptSource(cielEmrConceptSource);
-        }
 	}
 
 	public void installMetadataPackages() {
