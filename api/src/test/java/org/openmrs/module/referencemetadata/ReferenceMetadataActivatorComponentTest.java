@@ -51,6 +51,7 @@ public class ReferenceMetadataActivatorComponentTest extends BaseModuleContextSe
 
         // we need to make sure that if emrapi has already created its concept source, we don't duplicate it
         ConceptSource emrapiSource = new EmrApiActivator().createConceptSource(conceptService);
+        Context.flushSession();
 
         activator = new ReferenceMetadataActivator();
         activator.willRefreshContext();
