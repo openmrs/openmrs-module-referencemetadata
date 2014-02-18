@@ -66,6 +66,7 @@ public class ReferenceMetadataActivator extends BaseModuleActivator {
         	if (emrSource != null) {
         		//CIEL comes with the EMR concept source thus we need to purge it here
         		conceptService.purgeConceptSource(emrSource);
+        		Context.flushSession(); //flush so that purge is not deferred until after data import
         	}
         	
         	DataImporter dataImporter = Context.getRegisteredComponent("dataImporter", DataImporter.class);
