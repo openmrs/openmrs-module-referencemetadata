@@ -63,6 +63,13 @@
             <version>1</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
+        
+        <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
+            <filenameBase>Reference_Application_Units_Of_Measure_Concepts</filenameBase>
+            <groupUuid>2065256f-a02a-4b5a-b443-2d78e0ba202f</groupUuid>
+            <version>1</version>
+            <importMode>MIRROR</importMode>
+        </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 
     </packages>
 </org.openmrs.module.emrapi.metadata.MetadataPackagesConfig>
