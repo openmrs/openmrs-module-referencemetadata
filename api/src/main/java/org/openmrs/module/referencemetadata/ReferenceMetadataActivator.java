@@ -109,8 +109,8 @@ public class ReferenceMetadataActivator extends BaseModuleActivator {
             openmrsIdGenerator.setName(ReferenceMetadataConstants.OPENMRS_ID_GENERATOR_NAME);
             openmrsIdGenerator.setUuid(ReferenceMetadataConstants.OPENMRS_ID_GENERATOR_UUID);
             openmrsIdGenerator.setBaseCharacterSet(new LuhnMod30IdentifierValidator().getBaseCharacters());
-            openmrsIdGenerator.setLength(6);
-            openmrsIdGenerator.setFirstIdentifierBase("10000");
+	        openmrsIdGenerator.setMinLength(6);
+	        openmrsIdGenerator.setFirstIdentifierBase("10000");
             identifierSourceService.saveIdentifierSource(openmrsIdGenerator);
         }
 
