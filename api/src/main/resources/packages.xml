@@ -60,7 +60,7 @@
         <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
             <filenameBase>Reference_Application_Order_Entry_Concepts</filenameBase>
             <groupUuid>d225a5af-19f1-4043-8aa5-8b83972a325d</groupUuid>
-            <version>1</version>
+            <version>2</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 
