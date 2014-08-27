@@ -57,10 +57,24 @@
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
         
-        <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
+        <!--<org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
             <filenameBase>Reference_Application_Order_Entry_Concepts</filenameBase>
             <groupUuid>d225a5af-19f1-4043-8aa5-8b83972a325d</groupUuid>
             <version>3</version>
+            <importMode>MIRROR</importMode>
+        </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
+		
+		<org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
+            <filenameBase>Reference_Application_Allergy_Concepts</filenameBase>
+            <groupUuid>7a9c1f3d-aa66-4595-b75f-0383bbbe8847</groupUuid>
+            <version>1</version>
+            <importMode>MIRROR</importMode>
+        </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>-->
+		
+		<org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
+            <filenameBase>Reference_Application_Order_Entry_and_Allergies_Concepts</filenameBase>
+            <groupUuid>d225a5af-19f1-4043-8aa5-8b83972a325d</groupUuid>
+            <version>5</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 
