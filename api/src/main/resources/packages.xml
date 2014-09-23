@@ -60,14 +60,7 @@
 		<org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
             <filenameBase>Reference_Application_Order_Entry_and_Allergies_Concepts</filenameBase>
             <groupUuid>d225a5af-19f1-4043-8aa5-8b83972a325d</groupUuid>
-            <version>5</version>
-            <importMode>MIRROR</importMode>
-        </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
-        
-        <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
-            <filenameBase>Reference_Application_Severities_Concepts</filenameBase>
-            <groupUuid>386acfd1-9e7a-4087-bfcc-021e5525b0f0</groupUuid>
-            <version>1</version>
+            <version>6</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 
