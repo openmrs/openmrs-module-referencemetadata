@@ -70,7 +70,6 @@ public class ReferenceMetadataActivator extends BaseModuleActivator {
         	}
         	
         	DataImporter dataImporter = Context.getRegisteredComponent("dataImporter", DataImporter.class);
-            dataImporter.importData("Reference_Application_Diagnoses.xml");
             dataImporter.importData("Reference_Application_Concepts.xml");
             
             installedVersion.setPropertyValue(ReferenceMetadataConstants.METADATA_VERSION.toString());
