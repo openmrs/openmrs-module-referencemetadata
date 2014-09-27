@@ -52,37 +52,42 @@
     </dependencyManagement> 
 
 		<dependencies>
+            <dependency>
+                <groupId>org.openmrs.api</groupId>
+                <artifactId>openmrs-api</artifactId>
+            </dependency>
+
+            <dependency>
+                <groupId>org.openmrs.api</groupId>
+                <artifactId>openmrs-api</artifactId>
+                <classifier>tests</classifier>
+            </dependency>
+
 			<dependency>
 				<groupId>org.openmrs.web</groupId>
 				<artifactId>openmrs-web</artifactId>
 				<type>jar</type>
-				<scope>provided</scope>
 			</dependency>
 
             <dependency>
                 <groupId>org.openmrs.module</groupId>
                 <artifactId>emrapi-api-1.10</artifactId>
-                <scope>provided</scope>
             </dependency>
           <dependency>
                 <groupId>org.openmrs.module</groupId>
                 <artifactId>idgen-api</artifactId>
-                <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>org.openmrs.module</groupId>
                 <artifactId>metadatasharing-api</artifactId>
-                <scope>provided</scope>
             </dependency>
             <dependency>
             	<groupId>org.openmrs.module</groupId>
             	<artifactId>dataexchange-api</artifactId>
-            	<scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>org.openmrs</groupId>
                 <artifactId>event-api</artifactId>
-                <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>org.apache.geronimo.specs</groupId>
@@ -94,33 +99,46 @@
             
             <!-- For testing -->
             <dependency>
+                <groupId>org.openmrs.test</groupId>
+                <artifactId>openmrs-test</artifactId>
+                <type>pom</type>
+            </dependency>
+
+            <dependency>
                 <groupId>org.openmrs.module</groupId>
                 <artifactId>providermanagement-api</artifactId>
-                <scope>provided</scope>
             </dependency>
 
             <dependency>
                 <groupId>org.openmrs.module</groupId>
                 <artifactId>reporting-api</artifactId>
-                <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>org.openmrs.module</groupId>
                 <artifactId>calculation-api</artifactId>
-                <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>org.openmrs.module</groupId>
                 <artifactId>serialization.xstream-api</artifactId>
-                <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>org.openmrs.module</groupId>
                 <artifactId>appframework-api</artifactId>
-                <scope>provided</scope>
             </dependency>
 
         </dependencies>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>2.9.1</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
 
 	<repositories>
 		<repository>
