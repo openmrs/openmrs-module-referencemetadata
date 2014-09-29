@@ -11,4 +11,17 @@
 	<packaging>jar</packaging>
 	<name>Reference Metadata Module API</name>
 	<description>API project for ReferenceMetadata</description>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.openmrs.api</groupId>
+			<artifactId>openmrs-api</artifactId>
+			<type>jar</type>
+        </dependency>
+		<dependency>
+			<groupId>org.openmrs.api</groupId>
+			<artifactId>openmrs-api</artifactId>
+			<type>test-jar</type>
+		</dependency>
+	</dependencies>
 </project>
