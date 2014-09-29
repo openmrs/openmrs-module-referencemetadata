@@ -16,6 +16,7 @@ package org.openmrs.module.referencemetadata;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.openmrs.ConceptClass;
 import org.openmrs.ConceptSource;
 import org.openmrs.GlobalProperty;
 import org.openmrs.PatientIdentifierType;
@@ -62,16 +63,22 @@ public class ReferenceMetadataActivator extends BaseModuleActivator {
         
         if (Integer.valueOf(installedVersion.getPropertyValue()) < ReferenceMetadataConstants.METADATA_VERSION) {
         	ConceptService conceptService = Context.getConceptService();
+        	
+        	//CIEL comes with a number of objects that need to be replaced
         	ConceptSource emrSource = conceptService.getConceptSourceByUuid(EmrApiConstants.EMR_CONCEPT_SOURCE_UUID);
         	if (emrSource != null) {
-        		//CIEL comes with the EMR concept source thus we need to purge it here
+        		
         		conceptService.purgeConceptSource(emrSource);
-        		Context.flushSession(); //flush so that purge is not deferred until after data import
         	}
+        	ConceptClass frequency = conceptService.getConceptClassByUuid("8e071bfe-520c-44c0-a89b-538e9129b42a");
+        	if (frequency != null) {
+        		conceptService.purgeConceptClass(frequency);
+        	}
+        	Context.flushSession(); //flush so that purges are not deferred until after data import
         	
         	DataImporter dataImporter = Context.getRegisteredComponent("dataImporter", DataImporter.class);
-            dataImporter.importData("Reference_Application_Concepts-12.xml");
-            dataImporter.importData("Reference_Application_Diagnoses-1.xml");
+            dataImporter.importData("Reference_Application_Concepts-13.xml");
+            dataImporter.importData("Reference_Application_Diagnoses-2.xml");
             dataImporter.importData("Reference_Application_Order_Entry_and_Allergies_Concepts-7.xml");
             
             installedVersion.setPropertyValue(ReferenceMetadataConstants.METADATA_VERSION.toString());
