@@ -122,7 +122,7 @@ public class ReferenceMetadataActivatorComponentTest extends BaseModuleContextSe
         assertThat(conceptService.getConcept(5085).getUuid(), is("5085AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"));
         assertThat(conceptService.getConcept(159947).getUuid(), is("159947AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"));
         
-        assertThat(conceptService.getAllConcepts().size(), is(416));
+        assertThat(conceptService.getAllConcepts().size(), is(417));
     }
 
 }
