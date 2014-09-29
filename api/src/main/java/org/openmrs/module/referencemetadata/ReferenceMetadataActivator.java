@@ -64,17 +64,14 @@ public class ReferenceMetadataActivator extends BaseModuleActivator {
         if (Integer.valueOf(installedVersion.getPropertyValue()) < ReferenceMetadataConstants.METADATA_VERSION) {
         	ConceptService conceptService = Context.getConceptService();
         	
-        	//CIEL comes with a number of objects that need to be replaced
-        	ConceptSource emrSource = conceptService.getConceptSourceByUuid(EmrApiConstants.EMR_CONCEPT_SOURCE_UUID);
-        	if (emrSource != null) {
-        		
-        		conceptService.purgeConceptSource(emrSource);
-        	}
+        	//CIEL comes with a number of items that need to be used instead
         	ConceptClass frequency = conceptService.getConceptClassByUuid("8e071bfe-520c-44c0-a89b-538e9129b42a");
         	if (frequency != null) {
-        		conceptService.purgeConceptClass(frequency);
+        		if (!frequency.getId().equals(23)) { //Try to purge, if ID is different than in CIEL
+        			conceptService.purgeConceptClass(frequency);
+        		}
         	}
-        	Context.flushSession(); //flush so that purges are not deferred until after data import
+        	Context.flushSession(); //Flush so that purges are not deferred until after data import
         	
         	DataImporter dataImporter = Context.getRegisteredComponent("dataImporter", DataImporter.class);
             dataImporter.importData("Reference_Application_Concepts-13.xml");
