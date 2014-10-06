@@ -16,6 +16,8 @@ public class RolePrivilegeMetadata extends AbstractMetadataBundle {
         public static final String APP_REFERENCEAPPLICATION_VITALS = "App: referenceapplication.vitals";
         public static final String APP_REGISTRATIONAPP_REGISTER_PATIENT = "App: registrationapp.registerPatient";
         public static final String APP_COREAPPS_FIND_PATIENT = "App: coreapps.findPatient";
+        public static final String APP_COREAPPS_PATIENT_DASHBOARD = "App: coreapps.patientDashboard";
+        public static final String APP_COREAPPS_PATIENT_VISITS = "App: coreapps.patientVisits";
         public static final String APP_COREAPPS_ACTIVE_VISITS = "App: coreapps.activeVisits";
         public static final String APP_COREAPPS_SYSTEM_ADMINISTRATION = "App: coreapps.systemAdministration";
         public static final String APP_COREAPPS_CONFIGURE_METADATA = "App: coreapps.configuremetadata";
@@ -61,6 +63,8 @@ public class RolePrivilegeMetadata extends AbstractMetadataBundle {
         install(privilege(_Privilege.APP_ATLAS_MANAGE, "Manage whether and how this implementation is displayed on the OpenMRS Atlas"));
         install(privilege(_Privilege.APP_COREAPPS_CONFIGURE_METADATA, "Able to access the Configure Metadata page"));
         install(privilege(_Privilege.APP_COREAPPS_FIND_PATIENT, "Able to access the find patient app"));
+        install(privilege(_Privilege.APP_COREAPPS_PATIENT_DASHBOARD, "Able to access the patient dashboard"));
+        install(privilege(_Privilege.APP_COREAPPS_PATIENT_VISITS, "Able to access the patient visits screen"));
         install(privilege(_Privilege.APP_COREAPPS_SYSTEM_ADMINISTRATION, "Able to access the System Administration page"));
         install(privilege(_Privilege.APP_FORMENTRYAPP_FORMS, "Manages implementation-defined forms and attaches them to the UI"));
         install(privilege(_Privilege.APP_REFERENCEAPPLICATION_VITALS, "Able to access the vitals app"));
@@ -97,7 +101,9 @@ public class RolePrivilegeMetadata extends AbstractMetadataBundle {
         install(role(_Role.APPLICATION_USES_CAPTURE_VITALS_APP, "Uses capture vitals app", idSet(), idSet(
                 _Privilege.APP_REFERENCEAPPLICATION_VITALS)));
         install(role(_Role.APPLICATION_USES_PATIENT_SUMMARY, "Uses patient summary", idSet(), idSet(
-                _Privilege.APP_COREAPPS_FIND_PATIENT)));
+                _Privilege.APP_COREAPPS_FIND_PATIENT,
+                _Privilege.APP_COREAPPS_PATIENT_DASHBOARD,
+                _Privilege.APP_COREAPPS_PATIENT_VISITS)));
         install(role(_Role.APPLICATION_WRITES_CLINICAL_NOTES, "Writes clinical notes", idSet(), idSet(
                 _Privilege.APP_COREAPPS_ACTIVE_VISITS,
                 _Privilege.APP_COREAPPS_FIND_PATIENT,
@@ -123,6 +129,7 @@ public class RolePrivilegeMetadata extends AbstractMetadataBundle {
         install(role(_Role.ORGANIZATIONAL_NURSE, "Nurse", idSet(
                 _Role.APPLICATION_ENTERS_VITALS,
                 _Role.APPLICATION_USES_CAPTURE_VITALS_APP,
+                _Role.APPLICATION_USES_PATIENT_SUMMARY,
                 _Role.APPLICATION_ENTERS_ADT_EVENTS
         ), idSet()));
         install(role(_Role.ORGANIZATIONAL_REGISTRATION_CLERK, "Registration Clerk", idSet(

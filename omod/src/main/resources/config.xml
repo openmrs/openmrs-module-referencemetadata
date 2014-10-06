@@ -27,6 +27,9 @@
         <require_module version="${dataexchangeModuleVersion}">
             org.openmrs.module.dataexchange
         </require_module>
+        <require_module version="${metadatadeployVersion}">
+            org.openmrs.module.metadatadeploy
+        </require_module>
 	</require_modules>
 	<!-- / Required Modules -->
 	
