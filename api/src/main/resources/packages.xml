@@ -30,13 +30,6 @@
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 
         <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
-            <filenameBase>Reference_Application_Roles_and_Privileges</filenameBase>
-            <groupUuid>c8fa4735-a1c1-441c-b4cc-972677379f44</groupUuid>
-            <version>6</version>
-            <importMode>MIRROR</importMode>
-        </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
-
-        <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
             <filenameBase>Reference_Application_Provider_Roles</filenameBase>
             <groupUuid>390a392b-10d0-40e4-ae3e-ccd0729d4067</groupUuid>
             <version>2</version>

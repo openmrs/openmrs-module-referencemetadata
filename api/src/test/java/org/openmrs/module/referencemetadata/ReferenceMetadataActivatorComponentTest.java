@@ -4,6 +4,8 @@ import org.apache.commons.io.IOUtils;
 import org.junit.Test;
 import org.openmrs.Concept;
 import org.openmrs.ConceptSource;
+import org.openmrs.Privilege;
+import org.openmrs.Role;
 import org.openmrs.api.ConceptService;
 import org.openmrs.api.UserService;
 import org.openmrs.api.context.Context;
@@ -11,6 +13,7 @@ import org.openmrs.module.emrapi.EmrApiActivator;
 import org.openmrs.module.emrapi.metadata.MetadataPackageConfig;
 import org.openmrs.module.emrapi.metadata.MetadataPackagesConfig;
 import org.openmrs.module.emrapi.utils.MetadataUtil;
+import org.openmrs.module.metadatadeploy.MetadataUtils;
 import org.openmrs.module.metadatasharing.ImportedPackage;
 import org.openmrs.module.metadatasharing.api.MetadataSharingService;
 import org.openmrs.test.BaseModuleContextSensitiveTest;
@@ -118,7 +121,9 @@ public class ReferenceMetadataActivatorComponentTest extends BaseModuleContextSe
     private void verifySentinelData() {
         // Verify a few pieces of sentinel data that should have been in the packages
         assertNotNull(userService.getRole("Organizational: Doctor"));
-        
+        MetadataUtils.existing(Role.class, RolePrivilegeMetadata._Role.ORGANIZATIONAL_DOCTOR);
+        MetadataUtils.existing(Privilege.class, RolePrivilegeMetadata._Privilege.APP_COREAPPS_FIND_PATIENT);
+
         assertThat(conceptService.getConcept(5085).getUuid(), is("5085AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"));
         assertThat(conceptService.getConcept(159947).getUuid(), is("159947AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"));
         

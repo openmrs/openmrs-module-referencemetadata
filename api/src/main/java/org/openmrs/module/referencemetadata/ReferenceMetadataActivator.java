@@ -17,7 +17,6 @@ package org.openmrs.module.referencemetadata;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.ConceptClass;
-import org.openmrs.ConceptSource;
 import org.openmrs.GlobalProperty;
 import org.openmrs.PatientIdentifierType;
 import org.openmrs.Role;
@@ -35,6 +34,10 @@ import org.openmrs.module.idgen.AutoGenerationOption;
 import org.openmrs.module.idgen.SequentialIdentifierGenerator;
 import org.openmrs.module.idgen.service.IdentifierSourceService;
 import org.openmrs.module.idgen.validator.LuhnMod30IdentifierValidator;
+import org.openmrs.module.metadatadeploy.api.MetadataDeployService;
+import org.openmrs.module.metadatadeploy.bundle.MetadataBundle;
+
+import java.util.Arrays;
 
 /**
  * This class contains the logic that is run every time this module is either started or stopped.
@@ -46,9 +49,13 @@ public class ReferenceMetadataActivator extends BaseModuleActivator {
     @Override
     public void started() {
         setupOpenmrsId(Context.getAdministrationService(), Context.getPatientService(), Context.getService(IdentifierSourceService.class));
-        
+
         installConcepts();
-        
+
+        // preferred approach, using Metadata Deploy module
+        deployMetadataPackages(Context.getService(MetadataDeployService.class));
+
+        // deprecated approach, using Metadata Sharing module
         installMetadataPackages();
 
 		setupFullAPILevelPrivilegesOnApplicationRoles();
@@ -83,6 +90,11 @@ public class ReferenceMetadataActivator extends BaseModuleActivator {
         
         Context.getAdministrationService().saveGlobalProperty(installedVersion);
 	}
+
+    public void deployMetadataPackages(MetadataDeployService service) {
+        MetadataBundle rolesAndPrivileges = Context.getRegisteredComponent("referenceApplicationRolesAndPrivileges", MetadataBundle.class);
+        service.installBundles(Arrays.asList(rolesAndPrivileges));
+    }
 
 	public void installMetadataPackages() {
         try {
