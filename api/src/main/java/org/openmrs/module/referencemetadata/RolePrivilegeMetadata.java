@@ -93,7 +93,8 @@ public class RolePrivilegeMetadata extends AbstractMetadataBundle {
                 _Privilege.APP_ATLAS_MANAGE)));
         install(role(_Role.APPLICATION_REGISTERS_PATIENTS, "Registers patients", idSet(), idSet(
                 _Privilege.APP_COREAPPS_ACTIVE_VISITS,
-                _Privilege.APP_REGISTRATIONAPP_REGISTER_PATIENT)));
+                _Privilege.APP_REGISTRATIONAPP_REGISTER_PATIENT,
+                _Privilege.APP_COREAPPS_PATIENT_DASHBOARD))); // required since the app redirects to that page on success. TODO remove this
         install(role(_Role.APPLICATION_ENTERS_VITALS, "Enters vitals", idSet(), idSet(
                 _Privilege.APP_COREAPPS_ACTIVE_VISITS,
                 _Privilege.APP_COREAPPS_FIND_PATIENT,
