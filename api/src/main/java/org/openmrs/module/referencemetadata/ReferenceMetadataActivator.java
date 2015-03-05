@@ -14,9 +14,14 @@
 package org.openmrs.module.referencemetadata;
 
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.Arrays;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.ConceptClass;
+import org.openmrs.ConceptName;
 import org.openmrs.GlobalProperty;
 import org.openmrs.PatientIdentifierType;
 import org.openmrs.Role;
@@ -36,8 +41,6 @@ import org.openmrs.module.idgen.service.IdentifierSourceService;
 import org.openmrs.module.idgen.validator.LuhnMod30IdentifierValidator;
 import org.openmrs.module.metadatadeploy.api.MetadataDeployService;
 import org.openmrs.module.metadatadeploy.bundle.MetadataBundle;
-
-import java.util.Arrays;
 
 /**
  * This class contains the logic that is run every time this module is either started or stopped.
@@ -84,6 +87,23 @@ public class ReferenceMetadataActivator extends BaseModuleActivator {
             dataImporter.importData("Reference_Application_Concepts-13.xml");
             dataImporter.importData("Reference_Application_Diagnoses-2.xml");
             dataImporter.importData("Reference_Application_Order_Entry_and_Allergies_Concepts-7.xml");
+            
+            //1.11 requires building the index for the newly added concepts.
+            //Without doing so, cs.getConceptByClassName() will return an empty list.
+            //We use reflection such that we do not blow up versions before 1.11
+            try {
+            	Method method = Context.class.getMethod("updateSearchIndexForType", new Class[]{Class.class});
+            	method.invoke(null, new Object[] {ConceptName.class});
+            }
+            catch (NoSuchMethodException ex) {
+            	//this must be a version before 1.11
+            }
+            catch (InvocationTargetException ex) {
+            	log.error("Failed to update search index", ex);
+            }
+            catch (IllegalAccessException ex) {
+            	log.error("Failed to update search index", ex);
+            }
             
             installedVersion.setPropertyValue(ReferenceMetadataConstants.METADATA_VERSION.toString());
         }
