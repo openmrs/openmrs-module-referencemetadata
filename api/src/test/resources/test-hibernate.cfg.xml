@@ -13,5 +13,6 @@
         <mapping resource="ExportedPackage.hbm.xml"/>
         <mapping resource="ImportedPackage.hbm.xml"/>
         <mapping resource="ImportedItem.hbm.xml"/>
+        <mapping resource="AppointmentType.hbm.xml" />
     </session-factory>
 </hibernate-configuration>

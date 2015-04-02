@@ -22,6 +22,7 @@ public class RolePrivilegeMetadata extends AbstractMetadataBundle {
         public static final String APP_COREAPPS_SYSTEM_ADMINISTRATION = "App: coreapps.systemAdministration";
         public static final String APP_COREAPPS_CONFIGURE_METADATA = "App: coreapps.configuremetadata";
         public static final String APP_FORMENTRYAPP_FORMS = "App: formentryapp.forms";
+        public static final String APP_APPOINTMENTSCHEDULINGUI_HOME = "App: appointmentschedulingui.home";
         public static final String APP_ATLAS_MANAGE = "App: atlas.manage";
         public static final String TASK_COREAPPS_CREATE_RETROSPECTIVE_VISIT = "Task: coreapps.createRetrospectiveVisit";
         public static final String TASK_COREAPPS_CREATE_VISIT = "Task: coreapps.createVisit";
@@ -49,10 +50,18 @@ public class RolePrivilegeMetadata extends AbstractMetadataBundle {
         public static final String APPLICATION_WRITES_CLINICAL_NOTES = "Application: Writes Clinical Notes";
         public static final String APPLICATION_ENTERS_ADT_EVENTS = "Application: Enters ADT Events";
 
+		public static final String APPLICATION_APPOINTMENT_ADMINISTRATOR = "Application: Configures Appointment Scheduling";
+		public static final String APPLICATION_APPOINTMENT_PROVIDER_SCHEDULE_MANAGER = "Application: Manages Provider Schedules";
+		public static final String APPLICATION_APPOINTMENT_OVERBOOK_SCHEDULER = "Application: Schedules And Overbooks Appointments";
+		public static final String APPLICATION_APPOINTMENT_SCHEDULER = "Application: Schedules Appointments";
+		public static final String APPLICATION_APPOINTMENT_VIEWER = "Application: Sees Appointment Schedule";
+		public static final String APPLICATION_APPOINTMENT_REQUESTER = "Application: Requests Appointments";
+
         public static final String ORGANIZATIONAL_DOCTOR = "Organizational: Doctor";
         public static final String ORGANIZATIONAL_NURSE = "Organizational: Nurse";
         public static final String ORGANIZATIONAL_REGISTRATION_CLERK = "Organizational: Registration Clerk";
         public static final String ORGANIZATIONAL_SYSTEM_ADMINISTRATOR = "Organizational: System Administrator";
+        public static final String ORGANIZATIONAL_HOSPITAL_ADMINISTRATOR = "Organizational: Hospital Administrator";
     }
 
     @Override
@@ -123,24 +132,67 @@ public class RolePrivilegeMetadata extends AbstractMetadataBundle {
         install(role(_Role.APPLICATION_HAS_SUPERUSER_PRIVILEGES, "Extends the underlying System Developer API role",
                 idSet(RoleConstants.SUPERUSER), idSet()));
 
+        install(role(_Role.APPLICATION_APPOINTMENT_VIEWER,
+                "Gives user the ability to view appointment schedules (but not to modify them)", idSet(), idSet(
+                _Privilege.APP_APPOINTMENTSCHEDULINGUI_HOME,
+                "App: appointmentschedulingui.viewAppointments")));
+
+        install(role(_Role.APPLICATION_APPOINTMENT_REQUESTER, "Gives user the ability to request appointments)", idSet(),
+                idSet("Task: appointmentschedulingui.requestAppointments")));
+
+        install(role(_Role.APPLICATION_APPOINTMENT_SCHEDULER,
+                "Gives user the ability to view appointment requests, view and schedule appointments",
+                idSet(_Role.APPLICATION_APPOINTMENT_VIEWER), idSet(
+                "Task: appointmentschedulingui.bookAppointments",
+                "Task: appointmentschedulingui.viewConfidential")));
+
+        install(role(
+                _Role.APPLICATION_APPOINTMENT_OVERBOOK_SCHEDULER,
+                "Gives user the ability to overbook appointments(In addition to being able to view appointment requests, view and schedule appointments)",
+                idSet(_Role.APPLICATION_APPOINTMENT_SCHEDULER), idSet("Task: appointmentschedulingui.overbookAppointments")));
+
+        install(role(_Role.APPLICATION_APPOINTMENT_PROVIDER_SCHEDULE_MANAGER,
+                "Gives user ability to add and edit provider schedules", idSet(), idSet(
+                _Privilege.APP_APPOINTMENTSCHEDULINGUI_HOME,
+                "App: appointmentschedulingui.providerSchedules")));
+
+        install(role(_Role.APPLICATION_APPOINTMENT_ADMINISTRATOR,
+                "Gives user the ability to add and edit appointment types", idSet(), idSet(
+                _Privilege.APP_APPOINTMENTSCHEDULINGUI_HOME,
+                "App: appointmentschedulingui.appointmentTypes")));
+
         install(role(_Role.ORGANIZATIONAL_DOCTOR, "Doctor", idSet(
                 _Role.APPLICATION_USES_PATIENT_SUMMARY,
                 _Role.APPLICATION_WRITES_CLINICAL_NOTES,
-                _Role.APPLICATION_ENTERS_ADT_EVENTS), idSet()));
+                _Role.APPLICATION_ENTERS_ADT_EVENTS,
+                _Role.APPLICATION_APPOINTMENT_REQUESTER,
+                _Role.APPLICATION_APPOINTMENT_VIEWER), idSet()));
         install(role(_Role.ORGANIZATIONAL_NURSE, "Nurse", idSet(
                 _Role.APPLICATION_ENTERS_VITALS,
                 _Role.APPLICATION_USES_CAPTURE_VITALS_APP,
                 _Role.APPLICATION_USES_PATIENT_SUMMARY,
-                _Role.APPLICATION_ENTERS_ADT_EVENTS
+                _Role.APPLICATION_ENTERS_ADT_EVENTS,
+                _Role.APPLICATION_APPOINTMENT_REQUESTER,
+                _Role.APPLICATION_APPOINTMENT_VIEWER
         ), idSet()));
         install(role(_Role.ORGANIZATIONAL_REGISTRATION_CLERK, "Registration Clerk", idSet(
-                _Role.APPLICATION_REGISTERS_PATIENTS
+                _Role.APPLICATION_REGISTERS_PATIENTS,
+                _Role.APPLICATION_APPOINTMENT_VIEWER,
+                _Role.APPLICATION_APPOINTMENT_SCHEDULER
         ), idSet()));
         install(role(_Role.ORGANIZATIONAL_SYSTEM_ADMINISTRATOR, "System Administrator", idSet(
                 _Role.APPLICATION_ADMINISTERS_SYSTEM,
                 _Role.APPLICATION_MANAGES_ATLAS,
                 _Role.APPLICATION_CONFIGURES_METADATA,
-                _Role.APPLICATION_CONFIGURES_FORMS
+                _Role.APPLICATION_CONFIGURES_FORMS,
+                _Role.APPLICATION_APPOINTMENT_ADMINISTRATOR,
+                _Role.APPLICATION_APPOINTMENT_PROVIDER_SCHEDULE_MANAGER
+        ), idSet()));
+        install(role(_Role.ORGANIZATIONAL_HOSPITAL_ADMINISTRATOR, "Hospital Administrator", idSet(
+                _Role.APPLICATION_APPOINTMENT_ADMINISTRATOR,
+                _Role.APPLICATION_APPOINTMENT_PROVIDER_SCHEDULE_MANAGER,
+                _Role.APPLICATION_APPOINTMENT_OVERBOOK_SCHEDULER,
+                _Role.APPLICATION_APPOINTMENT_REQUESTER
         ), idSet()));
     }
 
