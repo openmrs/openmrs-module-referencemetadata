@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>org.openmrs.module</groupId>
 		<artifactId>referencemetadata</artifactId>
-		<version>2.4-SNAPSHOT</version>
+		<version>2.3.1</version>
 	</parent>
 
 	<artifactId>referencemetadata-api</artifactId>
