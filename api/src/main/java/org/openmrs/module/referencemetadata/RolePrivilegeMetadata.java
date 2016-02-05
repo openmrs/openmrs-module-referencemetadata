@@ -33,7 +33,7 @@ public class RolePrivilegeMetadata extends AbstractMetadataBundle {
         public static final String TASK_REFERENCEAPPLICATION_SIMPLE_TRANSFER = "Task: referenceapplication.simpleTransfer";
         public static final String TASK_REFERENCEAPPLICATION_SIMPLE_VISIT_NOTE = "Task: referenceapplication.simpleVisitNote";
         public static final String TASK_REFERENCEAPPLICATION_VITALS = "Task: referenceapplication.vitals";
-        public static final String TASK_MODIFY_ALLERGIES = "Task: Modify Allergies"
+        public static final String TASK_MODIFY_ALLERGIES = "Task: Modify Allergies";
     }
 
     public static class _Role {
