@@ -34,6 +34,8 @@ public class RolePrivilegeMetadata extends AbstractMetadataBundle {
         public static final String TASK_REFERENCEAPPLICATION_SIMPLE_VISIT_NOTE = "Task: referenceapplication.simpleVisitNote";
         public static final String TASK_REFERENCEAPPLICATION_VITALS = "Task: referenceapplication.vitals";
         public static final String TASK_MODIFY_ALLERGIES = "Task: Modify Allergies";
+        public static final String TASK_EMR_PATIENT_ENCOUNTER_DELETE= "Task: emr.patient.encounter.delete";
+        public static final String TASK_EMR_PATIENT_ENCOUNTER_EDIT= "Task: emr.patient.encounter.edit";
     }
 
     public static class _Role {
@@ -59,6 +61,7 @@ public class RolePrivilegeMetadata extends AbstractMetadataBundle {
         public static final String APPLICATION_APPOINTMENT_REQUESTER = "Application: Requests Appointments";
         
         public static final String APPLICATION_RECORDS_ALLERGIES = "Application: Records Allergies";
+        public static final String APPLICATION_EDITS_EXISTING_ENCOUNTERS = "Application: Edits Existing Encounters";
 
         public static final String ORGANIZATIONAL_DOCTOR = "Organizational: Doctor";
         public static final String ORGANIZATIONAL_NURSE = "Organizational: Nurse";
@@ -92,6 +95,8 @@ public class RolePrivilegeMetadata extends AbstractMetadataBundle {
         install(privilege(_Privilege.TASK_REFERENCEAPPLICATION_SIMPLE_VISIT_NOTE, "Able to write clinical notes"));
         install(privilege(_Privilege.TASK_REFERENCEAPPLICATION_VITALS, "Able to enter vitals"));
         install(privilege(_Privilege.TASK_MODIFY_ALLERGIES, "Able to record allergies"));
+        install(privilege(_Privilege.TASK_EMR_PATIENT_ENCOUNTER_DELETE, "Able to delete patient encounters"));
+        install(privilege(_Privilege.TASK_EMR_PATIENT_ENCOUNTER_EDIT, "Able to edit patient encounters"));
 
         install(role(_Role.APPLICATION_ADMINISTERS_SYSTEM, "Administers system", idSet(), idSet(
                 _Privilege.APP_COREAPPS_SYSTEM_ADMINISTRATION,
@@ -132,7 +137,7 @@ public class RolePrivilegeMetadata extends AbstractMetadataBundle {
                 _Privilege.TASK_REFERENCEAPPLICATION_SIMPLE_ADMISSION,
                 _Privilege.TASK_REFERENCEAPPLICATION_SIMPLE_DISCHARGE,
                 _Privilege.TASK_REFERENCEAPPLICATION_SIMPLE_TRANSFER)));
-                
+
         install(role(_Role.APPLICATION_RECORDS_ALLERGIES, "Records and edits allergies", idSet(), idSet(
         	_Privilege.TASK_MODIFY_ALLERGIES)));
 
@@ -143,6 +148,11 @@ public class RolePrivilegeMetadata extends AbstractMetadataBundle {
                 "Gives user the ability to view appointment schedules (but not to modify them)", idSet(), idSet(
                 _Privilege.APP_APPOINTMENTSCHEDULINGUI_HOME,
                 "App: appointmentschedulingui.viewAppointments")));
+
+        install(role(_Role.APPLICATION_EDITS_EXISTING_ENCOUNTERS,
+                "Gives user the ability to edit patient encounter", idSet(), idSet(
+                        _Privilege.TASK_EMR_PATIENT_ENCOUNTER_DELETE,
+                        _Privilege.TASK_EMR_PATIENT_ENCOUNTER_EDIT)));
 
         install(role(_Role.APPLICATION_APPOINTMENT_REQUESTER, "Gives user the ability to request appointments)", idSet(),
                 idSet("Task: appointmentschedulingui.requestAppointments")));
@@ -176,7 +186,7 @@ public class RolePrivilegeMetadata extends AbstractMetadataBundle {
                 _Role.APPLICATION_APPOINTMENT_VIEWER,
                 _Role.APPLICATION_RECORDS_ALLERGIES
         ), idSet()));
-                
+
         install(role(_Role.ORGANIZATIONAL_NURSE, "Nurse", idSet(
                 _Role.APPLICATION_ENTERS_VITALS,
                 _Role.APPLICATION_USES_CAPTURE_VITALS_APP,
@@ -186,13 +196,13 @@ public class RolePrivilegeMetadata extends AbstractMetadataBundle {
                 _Role.APPLICATION_APPOINTMENT_VIEWER,
                 _Role.APPLICATION_RECORDS_ALLERGIES
         ), idSet()));
-        
+
         install(role(_Role.ORGANIZATIONAL_REGISTRATION_CLERK, "Registration Clerk", idSet(
                 _Role.APPLICATION_REGISTERS_PATIENTS,
                 _Role.APPLICATION_APPOINTMENT_VIEWER,
                 _Role.APPLICATION_APPOINTMENT_SCHEDULER
         ), idSet()));
-        
+
         install(role(_Role.ORGANIZATIONAL_SYSTEM_ADMINISTRATOR, "System Administrator", idSet(
                 _Role.APPLICATION_ADMINISTERS_SYSTEM,
                 _Role.APPLICATION_MANAGES_ATLAS,
@@ -201,7 +211,7 @@ public class RolePrivilegeMetadata extends AbstractMetadataBundle {
                 _Role.APPLICATION_APPOINTMENT_ADMINISTRATOR,
                 _Role.APPLICATION_APPOINTMENT_PROVIDER_SCHEDULE_MANAGER
         ), idSet()));
-        
+
         install(role(_Role.ORGANIZATIONAL_HOSPITAL_ADMINISTRATOR, "Hospital Administrator", idSet(
                 _Role.APPLICATION_APPOINTMENT_ADMINISTRATOR,
                 _Role.APPLICATION_APPOINTMENT_PROVIDER_SCHEDULE_MANAGER,
