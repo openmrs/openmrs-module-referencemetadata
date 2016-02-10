@@ -63,7 +63,6 @@ public class RolePrivilegeMetadata extends AbstractMetadataBundle {
         public static final String ORGANIZATIONAL_REGISTRATION_CLERK = "Organizational: Registration Clerk";
         public static final String ORGANIZATIONAL_SYSTEM_ADMINISTRATOR = "Organizational: System Administrator";
         public static final String ORGANIZATIONAL_HOSPITAL_ADMINISTRATOR = "Organizational: Hospital Administrator";
-
     }
 
     @Override
