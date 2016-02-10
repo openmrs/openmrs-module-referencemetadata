@@ -44,8 +44,10 @@ public class RolePrivilegeMetadata extends AbstractMetadataBundle {
         public static final String APPLICATION_CONFIGURES_FORMS = "Application: Configures Forms";
         public static final String APPLICATION_MANAGES_ATLAS = "Application: Manages Atlas";
         public static final String APPLICATION_HAS_SUPERUSER_PRIVILEGES = "Application: Has Super User Privileges";
+
         public static final String APPLICATION_REGISTERS_PATIENTS = "Application: Registers Patients";
         public static final String APPLICATION_ENTERS_VITALS = "Application: Enters Vitals";
+
         public static final String APPLICATION_USES_CAPTURE_VITALS_APP = "Application: Uses Capture Vitals App";
         public static final String APPLICATION_USES_PATIENT_SUMMARY = "Application: Uses Patient Summary";
         public static final String APPLICATION_WRITES_CLINICAL_NOTES = "Application: Writes Clinical Notes";
@@ -57,9 +59,10 @@ public class RolePrivilegeMetadata extends AbstractMetadataBundle {
         public static final String APPLICATION_APPOINTMENT_SCHEDULER = "Application: Schedules Appointments";
         public static final String APPLICATION_APPOINTMENT_VIEWER = "Application: Sees Appointment Schedule";
         public static final String APPLICATION_APPOINTMENT_REQUESTER = "Application: Requests Appointments";
-
+        
         public static final String APPLICATION_RECORDS_ALLERGIES = "Application: Records Allergies";
         public static final String APPLICATION_EDITS_EXISTING_ENCOUNTERS = "Application: Edits Existing Encounters";
+
         public static final String ORGANIZATIONAL_DOCTOR = "Organizational: Doctor";
         public static final String ORGANIZATIONAL_NURSE = "Organizational: Nurse";
         public static final String ORGANIZATIONAL_REGISTRATION_CLERK = "Organizational: Registration Clerk";
