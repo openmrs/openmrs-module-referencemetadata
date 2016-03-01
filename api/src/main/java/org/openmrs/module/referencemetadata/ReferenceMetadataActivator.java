@@ -133,7 +133,15 @@ public class ReferenceMetadataActivator extends BaseModuleActivator {
             openmrsIdType = new PatientIdentifierType();
             openmrsIdType.setName(ReferenceMetadataConstants.OPENMRS_ID_NAME);
             openmrsIdType.setDescription(ReferenceMetadataConstants.OPENMRS_ID_DESCRIPION);
-            openmrsIdType.setCheckDigit(true);
+            
+            try {
+	            Method method = openmrsIdType.getClass().getMethod("setCheckDigit", new Class[] { boolean.class });
+	            method.invoke(openmrsIdType, true);
+            }
+            catch (Exception ex) {
+            	//ignore when running on platform 2.0 which removed this method
+            }
+            
             openmrsIdType.setRequired(true);
             openmrsIdType.setValidator(LuhnMod30IdentifierValidator.class.getName());
             openmrsIdType.setUuid(ReferenceMetadataConstants.OPENMRS_ID_UUID);
