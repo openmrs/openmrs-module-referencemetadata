@@ -113,8 +113,7 @@ public class ReferenceMetadataActivator extends BaseModuleActivator {
 
     public void deployMetadataPackages(MetadataDeployService service) {
         MetadataBundle rolesAndPrivileges = Context.getRegisteredComponent("referenceApplicationRolesAndPrivileges", MetadataBundle.class);
-        MetadataBundle bundle = Context.getRegisteredComponent("appointmentschedulingMetadata", MetadataBundle.class);
-        service.installBundles(Arrays.asList(rolesAndPrivileges, bundle));
+        service.installBundles(Arrays.asList(rolesAndPrivileges));
     }
 
 	public void installMetadataPackages() {
