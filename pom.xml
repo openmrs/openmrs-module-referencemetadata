@@ -24,7 +24,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <distro.groupId>org.openmrs.distro</distro.groupId>
         <distro.artifactId>referenceapplication</distro.artifactId>
-        <distro.version>2.5-SNAPSHOT</distro.version>
+        <distro.version>2.4</distro.version>
+        <emrapi.version>1.16</emrapi.version>
      </properties>
 
     <scm>
@@ -72,14 +73,17 @@
             <dependency>
                 <groupId>org.openmrs.module</groupId>
                 <artifactId>emrapi-api</artifactId>
+                <version>${emrapi.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.openmrs.module</groupId>
                 <artifactId>emrapi-api-1.10</artifactId>
+                <version>${emrapi.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.openmrs.module</groupId>
                 <artifactId>emrapi-api-1.11</artifactId>
+                <version>${emrapi.version}</version>
             </dependency>
           <dependency>
                 <groupId>org.openmrs.module</groupId>
