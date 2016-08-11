@@ -1,5 +1,15 @@
 package org.openmrs.module.referencemetadata;
 
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.fail;
+
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.commons.io.IOUtils;
 import org.junit.Test;
 import org.openmrs.Concept;
@@ -8,6 +18,7 @@ import org.openmrs.Privilege;
 import org.openmrs.Role;
 import org.openmrs.api.ConceptService;
 import org.openmrs.api.UserService;
+import org.openmrs.api.ValidationException;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.emrapi.EmrApiActivator;
 import org.openmrs.module.emrapi.metadata.MetadataPackageConfig;
@@ -20,16 +31,6 @@ import org.openmrs.test.BaseModuleContextSensitiveTest;
 import org.openmrs.test.SkipBaseSetup;
 import org.openmrs.validator.ValidateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.fail;
 
 /**
  *
@@ -114,7 +115,15 @@ public class ReferenceMetadataActivatorComponentTest extends BaseModuleContextSe
 
         // this doesn't strictly belong here, but we include it as an extra sanity check on the MDS module
         for (Concept concept : conceptService.getAllConcepts()) {
-            ValidateUtil.validate(concept);
+        	try {
+        		ValidateUtil.validate(concept);
+        	}
+        	catch (ValidationException ex) {
+        		//some concepts do not have descriptions and yet platform 2.0 requires it
+        		if (!ex.getMessage().contains("Concept.description.atLeastOneRequired")) {
+        			throw ex;
+        		}
+        	}
         }
     }
 
