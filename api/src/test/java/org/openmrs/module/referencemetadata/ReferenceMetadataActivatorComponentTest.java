@@ -67,7 +67,7 @@ public class ReferenceMetadataActivatorComponentTest extends BaseModuleContextSe
 
         // verify there's only one concept source representing the emrapi module (and we haven't duplicated it)
         int count = 0;
-        for (ConceptSource candidate : conceptService.getAllConceptSources()) {
+        for (ConceptSource candidate : conceptService.getAllConceptSources(true)) {
             if (candidate.getName().equals(emrapiSource.getName())) {
                 ++count;
             }
