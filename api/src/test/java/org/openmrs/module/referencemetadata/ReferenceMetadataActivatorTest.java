@@ -12,11 +12,16 @@ import org.openmrs.module.idgen.IdentifierSource;
 import org.openmrs.module.idgen.SequentialIdentifierGenerator;
 import org.openmrs.module.idgen.service.IdentifierSourceService;
 import org.openmrs.module.idgen.validator.LuhnMod30IdentifierValidator;
+import org.openmrs.module.metadatamapping.MetadataSource;
+import org.openmrs.module.metadatamapping.MetadataTermMapping;
+import org.openmrs.module.metadatamapping.api.MetadataMappingService;
 
 import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.anyString;
 import static org.mockito.Matchers.argThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 /**
  *
@@ -28,9 +33,11 @@ public class ReferenceMetadataActivatorTest {
         AdministrationService administrationService = mock(AdministrationService.class);
         PatientService patientService = mock(PatientService.class);
         IdentifierSourceService identifierSourceService = mock(IdentifierSourceService.class);
+        MetadataMappingService metadataMappingService = mock(MetadataMappingService.class);
+        when(metadataMappingService.getMetadataTermMapping(any(MetadataSource.class), anyString())).thenReturn(new MetadataTermMapping());
 
         ReferenceMetadataActivator activator = new ReferenceMetadataActivator();
-        activator.setupOpenmrsId(administrationService, patientService, identifierSourceService);
+        activator.setupOpenmrsId(administrationService, patientService, identifierSourceService, metadataMappingService);
 
         verify(patientService).savePatientIdentifierType(argThat(new ArgumentMatcher<PatientIdentifierType>() {
             @Override
@@ -53,14 +60,6 @@ public class ReferenceMetadataActivatorTest {
         }));
 
         verify(identifierSourceService).saveAutoGenerationOption(any(AutoGenerationOption.class));
-
-        verify(administrationService).saveGlobalProperty(argThat(new ArgumentMatcher<GlobalProperty>() {
-            @Override
-            public boolean matches(Object argument) {
-                GlobalProperty actual = (GlobalProperty) argument;
-                return actual.getProperty().equals(EmrApiConstants.PRIMARY_IDENTIFIER_TYPE) && actual.getPropertyValue().equals(ReferenceMetadataConstants.OPENMRS_ID_UUID);
-            }
-        }));
     }
 
 }
