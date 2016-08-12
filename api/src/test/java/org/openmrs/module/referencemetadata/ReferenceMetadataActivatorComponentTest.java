@@ -14,17 +14,24 @@ import org.apache.commons.io.IOUtils;
 import org.junit.Test;
 import org.openmrs.Concept;
 import org.openmrs.ConceptSource;
+import org.openmrs.PatientIdentifierType;
 import org.openmrs.Privilege;
 import org.openmrs.Role;
 import org.openmrs.api.ConceptService;
+import org.openmrs.api.PatientService;
 import org.openmrs.api.UserService;
 import org.openmrs.api.ValidationException;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.emrapi.EmrApiActivator;
+import org.openmrs.module.emrapi.EmrApiConstants;
+import org.openmrs.module.emrapi.EmrApiProperties;
 import org.openmrs.module.emrapi.metadata.MetadataPackageConfig;
 import org.openmrs.module.emrapi.metadata.MetadataPackagesConfig;
 import org.openmrs.module.emrapi.utils.MetadataUtil;
 import org.openmrs.module.metadatadeploy.MetadataUtils;
+import org.openmrs.module.metadatamapping.MetadataSource;
+import org.openmrs.module.metadatamapping.MetadataTermMapping;
+import org.openmrs.module.metadatamapping.api.MetadataMappingService;
 import org.openmrs.module.metadatasharing.ImportedPackage;
 import org.openmrs.module.metadatasharing.api.MetadataSharingService;
 import org.openmrs.test.BaseModuleContextSensitiveTest;
@@ -42,6 +49,12 @@ public class ReferenceMetadataActivatorComponentTest extends BaseModuleContextSe
 
     @Autowired
     private ConceptService conceptService;
+
+    @Autowired
+    private EmrApiProperties emrApiProperties;
+
+    @Autowired
+    private PatientService patientService;
 
     @Autowired
     private UserService userService;
@@ -65,6 +78,11 @@ public class ReferenceMetadataActivatorComponentTest extends BaseModuleContextSe
         verifyMetadataPackagesConfigured();
 
         verifySentinelData();
+
+        //verify that's emrapis primary identifier type has been set
+        PatientIdentifierType patientIdentifierType = patientService.getPatientIdentifierTypeByName(ReferenceMetadataConstants.OPENMRS_ID_NAME);
+        assertThat(emrApiProperties.getPrimaryIdentifierType(), is(patientIdentifierType));
+
 
         // verify there's only one concept source representing the emrapi module (and we haven't duplicated it)
         int count = 0;
