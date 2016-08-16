@@ -41,9 +41,6 @@ import org.openmrs.module.idgen.service.IdentifierSourceService;
 import org.openmrs.module.idgen.validator.LuhnMod30IdentifierValidator;
 import org.openmrs.module.metadatadeploy.api.MetadataDeployService;
 import org.openmrs.module.metadatadeploy.bundle.MetadataBundle;
-import org.openmrs.module.metadatamapping.MetadataSource;
-import org.openmrs.module.metadatamapping.MetadataTermMapping;
-import org.openmrs.module.metadatamapping.api.MetadataMappingService;
 
 /**
  * This class contains the logic that is run every time this module is either started or stopped.
@@ -54,7 +51,7 @@ public class ReferenceMetadataActivator extends BaseModuleActivator {
 
     @Override
     public void started() {
-        setupOpenmrsId(Context.getAdministrationService(), Context.getPatientService(), Context.getService(IdentifierSourceService.class), Context.getService(MetadataMappingService.class));
+        setupOpenmrsId(Context.getAdministrationService(), Context.getPatientService(), Context.getService(IdentifierSourceService.class));
 
         installConcepts();
 
@@ -128,7 +125,7 @@ public class ReferenceMetadataActivator extends BaseModuleActivator {
         }
     }
 
-    public void setupOpenmrsId(AdministrationService administrationService, PatientService patientService, IdentifierSourceService identifierSourceService, MetadataMappingService metadataMappingService) {
+    public void setupOpenmrsId(AdministrationService administrationService, PatientService patientService, IdentifierSourceService identifierSourceService) {
 
         PatientIdentifierType openmrsIdType = patientService.getPatientIdentifierTypeByName(ReferenceMetadataConstants.OPENMRS_ID_NAME);
         if (openmrsIdType == null) {
@@ -172,11 +169,7 @@ public class ReferenceMetadataActivator extends BaseModuleActivator {
             identifierSourceService.saveAutoGenerationOption(openmrsIdOptions);
         }
 
-
-        MetadataSource emrapiMetadataSource = metadataMappingService.getMetadataSourceByName(EmrApiConstants.EMR_METADATA_SOURCE_NAME);
-        MetadataTermMapping identifierTypeMapping = metadataMappingService.getMetadataTermMapping(emrapiMetadataSource, EmrApiConstants.PRIMARY_IDENTIFIER_TYPE);
-        identifierTypeMapping.setMappedObject(openmrsIdType);
-        metadataMappingService.saveMetadataTermMapping(identifierTypeMapping);
+        setGlobalProperty(administrationService, EmrApiConstants.PRIMARY_IDENTIFIER_TYPE, ReferenceMetadataConstants.OPENMRS_ID_UUID);
     }
 
 	public void setupFullAPILevelPrivilegesOnApplicationRoles() {
