@@ -21,10 +21,20 @@
 	</organization>
 
     <properties>
+    	<openMRSVersion>2.0.1-SNAPSHOT</openMRSVersion>
+    	<emrapiVersion>1.18</emrapiVersion>
+    	<idgenVersion>4.4.0</idgenVersion>
+    	<metadatasharingVersion>1.2.2</metadatasharingVersion>
+    	<dataexchangeVersion>1.3.2</dataexchangeVersion>
+    	<metadatadeployVersion>1.7</metadatadeployVersion>
+    	<eventVersion>2.5</eventVersion>
+    	<providermanagementVersion>2.5.0</providermanagementVersion>
+    	<reportingVersion>0.10.4</reportingVersion>
+    	<calculationVersion>1.2</calculationVersion>
+    	<serialization.xstreamVersion>0.2.12</serialization.xstreamVersion>
+    	<appframeworkVersion>2.9</appframeworkVersion>
+    	<reportingcompatibilityVersion>2.0.1</reportingcompatibilityVersion>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <distro.groupId>org.openmrs.distro</distro.groupId>
-        <distro.artifactId>referenceapplication</distro.artifactId>
-        <distro.version>2.5-SNAPSHOT</distro.version>
      </properties>
 
     <scm>
@@ -39,79 +49,90 @@
 		<module>omod</module>
 	</modules>
 
-    <dependencyManagement>
+	<dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>${distro.groupId}</groupId>
-                <artifactId>${distro.artifactId}</artifactId>
-                <version>${distro.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
+                <groupId>org.openmrs.api</groupId>
+                <artifactId>openmrs-api</artifactId>
+                <version>${openMRSVersion}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.openmrs.api</groupId>
+                <artifactId>openmrs-api</artifactId>
+                <version>${openMRSVersion}</version>
+                <type>test-jar</type>
+                <scope>test</scope>
             </dependency>
         </dependencies>
-    </dependencyManagement> 
-
+    </dependencyManagement>
+    
 		<dependencies>
-            <dependency>
-                <groupId>org.openmrs.api</groupId>
-                <artifactId>openmrs-api</artifactId>
-            </dependency>
-
-            <dependency>
-                <groupId>org.openmrs.api</groupId>
-                <artifactId>openmrs-api</artifactId>
-                <classifier>tests</classifier>
-            </dependency>
-
-			<dependency>
-				<groupId>org.openmrs.web</groupId>
-				<artifactId>openmrs-web</artifactId>
-				<type>jar</type>
-			</dependency>
-			
             <dependency>
                 <groupId>org.openmrs.module</groupId>
                 <artifactId>emrapi-api</artifactId>
+                <version>${emrapiVersion}</version>
+                <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>org.openmrs.module</groupId>
                 <artifactId>emrapi-api-1.10</artifactId>
+                <version>${emrapiVersion}</version>
+                <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>org.openmrs.module</groupId>
                 <artifactId>emrapi-api-1.11</artifactId>
+                <version>${emrapiVersion}</version>
+                <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>org.openmrs.module</groupId>
                 <artifactId>emrapi-api-1.12</artifactId>
+                <version>${emrapiVersion}</version>
+                <scope>provided</scope>
             </dependency>
           <dependency>
                 <groupId>org.openmrs.module</groupId>
                 <artifactId>idgen-api</artifactId>
+                <version>${idgenVersion}</version>
+                <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>org.openmrs.module</groupId>
                 <artifactId>metadatasharing-api</artifactId>
+                <version>${metadatasharingVersion}</version>
+                <scope>provided</scope>
             </dependency>
             <dependency>
             	<groupId>org.openmrs.module</groupId>
             	<artifactId>dataexchange-api</artifactId>
+            	<version>${dataexchangeVersion}</version>
+                <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>org.openmrs.module</groupId>
                 <artifactId>metadatadeploy-api</artifactId>
+                <version>${metadatadeployVersion}</version>
+                <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>org.openmrs</groupId>
                 <artifactId>event-api</artifactId>
+                <version>${eventVersion}</version>
+                <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>org.openmrs</groupId>
                 <artifactId>event-api-1.x</artifactId>
+                <version>${eventVersion}</version>
+                <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>org.openmrs</groupId>
                 <artifactId>event-api-2.x</artifactId>
+                <version>${eventVersion}</version>
+                <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>org.apache.geronimo.specs</groupId>
@@ -126,36 +147,52 @@
                 <groupId>org.openmrs.test</groupId>
                 <artifactId>openmrs-test</artifactId>
                 <type>pom</type>
+                <version>${openMRSVersion}</version>
+                <scope>provided</scope>
             </dependency>
 
             <dependency>
                 <groupId>org.openmrs.module</groupId>
                 <artifactId>providermanagement-api</artifactId>
+                <version>${providermanagementVersion}</version>
+                <scope>provided</scope>
             </dependency>
 
             <dependency>
                 <groupId>org.openmrs.module</groupId>
                 <artifactId>reporting-api</artifactId>
+                <version>${reportingVersion}</version>
+                <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>org.openmrs.module</groupId>
                 <artifactId>calculation-api</artifactId>
+                <version>${calculationVersion}</version>
+                <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>org.openmrs.module</groupId>
                 <artifactId>serialization.xstream-api</artifactId>
+                <version>${serialization.xstreamVersion}</version>
+                <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>org.openmrs.module</groupId>
                 <artifactId>serialization.xstream-api-2.0</artifactId>
+                <version>${serialization.xstreamVersion}</version>
+                <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>org.openmrs.module</groupId>
                 <artifactId>appframework-api</artifactId>
+                <version>${appframeworkVersion}</version>
+                <scope>provided</scope>
             </dependency>
 			<dependency>
 	            <groupId>org.openmrs.module</groupId>
 	            <artifactId>reportingcompatibility-api</artifactId>
+	            <version>${reportingcompatibilityVersion}</version>
+                <scope>provided</scope>
 	    	</dependency>
         </dependencies>
 
