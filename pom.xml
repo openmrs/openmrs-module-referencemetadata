@@ -22,7 +22,7 @@
 
     <properties>
     	<openMRSVersion>2.0.1</openMRSVersion>
-    	<emrapiVersion>1.19-SNAPSHOT</emrapiVersion>
+    	<emrapiVersion>1.20-SNAPSHOT</emrapiVersion>
     	<idgenVersion>4.4.0</idgenVersion>
     	<metadatasharingVersion>1.2.2</metadatasharingVersion>
         <metadatamappingVersion>1.2.1</metadatamappingVersion>
