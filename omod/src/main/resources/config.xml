@@ -30,6 +30,9 @@
         <require_module version="${dataexchangeModuleVersion}">
             org.openmrs.module.dataexchange
         </require_module>
+		<require_module version="${reportingVersion}">
+			org.openmrs.module.reporting
+		</require_module>
         <require_module version="${metadatadeployVersion}">
             org.openmrs.module.metadatadeploy
         </require_module>

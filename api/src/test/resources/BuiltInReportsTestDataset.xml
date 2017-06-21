@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<dataset>
+
+	<patient_identifier_type patient_identifier_type_id="1" name="OpenMRS ID" description="OpenMRS patient identifier, with check-digit"
+	                         creator="1" date_created="2017-05-18 22:49:03" required="1" validator="org.openmrs.module.idgen.validator.LuhnMod30IdentifierValidator"
+	                         retired="0" uuid="05a29f94-c0ed-11e2-94be-8c13b969e334"/>
+
+
+
+	<person person_id="50" gender="M" birthdate="1955-03-07" dead="0" date_created="2017-05-18 23:49:20" voided="0" deathdate_estimated="0"
+	        uuid="fc44ab10-f192-4517-843c-623a20eadc34"/>
+
+	<patient patient_id = "50" creator = "1" date_created="2017-06-15 08:26:51" voided = "0" allergy_status="Unknown"/>
+	<person_name person_name_id="1" preferred="1" person_id="50" given_name="Jude" family_name="Niroshan" creator="1" date_created="2017-05-18 23:49:20"
+	             voided = "0" uuid="70231dcf-3ecc-4406-a883-67ad07c73aa5"/>
+	<patient_identifier patient_identifier_id="1" patient_id="50" identifier="10004M" identifier_type="1" preferred="1" location_id="1" creator="1"
+	                    date_created="2017-05-18 23:44:34" uuid="4334edba-df62-42c4-811d-cb9cbfded1f3"/>
+
+
+
+	<person person_id="51" gender="M" birthdate="1955-03-07" dead="0" date_created="2017-05-18 23:49:20" voided="0" deathdate_estimated="0"
+	        uuid="150a0bf6-deb6-46d4-a827-bfe9cfedecde"/>
+
+	<patient patient_id = "51" creator = "1" date_created="2017-10-15 08:26:51" voided = "0" allergy_status="Unknown"/>
+	<person_name person_name_id="2" preferred="1" person_id="51" given_name="Rafal" family_name="Korytkowski" creator="1" date_created="2017-05-18 23:49:20"
+	             voided = "0" uuid="17694822-8b9c-40e6-88ae-d2a479654490"/>
+	<patient_identifier patient_identifier_id="2" patient_id="51" identifier="1000EE" identifier_type="1" preferred="1" location_id="1" creator="1"
+	                    date_created="2017-05-18 23:44:34" uuid="bce48200-6456-4fe9-949a-30de7c652bb1"/>
+
+
+	<visit_type visit_type_id="1" name="Facility Visit" description="Patient visits the clinic/hospital (as opposed to a home visit, or telephone contact)"
+	            creator="1" date_created="2013-08-02 06:09:43" changed_by="1" date_changed="2017-05-18 22:49:30" retired="0"
+	            uuid="7b0f5697-27e3-40c4-8bae-f4049abfb4ed"
+		/>
+
+	<visit  visit_id="1" patient_id="50" visit_type_id="1" date_started="2017-06-17 23:49:20" date_stopped="2017-06-19 23:49:20" location_id="1"
+	        creator="1" date_created="2017-06-18 23:49:20" changed_by="1" date_changed="2017-06-18 23:49:20" voided="0" uuid="d91188bb-d863-4580-ab96-d98a8439aae7"
+		/>
+	<visit  visit_id="2" patient_id="51" visit_type_id="1" date_started="2017-06-17 23:49:20" date_stopped="2017-06-19 23:49:20" location_id="1"
+	        creator="1" date_created="2017-06-18 23:49:20" changed_by="1" date_changed="2017-06-18 23:49:20" voided="0" uuid="15fbc6ab-57af-43ab-a872-c845ddd2df6d"
+	/>
+
+
+	<person person_id="52" gender="M" birthdate="1955-03-07" dead="0" date_created="2017-05-18 23:49:20" voided="0" deathdate_estimated="0"
+	        uuid="710f78ca-b8f2-41b8-9e41-f1eddf6f5035"/>
+	<person person_id="53" gender="F" birthdate="1994-03-07" dead="0" date_created="2017-05-18 23:49:20" voided="0" deathdate_estimated="0"
+	        uuid="007037a0-0500-11e3-8ffd-0800200c9a66"/>
+	<person person_id="54" gender="F" birthdate="1998-03-27" dead="0" date_created="2017-06-28 23:49:20" voided="0" deathdate_estimated="0"
+	        uuid="9bed23d0-0502-11e3-8ffd-0800200c9a66"/>
+
+	<provider provider_id="1" person_id="52" identifier="clerk" creator="1" date_created="2017-06-18 23:49:20" retired="0"
+	          uuid="f6803750-6940-49e5-a5ee-afe599feda6d"
+	/>
+	<provider provider_id="2" person_id="53" identifier="nurse" creator="1" date_created="2017-06-18 23:49:20" retired="0"
+	          uuid="af0b413b-5d10-41f0-834f-508d6f35c75e"
+	/>
+	<provider provider_id="3" person_id="54" identifier="doctor" creator="1" date_created="2017-06-18 23:49:20" retired="0"
+	          uuid="12b340a0-b6e8-492a-b54f-e2473e126b89"
+	/>
+
+	<users user_id="1" system_id="admin" password="ffba0fa0e7638c1ed511d497cd24afc6a5bcf5231eb9661a87fe215201ba4ede020152a656f02f7ffa5ba34360fe4b0d1e237fe0efed8509fb087a1fadae437d"
+	       salt="0ce631e430099bfb05c83cbac134f4ace05a178f642b252517bc60be24eb4c3d4240b0f4421915c894eb9443e7e66f64dc89f5ab47139c1201fb9015df17ec45"
+	       creator="1" date_created="2005-01-01 00:00:00"
+		/>
+
+
+</dataset>
