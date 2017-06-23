@@ -16,6 +16,7 @@ import org.openmrs.module.reporting.evaluation.parameter.Parameter;
 import org.openmrs.module.reporting.report.ReportDesign;
 import org.openmrs.module.reporting.report.definition.ReportDefinition;
 import org.openmrs.module.reporting.report.manager.BaseReportManager;
+import org.openmrs.module.reporting.report.manager.ReportManagerUtil;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -71,7 +72,9 @@ public class NumberOfVisitNotes extends BaseReportManager {
 
 	@Override
 	public List<ReportDesign> constructReportDesigns(ReportDefinition reportDefinition) {
-		return null;
+		List<ReportDesign> l = new ArrayList<ReportDesign>();
+		l.add(ReportManagerUtil.createExcelDesign("283638f8-487b-11e7-a919-92ebcb67fe33", reportDefinition));
+		return l;
 	}
 
 	@Override

@@ -38,6 +38,7 @@ public class ListOfProvidersTest extends ReportManagerTest {
 	}
 
 	public void verifyData(ReportData data) {
-
+		/*SimpleDataSet dataSet = (SimpleDataSet) data.getDataSets().values().iterator().next();
+		Assert.assertThat(dataSet.getRows(), contains(hasData("TOTAL", 1L)));*/
 	}
 }

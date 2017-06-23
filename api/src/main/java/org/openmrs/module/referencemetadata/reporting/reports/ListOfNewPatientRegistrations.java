@@ -16,15 +16,16 @@ import org.openmrs.module.reporting.evaluation.parameter.Parameter;
 import org.openmrs.module.reporting.report.ReportDesign;
 import org.openmrs.module.reporting.report.definition.ReportDefinition;
 import org.openmrs.module.reporting.report.manager.BaseReportManager;
+import org.openmrs.module.reporting.report.manager.ReportManagerUtil;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class ListOfNewPatientReg extends BaseReportManager {
+public class ListOfNewPatientRegistrations extends BaseReportManager {
 
-	public ListOfNewPatientReg() {
+	public ListOfNewPatientRegistrations() {
 	}
 
 	@Override
@@ -70,7 +71,9 @@ public class ListOfNewPatientReg extends BaseReportManager {
 
 	@Override
 	public List<ReportDesign> constructReportDesigns(ReportDefinition reportDefinition) {
-		return null;
+		List<ReportDesign> l = new ArrayList<ReportDesign>();
+		l.add(ReportManagerUtil.createExcelDesign("283638f8-487b-11e7-a919-92ebcb67fe33", reportDefinition));
+		return l;
 	}
 
 	@Override
@@ -80,9 +83,16 @@ public class ListOfNewPatientReg extends BaseReportManager {
 
 	private String getSQLQuery(){
 		StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append("select * ");
+/*		stringBuilder.append("select * ");
 		stringBuilder.append("from patient ");
-		stringBuilder.append("where date_created >= :startDate; ");
+		stringBuilder.append("where date_created >= :startDate; ");*/
+		stringBuilder.append("SELECT pi.identifier, pn.given_name, pn.family_name, p.date_created ");
+		stringBuilder.append("FROM patient p INNER JOIN person_name pn ");
+		stringBuilder.append("ON p.patient_id = pn.person_id ");
+		stringBuilder.append("INNER JOIN patient_identifier pi ");
+		stringBuilder.append("ON p.patient_id = pi.patient_id ");
+		stringBuilder.append("WHERE p.date_created >= :startDate ");
+		stringBuilder.append("ORDER BY p.patient_id desc ");
 
 		return stringBuilder.toString();
 	}

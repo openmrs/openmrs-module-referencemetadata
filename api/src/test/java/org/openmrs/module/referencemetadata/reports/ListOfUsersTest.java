@@ -14,15 +14,11 @@
 
 package org.openmrs.module.referencemetadata.reports;
 
-import org.junit.Assert;
 import org.openmrs.module.referencemetadata.reporting.reports.ListOfUsers;
-import org.openmrs.module.reporting.dataset.SimpleDataSet;
 import org.openmrs.module.reporting.evaluation.EvaluationContext;
 import org.openmrs.module.reporting.report.ReportData;
 import org.openmrs.module.reporting.report.manager.ReportManager;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import static org.hamcrest.Matchers.contains;
 
 public class ListOfUsersTest extends ReportManagerTest {
 

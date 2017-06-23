@@ -16,6 +16,7 @@ import org.openmrs.module.reporting.evaluation.parameter.Parameter;
 import org.openmrs.module.reporting.report.ReportDesign;
 import org.openmrs.module.reporting.report.definition.ReportDefinition;
 import org.openmrs.module.reporting.report.manager.BaseReportManager;
+import org.openmrs.module.reporting.report.manager.ReportManagerUtil;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -70,7 +71,9 @@ public class NumberOfAdmissions extends BaseReportManager {
 
 	@Override
 	public List<ReportDesign> constructReportDesigns(ReportDefinition reportDefinition) {
-		return null;
+		List<ReportDesign> l = new ArrayList<ReportDesign>();
+		l.add(ReportManagerUtil.createExcelDesign("283638f8-487b-11e7-a919-92ebcb67fe33", reportDefinition));
+		return l;
 	}
 
 	@Override
@@ -80,7 +83,7 @@ public class NumberOfAdmissions extends BaseReportManager {
 
 	private String getSQLQuery(){
 		StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append("select 'Admissions', count(*) as 'total' from encounter e ");
+		stringBuilder.append("select 'Admissions', count(*) as total from encounter e ");
 		stringBuilder.append("where e.encounter_type=(select encounter_type_id from encounter_type where uuid='e22e39fd-7db2-45e7-80f1-60fa0d5a4378') ");
 		stringBuilder.append("and e.location_id=:location ");
 		stringBuilder.append("and e.voided = 0 ");

@@ -64,5 +64,63 @@
 	       creator="1" date_created="2005-01-01 00:00:00"
 		/>
 
+	<concept_class concept_class_id="4" name="Diagnosis" description="Conclusion drawn through findings" creator="1" date_created="2004-02-02 00:00:00" retired="0"
+	               uuid="8d4918b0-c2cc-11de-8d13-0010c6dffd0f"
+		/>
+	<concept_datatype concept_datatype_id="1" name="Numeric" hl7_abbreviation="NM" description="Numeric value, including integer or float (e.g., creatinine, weight)"
+	                  creator="1" date_created="2004-02-02 00:00:00" retired="0" uuid="8d4a4488-c2cc-11de-8d13-0010c6dffd0f"
+		/>
 
+	<concept concept_id="1" retired="0" datatype_id="1" class_id="4" is_set="0" creator="1" date_created="2016-07-07 08:14:50"
+	         uuid="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+		/>
+
+	<concept_name concept_name_id="1" concept_id="1" name="Vero" locale="en" locale_preferred="1" creator="1" date_created="2016-07-07 08:14:50" voided="0"
+	              uuid="e0ff857f-0813-4352-b87d-5399ed62642a"
+		/>
+	<concept_name concept_name_id="2" concept_id="1" name="Vero" locale="en" locale_preferred="1" creator="1" date_created="2016-07-07 08:14:50" voided="0"
+	              uuid="998a49c7-e74f-43b5-9cdb-f8ba84705cf7"
+	/>
+	<concept_name concept_name_id="3" concept_id="1" name="Myalgia" locale="en" locale_preferred="1" creator="1" date_created="2016-07-07 08:14:50" voided="0"
+	              uuid="2c39345f-a099-4816-8ac2-7ad1424898c3"
+	/>
+	<encounter_type encounter_type_id="3" name="Discharge" description="Indicates that a patient's inpatient care at the hospital is ending, and they are expected to leave soon."
+	          creator="1" date_created="2013-08-01 23:57:50" retired="0" uuid="181820aa-88c9-479b-9077-af92f5364329"
+		/>
+	<encounter encounter_id="1" encounter_type="3" patient_id="51" location_id="1" form_id="1" encounter_datetime="2017-04-10 22:19:48" creator="1"
+	           date_created="2017-06-18 23:44:47" voided="0" uuid="d16f8f93-83a3-4027-a922-3e2414f4b48b"
+		/>
+
+	<obs obs_id="1" person_id="52" concept_id="1" encounter_id="1" obs_datetime="2015-06-18 22:21:32" location_id="1" value_coded="1" creator="1"
+	     date_created="2017-06-18 23:45:34" voided="0" uuid="8d3a3ea9-c8fd-4b7b-b6a8-6410500ad410"
+		/>
+
+
+	<encounter_type encounter_type_id="4" name="Admission" description="Indicates that the patient has been admitted for inpatient care, and is not expected to leave the hospital unless discharged."
+	                creator="1" date_created="2013-08-01 23:57:50" retired="0" uuid="e22e39fd-7db2-45e7-80f1-60fa0d5a4378"
+	/>
+	<encounter encounter_id="2" encounter_type="4" patient_id="51" location_id="1" form_id="1" encounter_datetime="2017-04-10 22:19:48" creator="1"
+	           date_created="2017-06-18 23:44:47" voided="0" uuid="06f26d48-c7bf-4d3a-9d25-c7be6919b2f1"
+	/>
+
+	<encounter_type encounter_type_id="3" name="Discharge" description="Indicates that a patient's inpatient care at the hospital is ending, and they are expected to leave soon."
+	                creator="1" date_created="2013-08-01 23:57:50" retired="0" uuid="181820aa-88c9-479b-9077-af92f5364329"
+	/>
+	<encounter encounter_id="3" encounter_type="3" patient_id="51" location_id="1" form_id="1" encounter_datetime="2017-04-10 22:19:48" creator="1"
+	           date_created="2017-06-18 23:44:47" voided="0" uuid="cd8ade65-cb8e-41fc-abff-748ab72a5e37"
+	/>
+
+	<encounter_type encounter_type_id="7" name="Transfer" description="Indicates that a patient is being transferred into a different department within the hospital. (Transfers out of the hospital should not use this encounter type.)"
+	                creator="1" date_created="2013-08-01 23:57:50" retired="0" uuid="7b68d557-85ef-4fc8-b767-4fa4f5eb5c23"
+	/>
+	<encounter encounter_id="4" encounter_type="7" patient_id="51" location_id="1" form_id="1" encounter_datetime="2017-04-10 22:19:48" creator="1"
+	           date_created="2017-06-18 23:44:47" voided="0" uuid="bfbaad4a-bce4-4aec-8830-af4f2c1ab3c2"
+	/>
+
+	<encounter_type encounter_type_id="5" name="Visit Note" description="Encounter where a full or abbreviated examination is done, usually leading to a presumptive or confirmed diagnosis, recorded by the examining clinician."
+	                creator="1" date_created="2013-08-01 23:57:50" retired="0" uuid="d7151f82-c1f3-4152-a605-2f9ea7414a79"
+	/>
+	<encounter encounter_id="5" encounter_type="5" patient_id="51" location_id="1" form_id="1" encounter_datetime="2017-06-18 22:19:48" creator="1"
+	           date_created="2017-06-18 23:44:47" voided="0" uuid="fe949855-dafe-44b7-af2f-cb5fc1b961ec"
+	/>
 </dataset>

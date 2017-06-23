@@ -16,6 +16,7 @@ import org.openmrs.module.reporting.evaluation.parameter.Parameter;
 import org.openmrs.module.reporting.report.ReportDesign;
 import org.openmrs.module.reporting.report.definition.ReportDefinition;
 import org.openmrs.module.reporting.report.manager.BaseReportManager;
+import org.openmrs.module.reporting.report.manager.ReportManagerUtil;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -71,7 +72,9 @@ public class ListOfDiagnosis extends BaseReportManager {
 
 	@Override
 	public List<ReportDesign> constructReportDesigns(ReportDefinition reportDefinition) {
-		return null;
+		List<ReportDesign> l = new ArrayList<ReportDesign>();
+		l.add(ReportManagerUtil.createExcelDesign("283638f8-487b-11e7-a919-92ebcb67fe33", reportDefinition));
+		return l;
 	}
 
 	@Override
@@ -81,16 +84,15 @@ public class ListOfDiagnosis extends BaseReportManager {
 
 	private String getSQLQuery(){
 		StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append("select cn.name, count(*) as 'count' ");
-		stringBuilder.append("from  obs, concept_name cn ");
-		stringBuilder.append("where obs.concept_id = (select concept_id from concept where uuid='1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA') ");
-		stringBuilder.append("and value_coded= cn.concept_id and ");
-		stringBuilder.append("locale='en' and ");
-		stringBuilder.append("locale_preferred = '1' ");
-		stringBuilder.append("and obs.date_created >= :startDate ");
-		stringBuilder.append("and obs.date_created <= :endDate ");
-		stringBuilder.append("group by value_coded, cn.name ");
-		stringBuilder.append("order by count(*) desc ");
+		stringBuilder.append("SELECT cn.name, count(*) as count ");
+		stringBuilder.append("FROM  obs obs INNER JOIN concept_name cn ON obs.value_coded= cn.concept_id ");
+		stringBuilder.append("WHERE obs.concept_id = ( SELECT c.concept_id FROM concept c WHERE c.uuid='1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' ) ");
+		stringBuilder.append("AND cn.locale='en' ");
+		stringBuilder.append("AND cn.locale_preferred = '1' ");
+		stringBuilder.append("AND obs.date_created >= :startDate ");
+		stringBuilder.append("AND obs.date_created <= :endDate ");
+		stringBuilder.append("group by obs.value_coded, cn.name ");
+		stringBuilder.append("order by count(*) desc ;");
 
 		return stringBuilder.toString();
 	}

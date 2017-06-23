@@ -11,11 +11,10 @@
  *
  * Copyright (C) OpenMRS, LLC.  All Rights Reserved.
  */
-
 package org.openmrs.module.referencemetadata.reports;
 
 import org.junit.Assert;
-import org.openmrs.module.referencemetadata.reporting.reports.NumberOfVisits;
+import org.openmrs.module.referencemetadata.reporting.reports.NumberOfVisitNotes;
 import org.openmrs.module.reporting.common.DateUtil;
 import org.openmrs.module.reporting.dataset.SimpleDataSet;
 import org.openmrs.module.reporting.evaluation.EvaluationContext;
@@ -25,17 +24,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.hamcrest.Matchers.contains;
 
-public class NumberOfVisitsTest extends ReportManagerTest {
+public class NumberOfVisitNotesTest extends ReportManagerTest {
 
 	@Autowired
-	NumberOfVisits numberOfVisits;
+	NumberOfVisitNotes numberOfVisitNotes;
 
-	@Override
 	public ReportManager getReportManager() {
-		return numberOfVisits;
+		return numberOfVisitNotes;
 	}
 
-	@Override
 	public EvaluationContext getEvaluationContext() {
 		EvaluationContext context = new EvaluationContext();
 		context.addParameterValue("startDate", DateUtil.getDateTime(2017,6,17));
@@ -45,6 +42,6 @@ public class NumberOfVisitsTest extends ReportManagerTest {
 
 	public void verifyData(ReportData data) {
 		SimpleDataSet dataSet = (SimpleDataSet) data.getDataSets().values().iterator().next();
-		Assert.assertThat(dataSet.getRows(), contains(hasData("NUMBER_OF_VISITS", 2L)));
+		Assert.assertThat(dataSet.getRows(), contains(hasData("NUMBER_OF_VISIT_NOTES", 1L)));
 	}
 }

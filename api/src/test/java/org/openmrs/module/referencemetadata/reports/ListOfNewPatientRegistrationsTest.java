@@ -11,11 +11,10 @@
  *
  * Copyright (C) OpenMRS, LLC.  All Rights Reserved.
  */
-
 package org.openmrs.module.referencemetadata.reports;
 
 import org.junit.Assert;
-import org.openmrs.module.referencemetadata.reporting.reports.NumberOfVisits;
+import org.openmrs.module.referencemetadata.reporting.reports.ListOfNewPatientRegistrations;
 import org.openmrs.module.reporting.common.DateUtil;
 import org.openmrs.module.reporting.dataset.SimpleDataSet;
 import org.openmrs.module.reporting.evaluation.EvaluationContext;
@@ -23,28 +22,32 @@ import org.openmrs.module.reporting.report.ReportData;
 import org.openmrs.module.reporting.report.manager.ReportManager;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.sql.Timestamp;
+
 import static org.hamcrest.Matchers.contains;
 
-public class NumberOfVisitsTest extends ReportManagerTest {
+public class ListOfNewPatientRegistrationsTest extends ReportManagerTest {
 
 	@Autowired
-	NumberOfVisits numberOfVisits;
+	ListOfNewPatientRegistrations listOfNewPatientRegistrations;
 
-	@Override
 	public ReportManager getReportManager() {
-		return numberOfVisits;
+		return listOfNewPatientRegistrations;
 	}
 
-	@Override
 	public EvaluationContext getEvaluationContext() {
 		EvaluationContext context = new EvaluationContext();
 		context.addParameterValue("startDate", DateUtil.getDateTime(2017,6,17));
-		context.addParameterValue("endDate", DateUtil.getDateTime(2017,6,20));
 		return context;
 	}
 
 	public void verifyData(ReportData data) {
+		Timestamp timestamp = Timestamp.valueOf("2017-10-15 08:26:51.0");
 		SimpleDataSet dataSet = (SimpleDataSet) data.getDataSets().values().iterator().next();
-		Assert.assertThat(dataSet.getRows(), contains(hasData("NUMBER_OF_VISITS", 2L)));
+
+		Assert.assertThat(dataSet.getRows(), contains(hasData("IDENTIFIER", "1000EE")));
+		Assert.assertThat(dataSet.getRows(), contains(hasData("GIVEN_NAME", "Rafal")));
+		Assert.assertThat(dataSet.getRows(), contains(hasData("FAMILY_NAME", "Korytkowski")));
+		Assert.assertThat(dataSet.getRows(), contains(hasData("DATE_CREATED", timestamp)));
 	}
 }
