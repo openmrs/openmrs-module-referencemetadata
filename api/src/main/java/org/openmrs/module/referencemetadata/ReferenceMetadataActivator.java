@@ -44,6 +44,8 @@ import org.openmrs.module.metadatadeploy.bundle.MetadataBundle;
 import org.openmrs.module.metadatamapping.MetadataSource;
 import org.openmrs.module.metadatamapping.MetadataTermMapping;
 import org.openmrs.module.metadatamapping.api.MetadataMappingService;
+import org.openmrs.module.reporting.report.manager.ReportManager;
+import org.openmrs.module.reporting.report.manager.ReportManagerUtil;
 
 /**
  * This class contains the logic that is run every time this module is either started or stopped.
@@ -66,6 +68,9 @@ public class ReferenceMetadataActivator extends BaseModuleActivator {
 
 		setupFullAPILevelPrivilegesOnApplicationRoles();
         log.info("Started Reference Metadata module");
+
+	    //setup built-in reports from #org.openmrs.module.referenceapplication.reports
+	    ReportManagerUtil.setupAllReports(ReportManager.class);
     }
 
 	private void installConcepts() {
