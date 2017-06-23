@@ -30,7 +30,7 @@
     	<metadatadeployVersion>1.7</metadatadeployVersion>
     	<eventVersion>2.5</eventVersion>
     	<providermanagementVersion>2.5.0</providermanagementVersion>
-    	<reportingVersion>0.10.4</reportingVersion>
+    	<reportingVersion>0.10.6</reportingVersion>
     	<calculationVersion>1.2</calculationVersion>
     	<serialization.xstreamVersion>0.2.12</serialization.xstreamVersion>
     	<appframeworkVersion>2.9</appframeworkVersion>
@@ -65,6 +65,12 @@
                 <type>test-jar</type>
                 <scope>test</scope>
             </dependency>
+	        <dependency>
+		        <groupId>org.openmrs.module</groupId>
+		        <artifactId>reporting-api-2.0</artifactId>
+		        <version>${reportingVersion}</version>
+		        <scope>provided</scope>
+	        </dependency>
         </dependencies>
     </dependencyManagement>
     
@@ -156,6 +162,10 @@
                 <type>jar</type>
                 <scope>provided</scope>
             </dependency>
+			<dependency>
+				<groupId>org.openmrs.module</groupId>
+				<artifactId>reporting-api-2.0</artifactId>
+			</dependency>
             
             <!-- For testing -->
             <dependency>
