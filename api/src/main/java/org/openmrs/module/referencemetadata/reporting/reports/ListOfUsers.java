@@ -82,7 +82,7 @@ public class ListOfUsers extends BaseReportManager {
 
 	private String getSQLQuery(){
 		StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append("select username, uuid ");
+		stringBuilder.append("select username, date_created ");
 		stringBuilder.append("from users ");
 		stringBuilder.append("where retired = :retired; ");
 

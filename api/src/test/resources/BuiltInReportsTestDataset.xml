@@ -59,10 +59,18 @@
 	          uuid="12b340a0-b6e8-492a-b54f-e2473e126b89"
 	/>
 
-	<users user_id="1" system_id="admin" password="ffba0fa0e7638c1ed511d497cd24afc6a5bcf5231eb9661a87fe215201ba4ede020152a656f02f7ffa5ba34360fe4b0d1e237fe0efed8509fb087a1fadae437d"
+	<users user_id="1" system_id="admin" username="admin" password="ffba0fa0e7638c1ed511d497cd24afc6a5bcf5231eb9661a87fe215201ba4ede020152a656f02f7ffa5ba34360fe4b0d1e237fe0efed8509fb087a1fadae437d"
 	       salt="0ce631e430099bfb05c83cbac134f4ace05a178f642b252517bc60be24eb4c3d4240b0f4421915c894eb9443e7e66f64dc89f5ab47139c1201fb9015df17ec45"
-	       creator="1" date_created="2005-01-01 00:00:00"
+	       creator="1" date_created="2005-01-01 00:00:00" uuid="1c3db49d-440a-11e6-a65c-00e04c680037" person_id="52" retired="0"
 		/>
+	<users user_id="2" system_id="3-4" username="clerk" password="badf57362aa8ccf8748f6487f969239e5eaeae4b9e1d33f3d786f18a3425c0c5dfe61ba71bcc73f54fa43c73ffadadbb9e3da22a09e30185b91e9f30ff6b186f"
+	       salt="0795a362cfa116b3ef0aacb8ead7392b9dbdb1487cdf58011b8f6160ae08c116a65e26afd00bbf4ce540cd846a7b026b098b4a13ea0825cf17274629366e0407"
+	       creator="1" date_created="2017-05-18 22:49:32" uuid="4882dd60-0508-11e3-8ffd-0800200c9a66" person_id="53" retired="0"
+	/>
+	<users user_id="3" system_id="5-9" username="doctor" password="0fdc49601828ad08a025cdf8b654baf64bf45492b8bdb1c9a67bbe9d8417560c405b183a9997d1155449adcae68bfcd7f73e4fa156e6bba136ee730b46e62441"
+	       salt="a3f19a3e712db96dfc8cb1b04b9158876dfd83a52b0af53c8295edf1939c6651c35be916e7fb1ebcdbdad66f93edd61af00619ed50fefcd029d67cbc21c8b854"
+	       creator="1" date_created="2017-05-18 22:49:32" uuid="67bfd7f0-0508-11e3-8ffd-0800200c9a66" person_id="54" retired="0"
+	/>
 
 	<concept_class concept_class_id="4" name="Diagnosis" description="Conclusion drawn through findings" creator="1" date_created="2004-02-02 00:00:00" retired="0"
 	               uuid="8d4918b0-c2cc-11de-8d13-0010c6dffd0f"
