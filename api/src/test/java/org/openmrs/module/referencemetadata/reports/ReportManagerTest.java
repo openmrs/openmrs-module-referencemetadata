@@ -131,6 +131,6 @@ public abstract class ReportManagerTest extends BaseModuleContextSensitiveTest {
 	 * @return true if a subclass wants to print out the report contents to System.out
 	 */
 	public boolean enableReportOutput() {
-		return true;
+		return false;
 	}
 }

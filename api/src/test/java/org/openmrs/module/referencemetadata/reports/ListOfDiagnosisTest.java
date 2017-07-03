@@ -13,12 +13,20 @@
  */
 package org.openmrs.module.referencemetadata.reports;
 
+import org.hamcrest.Matcher;
+import org.junit.Assert;
 import org.openmrs.module.referencemetadata.reporting.reports.ListOfDiagnosis;
 import org.openmrs.module.reporting.common.DateUtil;
+import org.openmrs.module.reporting.dataset.DataSetRow;
+import org.openmrs.module.reporting.dataset.SimpleDataSet;
 import org.openmrs.module.reporting.evaluation.EvaluationContext;
 import org.openmrs.module.reporting.report.ReportData;
 import org.openmrs.module.reporting.report.manager.ReportManager;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import javax.validation.constraints.AssertTrue;
+
+import static org.hamcrest.Matchers.contains;
 
 public class ListOfDiagnosisTest  extends ReportManagerTest {
 
@@ -37,7 +45,15 @@ public class ListOfDiagnosisTest  extends ReportManagerTest {
 	}
 
 	public void verifyData(ReportData data) {
-		/*SimpleDataSet dataSet = (SimpleDataSet) data.getDataSets().values().iterator().next();
-		Assert.assertThat(dataSet.getRows(), contains(hasData("TOTAL", 1L)));*/
+		SimpleDataSet dataSet = (SimpleDataSet) data.getDataSets().values().iterator().next();
+
+		Matcher<DataSetRow>[] expectedValues = new Matcher[2];
+		expectedValues[0] = hasData("NAME", "Vero");
+		expectedValues[1] = hasData("NAME", "Myalgia");
+		Assert.assertThat(dataSet.getRows(), contains(expectedValues));
+
+		expectedValues[0] = hasData("COUNT", 2L);
+		expectedValues[1] = hasData("COUNT", 1L);
+		Assert.assertThat(dataSet.getRows(), contains(expectedValues));
 	}
 }

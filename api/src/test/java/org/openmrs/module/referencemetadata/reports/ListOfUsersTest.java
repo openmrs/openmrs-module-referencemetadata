@@ -14,11 +14,19 @@
 
 package org.openmrs.module.referencemetadata.reports;
 
+import org.hamcrest.Matcher;
+import org.junit.Assert;
 import org.openmrs.module.referencemetadata.reporting.reports.ListOfUsers;
+import org.openmrs.module.reporting.dataset.DataSetRow;
+import org.openmrs.module.reporting.dataset.SimpleDataSet;
 import org.openmrs.module.reporting.evaluation.EvaluationContext;
 import org.openmrs.module.reporting.report.ReportData;
 import org.openmrs.module.reporting.report.manager.ReportManager;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.sql.Timestamp;
+
+import static org.hamcrest.Matchers.contains;
 
 public class ListOfUsersTest extends ReportManagerTest {
 
@@ -38,14 +46,21 @@ public class ListOfUsersTest extends ReportManagerTest {
 	}
 
 	public void verifyData(ReportData data) {
-//      HOW TO CHECK FOR MULTIPLE ROWS?
-/*		SimpleDataSet dataSet = (SimpleDataSet) data.getDataSets().values().iterator().next();
-		Assert.assertThat(dataSet.getRows(), contains(hasData("USERNAME", null)));
-		Assert.assertThat(dataSet.getRows(), contains(hasData("USERNAME", "admin")));
-		Assert.assertThat(dataSet.getRows(), contains(hasData("USERNAME", "butch")));
+		SimpleDataSet dataSet = (SimpleDataSet) data.getDataSets().values().iterator().next();
+		Matcher<DataSetRow>[] dataSetRowMatcher = new Matcher[5];
+		dataSetRowMatcher[0] = hasData("USERNAME", null);
+		dataSetRowMatcher[1] = hasData("USERNAME", "admin");
+		dataSetRowMatcher[2] = hasData("USERNAME", "clerk");
+		dataSetRowMatcher[3] = hasData("USERNAME", "doctor");
+		dataSetRowMatcher[4] = hasData("USERNAME", "butch");
+		Assert.assertThat(dataSet.getRows(), contains(dataSetRowMatcher));
 
-		Assert.assertThat(dataSet.getRows(), contains(hasData("UUID", "A4F30A1B-5EB9-11DF-A648-37A07F9C90FB")));
-		Assert.assertThat(dataSet.getRows(), contains(hasData("UUID", "1010d442-e134-11de-babe-001e378eb67e")));
-		Assert.assertThat(dataSet.getRows(), contains(hasData("UUID", "c98a1558-e131-11de-babe-001e378eb67e")));*/
+		dataSetRowMatcher[0] = hasData("DATE_CREATED", Timestamp.valueOf("2005-01-01 00:00:00.0"));
+		dataSetRowMatcher[1] = hasData("DATE_CREATED", Timestamp.valueOf("2005-01-01 00:00:00.0"));
+		dataSetRowMatcher[2] = hasData("DATE_CREATED", Timestamp.valueOf("2017-05-18 22:49:32"));
+		dataSetRowMatcher[3] = hasData("DATE_CREATED", Timestamp.valueOf("2017-05-18 22:49:32"));
+		dataSetRowMatcher[4] = hasData("DATE_CREATED", Timestamp.valueOf("2008-08-15 15:57:09.0"));
+		Assert.assertThat(dataSet.getRows(), contains(dataSetRowMatcher));
+
 	}
 }
