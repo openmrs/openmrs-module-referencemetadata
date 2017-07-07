@@ -71,7 +71,7 @@ public class ListOfUsers extends BaseReportManager {
 	@Override
 	public List<ReportDesign> constructReportDesigns(ReportDefinition reportDefinition) {
 		List<ReportDesign> l = new ArrayList<ReportDesign>();
-		l.add(ReportManagerUtil.createExcelDesign("283638f8-487b-11e7-a919-92ebcb67fe33", reportDefinition));
+		l.add(ReportManagerUtil.createExcelDesign("e866e03a-633a-11e7-907b-a6006ad3dba0", reportDefinition));
 		return l;
 	}
 
