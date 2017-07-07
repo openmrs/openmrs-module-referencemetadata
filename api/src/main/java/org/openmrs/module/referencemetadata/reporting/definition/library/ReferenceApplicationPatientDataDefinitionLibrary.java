@@ -37,11 +37,11 @@ import java.util.Date;
 import java.util.Map;
 
 @Component
-public class PatientDataDefinitionLibrary extends BaseDefinitionLibrary<PatientDataDefinition> {
+public class ReferenceApplicationPatientDataDefinitionLibrary extends BaseDefinitionLibrary<PatientDataDefinition> {
 
 	@Override
 	public Class<? super PatientDataDefinition> getDefinitionType() {
-		return null;
+		return PatientDataDefinition.class;
 	}
 
 	@Override

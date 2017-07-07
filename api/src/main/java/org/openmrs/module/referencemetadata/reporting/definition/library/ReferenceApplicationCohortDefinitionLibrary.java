@@ -25,7 +25,7 @@ import org.springframework.stereotype.Component;
 import java.util.Map;
 
 @Component
-public class CohortDefinitionLibrary extends BaseDefinitionLibrary<CohortDefinition> {
+public class ReferenceApplicationCohortDefinitionLibrary extends BaseDefinitionLibrary<CohortDefinition> {
 
 	@Override
 	public Class<? super CohortDefinition> getDefinitionType() {

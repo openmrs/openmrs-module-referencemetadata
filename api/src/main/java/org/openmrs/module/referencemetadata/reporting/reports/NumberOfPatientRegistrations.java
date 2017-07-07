@@ -9,8 +9,8 @@
  */
 package org.openmrs.module.referencemetadata.reporting.reports;
 
-import org.openmrs.module.referencemetadata.reporting.definition.library.CohortDefinitionLibrary;
-import org.openmrs.module.referencemetadata.reporting.definition.library.PatientDataDefinitionLibrary;
+import org.openmrs.module.referencemetadata.reporting.definition.library.ReferenceApplicationCohortDefinitionLibrary;
+import org.openmrs.module.referencemetadata.reporting.definition.library.ReferenceApplicationPatientDataDefinitionLibrary;
 import org.openmrs.module.reporting.ReportingConstants;
 import org.openmrs.module.reporting.cohort.definition.CohortDefinition;
 import org.openmrs.module.reporting.data.patient.definition.PatientDataDefinition;
@@ -31,14 +31,16 @@ import java.util.List;
 @Component
 public class NumberOfPatientRegistrations extends BaseReportManager {
 
+	private static final String DATA_SET_UUID = "cc96c6d5-1adf-4fb6-bc72-284f1822a9f3";
+
 	@Autowired
 	private BuiltInPatientDataLibrary builtInPatientData;
 
 	@Autowired
-	private CohortDefinitionLibrary cohortDefinitionLibrary;
+	private ReferenceApplicationCohortDefinitionLibrary referenceApplicationCohortDefinitionLibrary;
 
 	@Autowired
-	private PatientDataDefinitionLibrary patientDataDefinitionLibrary;
+	private ReferenceApplicationPatientDataDefinitionLibrary referenceApplicationPatientDataDefinitionLibrary;
 
 	public NumberOfPatientRegistrations() {
 	}
@@ -83,16 +85,17 @@ public class NumberOfPatientRegistrations extends BaseReportManager {
 	private void addDataSet(ReportDefinition rd, String dataSetKey){
 
 		PatientDataSetDefinition dataSet = new PatientDataSetDefinition();
+		dataSet.setUuid(DATA_SET_UUID);
 		dataSet.setName(getName());
 		dataSet.setParameters(getParameters());
 
-		CohortDefinition cohortDefinition = cohortDefinitionLibrary.getActivePatientRegistrationsByDatePeriod();
+		CohortDefinition cohortDefinition = referenceApplicationCohortDefinitionLibrary.getActivePatientRegistrationsByDatePeriod();
 		dataSet.addRowFilter(Mapped.mapStraightThrough(cohortDefinition));
 
 		rd.addDataSetDefinition(dataSetKey, Mapped.mapStraightThrough(dataSet));
 
-		addColumn(dataSet, "Registered DateTime", patientDataDefinitionLibrary.getDateCreated());
-		addColumn(dataSet, "OpenMRS ID", patientDataDefinitionLibrary.getOpenmrsId());
+		addColumn(dataSet, "Registered DateTime", referenceApplicationPatientDataDefinitionLibrary.getDateCreated());
+		addColumn(dataSet, "OpenMRS ID", referenceApplicationPatientDataDefinitionLibrary.getOpenmrsId());
 		addColumn(dataSet, "Given Name", builtInPatientData.getPreferredGivenName());
 		addColumn(dataSet, "Family Name", builtInPatientData.getPreferredFamilyName());
 		addColumn(dataSet, "Gender", builtInPatientData.getGender());
@@ -105,7 +108,7 @@ public class NumberOfPatientRegistrations extends BaseReportManager {
 	@Override
 	public List<ReportDesign> constructReportDesigns(ReportDefinition reportDefinition) {
 		List<ReportDesign> l = new ArrayList<ReportDesign>();
-		l.add(ReportManagerUtil.createExcelDesign("283638f8-487b-11e7-a919-92ebcb67fe33", reportDefinition));
+		l.add(ReportManagerUtil.createExcelDesign("0e36f8b5-8635-4f2c-bf7c-a19a22c38816", reportDefinition));
 		return l;
 	}
 
