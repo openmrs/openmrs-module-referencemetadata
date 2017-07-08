@@ -75,7 +75,7 @@ public class ListOfNewPatientRegistrations extends BaseReportManager {
 	@Override
 	public List<ReportDesign> constructReportDesigns(ReportDefinition reportDefinition) {
 		List<ReportDesign> l = new ArrayList<ReportDesign>();
-		l.add(ReportManagerUtil.createExcelDesign("98dedbee-26c6-43f8-b856-f2982ce2b62d", reportDefinition));
+		l.add(ReportManagerUtil.createExcelDesign("c410998d-b71e-428b-8e5c-f88536c83761", reportDefinition));
 		return l;
 	}
 

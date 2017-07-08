@@ -74,7 +74,7 @@ public class ListOfProviders extends BaseReportManager {
 	@Override
 	public List<ReportDesign> constructReportDesigns(ReportDefinition reportDefinition) {
 		List<ReportDesign> l = new ArrayList<ReportDesign>();
-		l.add(ReportManagerUtil.createExcelDesign("e386469a-e71b-4825-a7d0-7f4978816cb4", reportDefinition));
+		l.add(ReportManagerUtil.createExcelDesign("15b5f44e-70a3-4eaf-b916-3bb6d9ef591c", reportDefinition));
 		return l;
 	}
 

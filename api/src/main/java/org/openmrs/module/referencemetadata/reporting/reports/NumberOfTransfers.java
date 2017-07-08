@@ -75,7 +75,7 @@ public class NumberOfTransfers extends BaseReportManager {
 	@Override
 	public List<ReportDesign> constructReportDesigns(ReportDefinition reportDefinition) {
 		List<ReportDesign> l = new ArrayList<ReportDesign>();
-		l.add(ReportManagerUtil.createExcelDesign("6468e203-d1ae-4b7f-8d09-100aa4c643c6", reportDefinition));
+		l.add(ReportManagerUtil.createExcelDesign("ca5a731f-eee2-4fa5-b394-a6ec9fc41194", reportDefinition));
 		return l;
 	}
 

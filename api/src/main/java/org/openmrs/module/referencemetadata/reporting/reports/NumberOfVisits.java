@@ -78,7 +78,7 @@ public class NumberOfVisits extends BaseReportManager {
 	@Override
 	public List<ReportDesign> constructReportDesigns(ReportDefinition reportDefinition) {
 		List<ReportDesign> l = new ArrayList<ReportDesign>();
-		l.add(ReportManagerUtil.createExcelDesign("c349069b-cc34-4ed8-b425-85e0794e4edf", reportDefinition));
+		l.add(ReportManagerUtil.createExcelDesign("dba7cde5-32de-463a-8647-acc917fe5484", reportDefinition));
 		return l;
 	}
 

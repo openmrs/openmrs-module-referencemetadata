@@ -75,7 +75,7 @@ public class NumberOfAdmissions extends BaseReportManager {
 	@Override
 	public List<ReportDesign> constructReportDesigns(ReportDefinition reportDefinition) {
 		List<ReportDesign> l = new ArrayList<ReportDesign>();
-		l.add(ReportManagerUtil.createExcelDesign("0403c0d9-1317-4fc0-a219-67e21971bdea", reportDefinition));
+		l.add(ReportManagerUtil.createExcelDesign("06925f58-4814-40e9-b833-9611b9a9cf00", reportDefinition));
 		return l;
 	}
 

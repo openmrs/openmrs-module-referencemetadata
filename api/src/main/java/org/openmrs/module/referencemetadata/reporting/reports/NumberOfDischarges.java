@@ -75,7 +75,7 @@ public class NumberOfDischarges extends BaseReportManager {
 	@Override
 	public List<ReportDesign> constructReportDesigns(ReportDefinition reportDefinition) {
 		List<ReportDesign> l = new ArrayList<ReportDesign>();
-		l.add(ReportManagerUtil.createExcelDesign("6dfa8f30-8c6b-4722-b3ef-0af15cb14bc5", reportDefinition));
+		l.add(ReportManagerUtil.createExcelDesign("8c264d4f-3f43-497f-98b1-8e8138e7a099", reportDefinition));
 		return l;
 	}
 
