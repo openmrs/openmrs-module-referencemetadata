@@ -25,6 +25,8 @@ import java.util.List;
 @Component
 public class NumberOfVisitNotes extends BaseReportManager {
 
+	private static final String DATA_SET_UUID = "ec726fb5-fee8-43c5-b85f-034d165c2fb3";
+
 	public NumberOfVisitNotes() {
 	}
 
@@ -60,6 +62,7 @@ public class NumberOfVisitNotes extends BaseReportManager {
 		reportDef.setParameters(getParameters());
 
 		SqlDataSetDefinition sqlDataDef = new SqlDataSetDefinition();
+		sqlDataDef.setUuid(DATA_SET_UUID);
 		sqlDataDef.setName(getName());
 		sqlDataDef.addParameters(getParameters());
 		sqlDataDef.setSqlQuery(getSQLQuery());
@@ -73,7 +76,7 @@ public class NumberOfVisitNotes extends BaseReportManager {
 	@Override
 	public List<ReportDesign> constructReportDesigns(ReportDefinition reportDefinition) {
 		List<ReportDesign> l = new ArrayList<ReportDesign>();
-		l.add(ReportManagerUtil.createExcelDesign("283638f8-487b-11e7-a919-92ebcb67fe33", reportDefinition));
+		l.add(ReportManagerUtil.createExcelDesign("740eb793-621e-43f5-8f6b-06ebca3ed4df", reportDefinition));
 		return l;
 	}
 

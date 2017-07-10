@@ -25,6 +25,8 @@ import java.util.List;
 @Component
 public class ListOfDiagnosis extends BaseReportManager {
 
+	private static final String DATA_SET_UUID = "500261e9-0e0c-4e66-95dd-1f67bce0b699";
+
 	public ListOfDiagnosis() {
 	}
 
@@ -60,6 +62,7 @@ public class ListOfDiagnosis extends BaseReportManager {
 		reportDef.setParameters(getParameters());
 
 		SqlDataSetDefinition sqlDataDef = new SqlDataSetDefinition();
+		sqlDataDef.setUuid(DATA_SET_UUID);
 		sqlDataDef.setName(getName());
 		sqlDataDef.addParameters(getParameters());
 		sqlDataDef.setSqlQuery(getSQLQuery());
@@ -73,7 +76,7 @@ public class ListOfDiagnosis extends BaseReportManager {
 	@Override
 	public List<ReportDesign> constructReportDesigns(ReportDefinition reportDefinition) {
 		List<ReportDesign> l = new ArrayList<ReportDesign>();
-		l.add(ReportManagerUtil.createExcelDesign("283638f8-487b-11e7-a919-92ebcb67fe33", reportDefinition));
+		l.add(ReportManagerUtil.createExcelDesign("ba5a2bd8-68b6-4dac-aef5-ea88d0b327f5", reportDefinition));
 		return l;
 	}
 
