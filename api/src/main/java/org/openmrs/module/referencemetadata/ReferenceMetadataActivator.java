@@ -130,7 +130,7 @@ public class ReferenceMetadataActivator extends BaseModuleActivator {
 
     public void setupOpenmrsId(AdministrationService administrationService, PatientService patientService, IdentifierSourceService identifierSourceService, MetadataMappingService metadataMappingService) {
 
-        PatientIdentifierType openmrsIdType = patientService.getPatientIdentifierTypeByName(ReferenceMetadataConstants.OPENMRS_ID_NAME);
+        PatientIdentifierType openmrsIdType = patientService.getPatientIdentifierTypeByUuid(ReferenceMetadataConstants.OPENMRS_ID_UUID);
         if (openmrsIdType == null) {
             openmrsIdType = new PatientIdentifierType();
             openmrsIdType.setName(ReferenceMetadataConstants.OPENMRS_ID_NAME);
