@@ -89,7 +89,7 @@ public class ListOfNewPatientRegistrations extends BaseReportManager {
 /*		stringBuilder.append("select * ");
 		stringBuilder.append("from patient ");
 		stringBuilder.append("where date_created >= :startDate; ");*/
-		stringBuilder.append("SELECT pi.identifier, pn.given_name, pn.family_name, p.date_created ");
+		stringBuilder.append("SELECT pi.identifier as OpenMRS_ID, pn.given_name as Given_Name, pn.family_name as Family_Name, p.date_created as Created ");
 		stringBuilder.append("FROM patient p INNER JOIN person_name pn ");
 		stringBuilder.append("ON p.patient_id = pn.person_id ");
 		stringBuilder.append("INNER JOIN patient_identifier pi ");

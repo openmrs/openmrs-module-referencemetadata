@@ -46,9 +46,9 @@ public class ListOfProvidersTest extends ReportManagerTest {
 	public void verifyData(ReportData data) {
 		SimpleDataSet dataSet = (SimpleDataSet) data.getDataSets().values().iterator().next();
 		Matcher<DataSetRow>[] expectedValues = new Matcher[3];
-		expectedValues[0] = hasData("IDENTIFIER", "clerk");
-		expectedValues[1] = hasData("IDENTIFIER", "nurse");
-		expectedValues[2] = hasData("IDENTIFIER", "doctor");
+		expectedValues[0] = hasData("Provider", "clerk");
+		expectedValues[1] = hasData("Provider", "nurse");
+		expectedValues[2] = hasData("Provider", "doctor");
 
 		Assert.assertThat(dataSet.getRows(), contains(expectedValues));
 	}
