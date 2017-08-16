@@ -85,7 +85,7 @@ public class ListOfProviders extends BaseReportManager {
 
 	private String getSQLQuery(){
 		StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append("select identifier, uuid ");
+		stringBuilder.append("select identifier as Provider, date_created as Created ");
 		stringBuilder.append("from provider ");
 		stringBuilder.append("where retired = :retired; ");
 

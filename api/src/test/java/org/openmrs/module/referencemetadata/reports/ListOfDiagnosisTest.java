@@ -48,8 +48,8 @@ public class ListOfDiagnosisTest  extends ReportManagerTest {
 		SimpleDataSet dataSet = (SimpleDataSet) data.getDataSets().values().iterator().next();
 
 		Matcher<DataSetRow>[] expectedValues = new Matcher[2];
-		expectedValues[0] = hasData("NAME", "Vero");
-		expectedValues[1] = hasData("NAME", "Myalgia");
+		expectedValues[0] = hasData("Diagnosis", "Vero");
+		expectedValues[1] = hasData("Diagnosis", "Myalgia");
 		Assert.assertThat(dataSet.getRows(), contains(expectedValues));
 
 		expectedValues[0] = hasData("COUNT", 2L);

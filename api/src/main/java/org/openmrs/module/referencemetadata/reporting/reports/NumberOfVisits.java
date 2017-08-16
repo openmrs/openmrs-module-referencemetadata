@@ -89,7 +89,7 @@ public class NumberOfVisits extends BaseReportManager {
 
 	private String getSQLQuery(){
 		StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append("select count(*) as number_of_visits ");
+		stringBuilder.append("select count(*) as Number_of_visits ");
 		stringBuilder.append("from visit v ");
 		stringBuilder.append("where v.date_started >= :startDate ");
 		stringBuilder.append("and v.date_stopped <= :endDate ");

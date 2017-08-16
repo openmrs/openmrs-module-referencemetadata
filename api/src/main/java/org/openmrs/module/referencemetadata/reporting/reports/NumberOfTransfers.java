@@ -86,7 +86,7 @@ public class NumberOfTransfers extends BaseReportManager {
 
 	private String getSQLQuery(){
 		StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append("select 'Tranfers', count(*) as total from encounter e ");
+		stringBuilder.append("select count(*) as Count from encounter e ");
 		stringBuilder.append("where e.encounter_type=(select encounter_type_id from encounter_type where uuid='7b68d557-85ef-4fc8-b767-4fa4f5eb5c23') ");
 		stringBuilder.append("and e.location_id=:location ");
 		stringBuilder.append("and e.voided = 0 ");

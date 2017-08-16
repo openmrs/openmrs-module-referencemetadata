@@ -41,6 +41,6 @@ public class NumberOfDischargesTest extends ReportManagerTest {
 
 	public void verifyData(ReportData data) {
 		SimpleDataSet dataSet = (SimpleDataSet) data.getDataSets().values().iterator().next();
-		Assert.assertThat(dataSet.getRows(), contains(hasData("TOTAL", 2L)));
+		Assert.assertThat(dataSet.getRows(), contains(hasData("Count", 2L)));
 	}
 }

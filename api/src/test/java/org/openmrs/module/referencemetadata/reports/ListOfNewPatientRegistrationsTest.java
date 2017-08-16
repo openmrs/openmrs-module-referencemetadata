@@ -45,9 +45,9 @@ public class ListOfNewPatientRegistrationsTest extends ReportManagerTest {
 		Timestamp timestamp = Timestamp.valueOf("2017-10-15 08:26:51.0");
 		SimpleDataSet dataSet = (SimpleDataSet) data.getDataSets().values().iterator().next();
 
-		Assert.assertThat(dataSet.getRows(), contains(hasData("IDENTIFIER", "1000EE")));
-		Assert.assertThat(dataSet.getRows(), contains(hasData("GIVEN_NAME", "Rafal")));
-		Assert.assertThat(dataSet.getRows(), contains(hasData("FAMILY_NAME", "Korytkowski")));
-		Assert.assertThat(dataSet.getRows(), contains(hasData("DATE_CREATED", timestamp)));
+		Assert.assertThat(dataSet.getRows(), contains(hasData("OpenMRS_ID", "1000EE")));
+		Assert.assertThat(dataSet.getRows(), contains(hasData("Given_Name", "Rafal")));
+		Assert.assertThat(dataSet.getRows(), contains(hasData("Family_Name", "Korytkowski")));
+		Assert.assertThat(dataSet.getRows(), contains(hasData("Created", timestamp)));
 	}
 }

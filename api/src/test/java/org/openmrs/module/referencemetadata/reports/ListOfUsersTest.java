@@ -48,18 +48,18 @@ public class ListOfUsersTest extends ReportManagerTest {
 	public void verifyData(ReportData data) {
 		SimpleDataSet dataSet = (SimpleDataSet) data.getDataSets().values().iterator().next();
 		Matcher<DataSetRow>[] dataSetRowMatcher = new Matcher[5];
-		dataSetRowMatcher[0] = hasData("USERNAME", null);
-		dataSetRowMatcher[1] = hasData("USERNAME", "admin");
-		dataSetRowMatcher[2] = hasData("USERNAME", "clerk");
-		dataSetRowMatcher[3] = hasData("USERNAME", "doctor");
-		dataSetRowMatcher[4] = hasData("USERNAME", "butch");
+		dataSetRowMatcher[0] = hasData("User", null);
+		dataSetRowMatcher[1] = hasData("User", "admin");
+		dataSetRowMatcher[2] = hasData("User", "clerk");
+		dataSetRowMatcher[3] = hasData("User", "doctor");
+		dataSetRowMatcher[4] = hasData("User", "butch");
 		Assert.assertThat(dataSet.getRows(), contains(dataSetRowMatcher));
 
-		dataSetRowMatcher[0] = hasData("DATE_CREATED", Timestamp.valueOf("2005-01-01 00:00:00.0"));
-		dataSetRowMatcher[1] = hasData("DATE_CREATED", Timestamp.valueOf("2005-01-01 00:00:00.0"));
-		dataSetRowMatcher[2] = hasData("DATE_CREATED", Timestamp.valueOf("2017-05-18 22:49:32"));
-		dataSetRowMatcher[3] = hasData("DATE_CREATED", Timestamp.valueOf("2017-05-18 22:49:32"));
-		dataSetRowMatcher[4] = hasData("DATE_CREATED", Timestamp.valueOf("2008-08-15 15:57:09.0"));
+		dataSetRowMatcher[0] = hasData("Created", Timestamp.valueOf("2005-01-01 00:00:00.0"));
+		dataSetRowMatcher[1] = hasData("Created", Timestamp.valueOf("2005-01-01 00:00:00.0"));
+		dataSetRowMatcher[2] = hasData("Created", Timestamp.valueOf("2017-05-18 22:49:32"));
+		dataSetRowMatcher[3] = hasData("Created", Timestamp.valueOf("2017-05-18 22:49:32"));
+		dataSetRowMatcher[4] = hasData("Created", Timestamp.valueOf("2008-08-15 15:57:09.0"));
 		Assert.assertThat(dataSet.getRows(), contains(dataSetRowMatcher));
 
 	}
