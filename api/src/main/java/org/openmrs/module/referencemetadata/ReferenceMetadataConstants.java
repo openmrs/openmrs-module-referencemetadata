@@ -27,6 +27,6 @@ public class ReferenceMetadataConstants {
 	/**
 	 * Should be set to a higher version in case of any changes in bundled metadata
 	 */
-	public static final Integer METADATA_VERSION = 12;
+	public static final Integer METADATA_VERSION = 13;
 
 }
