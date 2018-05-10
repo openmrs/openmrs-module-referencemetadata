@@ -92,7 +92,7 @@ public class ReferenceMetadataActivator extends BaseModuleActivator {
         	Context.flushSession(); //Flush so that purges are not deferred until after data import
         	
         	DataImporter dataImporter = Context.getRegisteredComponent("dataImporter", DataImporter.class);
-            dataImporter.importData("Reference_Application_Concepts-22.xml");
+            dataImporter.importData("Reference_Application_Concepts-23.xml");
             dataImporter.importData("Reference_Application_Diagnoses-10.xml");
             dataImporter.importData("Reference_Application_Order_Entry_and_Allergies_Concepts-17.xml");
             
