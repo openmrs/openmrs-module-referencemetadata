@@ -18,6 +18,7 @@ import org.openmrs.PatientIdentifierType;
 import org.openmrs.Privilege;
 import org.openmrs.Role;
 import org.openmrs.api.ConceptService;
+import org.openmrs.api.OrderService;
 import org.openmrs.api.PatientService;
 import org.openmrs.api.UserService;
 import org.openmrs.api.ValidationException;
@@ -58,6 +59,9 @@ public class ReferenceMetadataActivatorComponentTest extends BaseModuleContextSe
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private OrderService orderService;
 
     // loading MDS packages is expensive, so we do everything in a single test. This is typically not best practice, but it speeds the build significantly.
     @Test
@@ -155,6 +159,16 @@ public class ReferenceMetadataActivatorComponentTest extends BaseModuleContextSe
         assertThat(conceptService.getConcept(159947).getUuid(), is("159947AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"));
         
         assertThat(conceptService.getAllConcepts().size(), is(440));
+
+        assertThat(getOrderFrequencyUuid(162135), is("162135OFAAAAAAAAAAAAAAA"));
+        assertThat(getOrderFrequencyUuid(162256), is("162256OFAAAAAAAAAAAAAAA"));
+        assertThat(getOrderFrequencyUuid(162135), is("162135OFAAAAAAAAAAAAAAA"));
+        assertThat(getOrderFrequencyUuid(162256), is("162256OFAAAAAAAAAAAAAAA"));
+
+        assertThat(orderService.getOrderFrequencies(false).size(), is(30));
     }
 
+    private String getOrderFrequencyUuid(int conceptId) {
+        return orderService.getOrderFrequencyByConcept(conceptService.getConcept(conceptId)).getUuid();
+    }
 }
