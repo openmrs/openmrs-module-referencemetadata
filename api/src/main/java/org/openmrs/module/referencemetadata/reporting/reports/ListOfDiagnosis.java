@@ -87,7 +87,7 @@ public class ListOfDiagnosis extends BaseReportManager {
 
 	private String getSQLQuery(){
 		StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append("SELECT cn.name as Diagnosis , count(*) as Count ");
+		stringBuilder.append("SELECT max(cn.uuid) as DiagnosisUuid , max(cn.name) as Diagnosis , count(*) as Count ");
 		stringBuilder.append("FROM  obs obs INNER JOIN concept_name cn ON obs.value_coded= cn.concept_id ");
 		stringBuilder.append("WHERE obs.concept_id = ( SELECT c.concept_id FROM concept c WHERE c.uuid='1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' ) ");
 		stringBuilder.append("AND cn.locale='en' ");
