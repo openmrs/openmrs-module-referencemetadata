@@ -86,16 +86,14 @@ public class ListOfNewPatientRegistrations extends BaseReportManager {
 
 	private String getSQLQuery(){
 		StringBuilder stringBuilder = new StringBuilder();
-/*		stringBuilder.append("select * ");
-		stringBuilder.append("from patient ");
-		stringBuilder.append("where date_created >= :startDate; ");*/
 		stringBuilder.append("SELECT pi.identifier as OpenMRS_ID, pn.given_name as Given_Name, pn.family_name as Family_Name, p.date_created as Created ");
 		stringBuilder.append("FROM patient p INNER JOIN person_name pn ");
 		stringBuilder.append("ON p.patient_id = pn.person_id ");
 		stringBuilder.append("INNER JOIN patient_identifier pi ");
 		stringBuilder.append("ON p.patient_id = pi.patient_id ");
 		stringBuilder.append("WHERE p.date_created >= :startDate ");
-		stringBuilder.append("ORDER BY p.patient_id desc ");
+		stringBuilder.append("GROUP BY pi.patient_id ");
+		stringBuilder.append("ORDER BY p.patient_id desc;");
 
 		return stringBuilder.toString();
 	}
