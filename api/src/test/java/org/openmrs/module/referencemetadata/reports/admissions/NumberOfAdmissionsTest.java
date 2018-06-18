@@ -11,12 +11,12 @@
  *
  * Copyright (C) OpenMRS, LLC.  All Rights Reserved.
  */
-package org.openmrs.module.referencemetadata.reports;
+package org.openmrs.module.referencemetadata.reports.admissions;
 
-import org.hamcrest.Matcher;
 import org.junit.Assert;
-import org.openmrs.module.referencemetadata.reporting.reports.NumberOfAllAdmissions;
-import org.openmrs.module.reporting.dataset.DataSetRow;
+import org.openmrs.Location;
+import org.openmrs.module.referencemetadata.reporting.reports.admissions.NumberOfAdmissions;
+import org.openmrs.module.referencemetadata.reports.ReportManagerTest;
 import org.openmrs.module.reporting.dataset.SimpleDataSet;
 import org.openmrs.module.reporting.evaluation.EvaluationContext;
 import org.openmrs.module.reporting.report.ReportData;
@@ -25,23 +25,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.hamcrest.Matchers.contains;
 
-public class NumberOfAllAdmissionsTest extends ReportManagerTest {
+public class NumberOfAdmissionsTest extends ReportManagerTest {
 
-    @Autowired
-    NumberOfAllAdmissions numberOfAllAdmissions;
+	@Autowired
+	NumberOfAdmissions numberOfAdmissions;
 
-    public ReportManager getReportManager() {
-        return numberOfAllAdmissions;
-    }
+	public ReportManager getReportManager() {
+		return numberOfAdmissions;
+	}
 
-    public EvaluationContext getEvaluationContext() {
-        EvaluationContext context = new EvaluationContext();
-        return context;
-    }
+	public EvaluationContext getEvaluationContext() {
+		EvaluationContext context = new EvaluationContext();
+		context.addParameterValue("location", new Location(Location.LOCATION_UNKNOWN));
+		return context;
+	}
 
-    public void verifyData(ReportData data) {
-        SimpleDataSet dataSet = (SimpleDataSet) data.getDataSets().values().iterator().next();
-        Assert.assertThat(dataSet.getRows(), contains(hasData("Location", "sampleLocation")));
-        Assert.assertThat(dataSet.getRows(), contains(hasData("Count", 1L)));
-    }
+	public void verifyData(ReportData data) {
+		SimpleDataSet dataSet = (SimpleDataSet) data.getDataSets().values().iterator().next();
+		Assert.assertThat(dataSet.getRows(), contains(hasData("Count", 1L)));
+	}
 }
