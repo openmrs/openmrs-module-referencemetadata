@@ -116,15 +116,6 @@
   <concept concept_id="162822" retired="false" datatype_id="4" class_id="11" is_set="false" creator="1" date_created="2015-01-06 22:33:22.0" version="" changed_by="1" date_changed="2015-01-06 22:33:29.0" retired_by="1" uuid="162822AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
   <concept concept_id="163139" retired="false" datatype_id="4" class_id="11" is_set="false" creator="1" date_created="2015-12-13 15:00:18.0" version="" changed_by="1" date_changed="2015-12-13 15:02:03.0" retired_by="1" uuid="163139AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
   <concept concept_id="165095" retired="false" datatype_id="3" class_id="7" is_set="false" creator="1" date_created="2018-04-18 14:34:20.0" version="" changed_by="1" date_changed="2018-04-18 14:34:30.0" retired_by="1" uuid="165095AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
-  <concept_numeric concept_id="1343" units="cm" precise="true"/>
-  <concept_numeric concept_id="5085" hi_absolute="250.0" low_absolute="0.0" units="mmHg" precise="false"/>
-  <concept_numeric concept_id="5086" hi_absolute="150.0" low_absolute="0.0" units="mmHg" precise="false"/>
-  <concept_numeric concept_id="5087" hi_absolute="230.0" low_absolute="0.0" units="beats/min" precise="false"/>
-  <concept_numeric concept_id="5088" hi_absolute="43.0" low_absolute="25.0" units="DEG C" precise="true"/>
-  <concept_numeric concept_id="5089" hi_absolute="250.0" low_absolute="0.0" units="kg" precise="true"/>
-  <concept_numeric concept_id="5090" hi_absolute="272.0" low_absolute="10.0" units="cm" precise="true"/>
-  <concept_numeric concept_id="5092" hi_absolute="100.0" low_absolute="0.0" units="%" precise="false"/>
-  <concept_numeric concept_id="5242" hi_absolute="999.0" hi_critical="120.0" hi_normal="70.0" low_absolute="0.0" units="" precise="false"/>
   <concept_description concept_description_id="107" concept_id="108" description="A contraction of smooth muscle in the walls of the bronchi and bronchioles, causing narrowing of the lumen." locale="en" creator="1" date_created="2004-01-01 00:00:00.0" changed_by="1" date_changed="2015-11-05 01:34:22.0" uuid="107FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF"/>
   <concept_description concept_description_id="120" concept_id="121" description="Muscular pain or tenderness, especially when diffuse and nonspecific." locale="en" creator="1" date_created="2004-01-01 00:00:00.0" changed_by="1" date_changed="2015-11-05 01:37:39.0" uuid="120FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF"/>
   <concept_description concept_description_id="512" concept_id="512" description="DEF: Lesion of the skin. DESC: The history of the particular skin lesions is also important, including time and site of initial appearance, spread, change in appearance, and triggering factors. Visual inspection is the central evaluation tool; many skin diseases are diagnosed by the characteristic appearance or morphology of the lesions. REF: Merck Manual" locale="en" creator="1" date_created="2004-01-01 00:00:00.0" changed_by="1" date_changed="2016-04-27 14:18:52.0" uuid="512FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF"/>

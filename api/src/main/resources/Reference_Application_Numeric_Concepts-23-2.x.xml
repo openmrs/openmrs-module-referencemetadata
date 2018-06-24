@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <concept_numeric concept_id="1343" units="cm" allow_decimal="true"/>
+  <concept_numeric concept_id="5085" hi_absolute="250.0" low_absolute="0.0" units="mmHg" allow_decimal="false"/>
+  <concept_numeric concept_id="5086" hi_absolute="150.0" low_absolute="0.0" units="mmHg" allow_decimal="false"/>
+  <concept_numeric concept_id="5087" hi_absolute="230.0" low_absolute="0.0" units="beats/min" allow_decimal="false"/>
+  <concept_numeric concept_id="5088" hi_absolute="43.0" low_absolute="25.0" units="DEG C" allow_decimal="true"/>
+  <concept_numeric concept_id="5089" hi_absolute="250.0" low_absolute="0.0" units="kg" allow_decimal="true"/>
+  <concept_numeric concept_id="5090" hi_absolute="272.0" low_absolute="10.0" units="cm" allow_decimal="true"/>
+  <concept_numeric concept_id="5092" hi_absolute="100.0" low_absolute="0.0" units="%" allow_decimal="false"/>
+  <concept_numeric concept_id="5242" hi_absolute="999.0" hi_critical="120.0" hi_normal="70.0" low_absolute="0.0" units="" allow_decimal="false"/>
+ </dataset>

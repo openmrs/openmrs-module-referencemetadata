@@ -32,6 +32,7 @@ import org.openmrs.api.UserService;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.BaseModuleActivator;
 import org.openmrs.module.ModuleException;
+import org.openmrs.module.ModuleUtil;
 import org.openmrs.module.dataexchange.DataImporter;
 import org.openmrs.module.emrapi.EmrApiConstants;
 import org.openmrs.module.emrapi.utils.MetadataUtil;
@@ -41,11 +42,11 @@ import org.openmrs.module.idgen.service.IdentifierSourceService;
 import org.openmrs.module.idgen.validator.LuhnMod30IdentifierValidator;
 import org.openmrs.module.metadatadeploy.api.MetadataDeployService;
 import org.openmrs.module.metadatadeploy.bundle.MetadataBundle;
-import org.openmrs.module.metadatamapping.MetadataSource;
 import org.openmrs.module.metadatamapping.MetadataTermMapping;
 import org.openmrs.module.metadatamapping.api.MetadataMappingService;
 import org.openmrs.module.reporting.report.manager.ReportManager;
 import org.openmrs.module.reporting.report.manager.ReportManagerUtil;
+import org.openmrs.util.OpenmrsConstants;
 
 /**
  * This class contains the logic that is run every time this module is either started or stopped.
@@ -93,6 +94,14 @@ public class ReferenceMetadataActivator extends BaseModuleActivator {
         	
         	DataImporter dataImporter = Context.getRegisteredComponent("dataImporter", DataImporter.class);
             dataImporter.importData("Reference_Application_Concepts-23.xml");
+            
+            if (ModuleUtil.compareVersion(OpenmrsConstants.OPENMRS_VERSION_SHORT, "2.2") < 0) {
+            	dataImporter.importData("Reference_Application_Numeric_Concepts-23-pre2.x.xml");
+			}
+            else {
+            	dataImporter.importData("Reference_Application_Numeric_Concepts-23-2.x.xml");
+            }
+            
             dataImporter.importData("Reference_Application_Diagnoses-10.xml");
             dataImporter.importData("Reference_Application_Order_Entry_and_Allergies_Concepts-17.xml");
             
