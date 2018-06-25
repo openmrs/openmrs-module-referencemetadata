@@ -11,11 +11,12 @@
  *
  * Copyright (C) OpenMRS, LLC.  All Rights Reserved.
  */
-package org.openmrs.module.referencemetadata.reports;
+package org.openmrs.module.referencemetadata.reports.transfers;
 
 import org.junit.Assert;
 import org.openmrs.Location;
-import org.openmrs.module.referencemetadata.reporting.reports.NumberOfTransfers;
+import org.openmrs.module.referencemetadata.reporting.reports.Transfers.NumberOfTransfers;
+import org.openmrs.module.referencemetadata.reports.ReportManagerTest;
 import org.openmrs.module.reporting.dataset.SimpleDataSet;
 import org.openmrs.module.reporting.evaluation.EvaluationContext;
 import org.openmrs.module.reporting.report.ReportData;
