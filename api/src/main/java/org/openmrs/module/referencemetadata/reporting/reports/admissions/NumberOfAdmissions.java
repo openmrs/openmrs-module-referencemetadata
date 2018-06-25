@@ -7,7 +7,7 @@
  * Copyright (C) OpenMRS Inc. OpenMRS is a registered trademark and the OpenMRS
  * graphic logo is a trademark of OpenMRS Inc.
  */
-package org.openmrs.module.referencemetadata.reporting.reports;
+package org.openmrs.module.referencemetadata.reporting.reports.admissions;
 
 import org.openmrs.module.reporting.ReportingConstants;
 import org.openmrs.module.reporting.dataset.definition.SqlDataSetDefinition;
