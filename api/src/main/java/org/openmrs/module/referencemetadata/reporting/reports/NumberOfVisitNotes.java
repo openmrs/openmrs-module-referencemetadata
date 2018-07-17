@@ -50,6 +50,8 @@ public class NumberOfVisitNotes extends BaseReportManager {
 		List<Parameter> parameterArrayList = new ArrayList<Parameter>();
 		parameterArrayList.add(ReportingConstants.START_DATE_PARAMETER);
 		parameterArrayList.add(ReportingConstants.END_DATE_PARAMETER);
+		parameterArrayList.add(ReportingConstants.LOCATION_PARAMETER);
+		parameterArrayList.add(new Parameter("activeVisits", "Include Active Visits", Boolean.class));
 		return parameterArrayList;
 	}
 
@@ -87,14 +89,16 @@ public class NumberOfVisitNotes extends BaseReportManager {
 
 	private String getSQLQuery(){
 		StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append("select count(*) as Number_of_visit_notes ");
-		stringBuilder.append("from encounter e ");
-		stringBuilder.append("where e.encounter_type = (select et.encounter_type_id ");
-		stringBuilder.append("from encounter_type et ");
-		stringBuilder.append("where et.uuid = 'd7151f82-c1f3-4152-a605-2f9ea7414a79') ");
-		stringBuilder.append("and e.encounter_datetime >= :startDate ");
-		stringBuilder.append("and e.encounter_datetime <= :endDate ");
-		stringBuilder.append("and e.voided = 0 ");
+		stringBuilder.append("select max(vt.name) as VisitType, count(e.encounter_id) as Count from encounter e ");
+		stringBuilder.append("INNER JOIN visit v on e.visit_id = v.visit_id ");
+		stringBuilder.append("INNER JOIN visit_type vt on v.visit_type_id = vt.visit_type_id ");
+		stringBuilder.append("where e.encounter_type = (select et.encounter_type_id  ");
+		stringBuilder.append("from encounter_type et  ");
+		stringBuilder.append("where et.uuid = 'd7151f82-c1f3-4152-a605-2f9ea7414a79')  ");
+		stringBuilder.append("AND v.date_started >= :startDate ");
+		stringBuilder.append("AND (v.date_stopped <= :endDate OR True = :activeVisits) ");
+		stringBuilder.append("and e.location_id LIKE :location ");
+		stringBuilder.append("group by v.visit_type_id; ");
 
 		return stringBuilder.toString();
 	}

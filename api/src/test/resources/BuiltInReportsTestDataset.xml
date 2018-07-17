@@ -130,7 +130,7 @@
 	<encounter_type encounter_type_id="5" name="Visit Note" description="Encounter where a full or abbreviated examination is done, usually leading to a presumptive or confirmed diagnosis, recorded by the examining clinician."
 	                creator="1" date_created="2013-08-01 23:57:50" retired="0" uuid="d7151f82-c1f3-4152-a605-2f9ea7414a79"
 	/>
-	<encounter encounter_id="5" encounter_type="5" patient_id="51" location_id="1" form_id="1" encounter_datetime="2017-06-18 22:19:48" creator="1"
+	<encounter encounter_id="5" encounter_type="5" visit_id="1"  patient_id="51" location_id="1" form_id="1" encounter_datetime="2017-06-18 22:19:48" creator="1"
 	           date_created="2017-06-18 23:44:47" voided="0" uuid="fe949855-dafe-44b7-af2f-cb5fc1b961ec"
 	/>
 </dataset>
