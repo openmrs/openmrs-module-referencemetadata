@@ -43,6 +43,15 @@
 	        creator="1" date_created="2017-06-18 23:49:20" changed_by="1" date_changed="2017-06-18 23:49:20" voided="0" uuid="15fbc6ab-57af-43ab-a872-c845ddd2df6d"
 	/>
 
+	<person_name person_name_id="3" preferred="1" person_id="52" given_name="Sumangala" family_name="Jeya" creator="1" date_created="2017-05-18 23:49:20"
+				 voided = "0" uuid="17694822-8b9c-40e6-88ae-d2a479654492"/>
+	<person_name person_name_id="4" preferred="1" person_id="53" given_name="Jeya" family_name="Sumi" creator="1" date_created="2017-05-18 23:49:20"
+				 voided = "0" uuid="17694822-8b9c-40e6-88ae-d2a479654493"/>
+	<person_name person_name_id="5" preferred="1" person_id="54" given_name="Watson" family_name="Renaldo" creator="1" date_created="2017-05-18 23:49:20"
+				 voided = "0" uuid="17694822-8b9c-40e6-88ae-d2a479654494"/>
+
+	<providermanagement_provider_role provider_role_id="1" name="doctor"  creator="1" date_created="2017-05-18 23:49:20" retired="0"
+			uuid="710f78ca-b8f2-41b8-9e41-f1eddf6f5085"/>
 
 	<person person_id="52" gender="M" birthdate="1955-03-07" dead="0" date_created="2017-05-18 23:49:20" voided="0" deathdate_estimated="0"
 	        uuid="710f78ca-b8f2-41b8-9e41-f1eddf6f5035"/>
@@ -51,14 +60,15 @@
 	<person person_id="54" gender="F" birthdate="1998-03-27" dead="0" date_created="2017-06-28 23:49:20" voided="0" deathdate_estimated="0"
 	        uuid="9bed23d0-0502-11e3-8ffd-0800200c9a66"/>
 
+
 	<provider provider_id="1" person_id="52" identifier="clerk" creator="1" date_created="2017-06-18 23:49:20" retired="0"
-	          uuid="f6803750-6940-49e5-a5ee-afe599feda6d"
+	          uuid="f6803750-6940-49e5-a5ee-afe599feda6d" provider_role_id="1"
 	/>
 	<provider provider_id="2" person_id="53" identifier="nurse" creator="1" date_created="2017-06-18 23:49:20" retired="0"
-	          uuid="af0b413b-5d10-41f0-834f-508d6f35c75e"
+	          uuid="af0b413b-5d10-41f0-834f-508d6f35c75e" provider_role_id="1"
 	/>
 	<provider provider_id="3" person_id="54" identifier="doctor" creator="1" date_created="2017-06-18 23:49:20" retired="0"
-	          uuid="12b340a0-b6e8-492a-b54f-e2473e126b89"
+	          uuid="12b340a0-b6e8-492a-b54f-e2473e126b89" provider_role_id="1"
 	/>
 
 	<users user_id="1" system_id="admin" username="admin" password="ffba0fa0e7638c1ed511d497cd24afc6a5bcf5231eb9661a87fe215201ba4ede020152a656f02f7ffa5ba34360fe4b0d1e237fe0efed8509fb087a1fadae437d"
@@ -100,6 +110,8 @@
 	<encounter encounter_id="1" encounter_type="3" patient_id="51" location_id="1" form_id="1" encounter_datetime="2017-04-10 22:19:48" creator="1"
 	           date_created="2017-06-18 23:44:47" voided="0" uuid="d16f8f93-83a3-4027-a922-3e2414f4b48b"
 		/>
+	<encounter_provider encounter_provider_id="1" encounter_id="1" provider_id="1"  encounter_role_id="1" creator="1"
+						date_created="2016-07-07 08:14:50" voided="0" uuid="d16f8f93-83a3-4027-af42-3e2414f4b48b"/>
 
 	<obs obs_id="1" person_id="52" concept_id="1" encounter_id="1" obs_datetime="2015-06-18 22:21:32" location_id="1" value_coded="1" creator="1"
 	     date_created="2017-06-18 23:45:34" voided="0" uuid="8d3a3ea9-c8fd-4b7b-b6a8-6410500ad410"
