@@ -50,6 +50,8 @@ public class NumberOfVisits extends BaseReportManager {
 		List<Parameter> parameterArrayList = new ArrayList<Parameter>();
 		parameterArrayList.add(ReportingConstants.START_DATE_PARAMETER);
 		parameterArrayList.add(ReportingConstants.END_DATE_PARAMETER);
+		parameterArrayList.add(ReportingConstants.LOCATION_PARAMETER);
+		parameterArrayList.add(new Parameter("activeVisits", "Include Active Visits", Boolean.class));
 		return parameterArrayList;
 	}
 
@@ -89,10 +91,12 @@ public class NumberOfVisits extends BaseReportManager {
 
 	private String getSQLQuery(){
 		StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append("select count(*) as Number_of_visits ");
-		stringBuilder.append("from visit v ");
-		stringBuilder.append("where v.date_started >= :startDate ");
-		stringBuilder.append("and v.date_stopped <= :endDate ");
+		stringBuilder.append("SELECT max(vt.name) as VisitType ,count(v.visit_id) as Count FROM visit v ");
+		stringBuilder.append("INNER JOIN visit_type vt ON v.visit_type_id=vt.visit_type_id ");
+		stringBuilder.append("WHERE v.location_id LIKE :location ");
+		stringBuilder.append("AND v.date_started >= :startDate ");
+		stringBuilder.append("AND (v.date_stopped <= :endDate OR True = :activeVisits) ");
+		stringBuilder.append("GROUP BY vt.visit_type_id ;");
 
 		return stringBuilder.toString();
 	}

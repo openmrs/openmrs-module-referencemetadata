@@ -15,6 +15,7 @@
 package org.openmrs.module.referencemetadata.reports;
 
 import org.junit.Assert;
+import org.openmrs.Location;
 import org.openmrs.module.referencemetadata.reporting.reports.NumberOfVisits;
 import org.openmrs.module.reporting.common.DateUtil;
 import org.openmrs.module.reporting.dataset.SimpleDataSet;
@@ -40,11 +41,14 @@ public class NumberOfVisitsTest extends ReportManagerTest {
 		EvaluationContext context = new EvaluationContext();
 		context.addParameterValue("startDate", DateUtil.getDateTime(2017,6,17));
 		context.addParameterValue("endDate", DateUtil.getDateTime(2017,6,20));
+		context.addParameterValue("location", new Location(Location.LOCATION_UNKNOWN));
+		context.addParameterValue("activeVisits", Boolean.FALSE);
 		return context;
 	}
 
 	public void verifyData(ReportData data) {
 		SimpleDataSet dataSet = (SimpleDataSet) data.getDataSets().values().iterator().next();
-		Assert.assertThat(dataSet.getRows(), contains(hasData("NUMBER_OF_VISITS", 2L)));
+		Assert.assertThat(dataSet.getRows(), contains(hasData("VisitType", "Facility Visit")));
+		Assert.assertThat(dataSet.getRows(), contains(hasData("Count", 2L)));
 	}
 }
