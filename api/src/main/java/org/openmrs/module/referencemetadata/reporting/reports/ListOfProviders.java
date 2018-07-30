@@ -85,10 +85,14 @@ public class ListOfProviders extends BaseReportManager {
 
 	private String getSQLQuery(){
 		StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append("select identifier as Provider, date_created as Created ");
-		stringBuilder.append("from provider ");
-		stringBuilder.append("where retired = :retired; ");
-
+		stringBuilder.append("SELECT pro.uuid AS ProviderUuid, pro.identifier AS Provider, ");
+		stringBuilder.append("pname.family_name as FamilyName, pname.given_name as GivenName, ");
+		stringBuilder.append("role.name AS RoleName, pro.date_created AS Created ");
+        stringBuilder.append("FROM provider pro ");
+        stringBuilder.append("INNER JOIN providermanagement_provider_role role ");
+        stringBuilder.append("ON pro.provider_role_id = role.provider_role_id ");
+		stringBuilder.append("INNER JOIN person_name pname on  pname.person_id = pro.person_id ");
+        stringBuilder.append("WHERE pro.retired = :retired; ");
 		return stringBuilder.toString();
 	}
 }
