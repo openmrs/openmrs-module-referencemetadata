@@ -11,11 +11,11 @@
  *
  * Copyright (C) OpenMRS, LLC.  All Rights Reserved.
  */
-package org.openmrs.module.referencemetadata.reports;
+package org.openmrs.module.referencemetadata.reports.discharges;
 
 import org.junit.Assert;
-import org.openmrs.Location;
-import org.openmrs.module.referencemetadata.reporting.reports.NumberOfDischarges;
+import org.openmrs.module.referencemetadata.reporting.reports.discharges.NumberOfAllDischarges;
+import org.openmrs.module.referencemetadata.reports.ReportManagerTest;
 import org.openmrs.module.reporting.dataset.SimpleDataSet;
 import org.openmrs.module.reporting.evaluation.EvaluationContext;
 import org.openmrs.module.reporting.report.ReportData;
@@ -24,23 +24,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.hamcrest.Matchers.contains;
 
-public class NumberOfDischargesTest extends ReportManagerTest {
+public class NumberOfAllDischargesTest extends ReportManagerTest {
 
-	@Autowired
-	NumberOfDischarges numberOfDischarges;
+    @Autowired
+    NumberOfAllDischarges numberOfAllDischarges;
 
-	public ReportManager getReportManager() {
-		return numberOfDischarges;
-	}
+    public ReportManager getReportManager() {
+        return numberOfAllDischarges;
+    }
 
-	public EvaluationContext getEvaluationContext() {
-		EvaluationContext context = new EvaluationContext();
-		context.addParameterValue("location", new Location(Location.LOCATION_UNKNOWN));
-		return context;
-	}
+    public EvaluationContext getEvaluationContext() {
+        EvaluationContext context = new EvaluationContext();
+        return context;
+    }
 
-	public void verifyData(ReportData data) {
-		SimpleDataSet dataSet = (SimpleDataSet) data.getDataSets().values().iterator().next();
-		Assert.assertThat(dataSet.getRows(), contains(hasData("Count", 2L)));
-	}
+    public void verifyData(ReportData data) {
+        SimpleDataSet dataSet = (SimpleDataSet) data.getDataSets().values().iterator().next();
+        Assert.assertThat(dataSet.getRows(), contains(hasData("Location", "sampleLocation")));
+        Assert.assertThat(dataSet.getRows(), contains(hasData("Count", 2L)));
+    }
 }
