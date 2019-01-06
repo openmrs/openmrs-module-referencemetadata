@@ -102,8 +102,8 @@ public class ReferenceMetadataActivator extends BaseModuleActivator {
             	dataImporter.importData("Reference_Application_Numeric_Concepts-23-2.x.xml");
             }
             
-            dataImporter.importData("Reference_Application_Diagnoses-10.xml");
-            dataImporter.importData("Reference_Application_Order_Entry_and_Allergies_Concepts-17.xml");
+            dataImporter.importData("Reference_Application_Diagnoses-11.xml");
+            dataImporter.importData("Reference_Application_Order_Entry_and_Allergies_Concepts-18.xml");
             
             //1.11 requires building the index for the newly added concepts.
             //Without doing so, cs.getConceptByClassName() will return an empty list.
