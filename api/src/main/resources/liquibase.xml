@@ -5,4 +5,24 @@
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
 	
+	
+	<changeSet id="deleting_duplicate_concept" author="Mutesasira Moses">
+		<preConditions onFail="MARK_RAN">
+		 <or>
+			<sqlCheck expectedResult="2">select count(*) from concept_name where name = 'YES'</sqlCheck>
+			<sqlCheck expectedResult="2">select count(*) from concept_name where name = 'NO'</sqlCheck>
+		</or>
+		</preConditions> 
+		<comment>
+		 it checks whether  the  duplicate concepts exists and deletes one
+		</comment>
+
+	  
+		<sql>   
+		SET  FOREIGN_KEY_CHECKS = 0;
+		delete from concept_name where concept_id =1 or concept_id =2;
+		delete from concept where concept_id =1 or concept_id =2 ;
+		SET  FOREIGN_KEY_CHECKS = 1;
+		</sql> 
+	</changeSet> 	
 </databaseChangeLog>
