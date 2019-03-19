@@ -93,13 +93,13 @@ public class ReferenceMetadataActivator extends BaseModuleActivator {
         	Context.flushSession(); //Flush so that purges are not deferred until after data import
         	
         	DataImporter dataImporter = Context.getRegisteredComponent("dataImporter", DataImporter.class);
-            dataImporter.importData("Reference_Application_Concepts-23.xml");
+            dataImporter.importData("Reference_Application_Concepts-24.xml");
             
             if (ModuleUtil.compareVersion(OpenmrsConstants.OPENMRS_VERSION_SHORT, "2.2") < 0) {
-            	dataImporter.importData("Reference_Application_Numeric_Concepts-23-pre2.x.xml");
+            	dataImporter.importData("Reference_Application_Numeric_Concepts-24-pre2.x.xml");
 			}
             else {
-            	dataImporter.importData("Reference_Application_Numeric_Concepts-23-2.x.xml");
+            	dataImporter.importData("Reference_Application_Numeric_Concepts-24-2.x.xml");
             }
             
             dataImporter.importData("Reference_Application_Diagnoses-11.xml");
