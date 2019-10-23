@@ -1,8 +1,12 @@
 package org.openmrs.module.referencemetadata;
 
+import org.openmrs.module.Module;
+import org.openmrs.module.ModuleFactory;
 import org.openmrs.module.metadatadeploy.bundle.AbstractMetadataBundle;
 import org.openmrs.util.RoleConstants;
 import org.springframework.stereotype.Component;
+
+import java.util.Set;
 
 import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.idSet;
 import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.privilege;
@@ -144,15 +148,100 @@ public class RolePrivilegeMetadata extends AbstractMetadataBundle {
         install(role(_Role.APPLICATION_HAS_SUPERUSER_PRIVILEGES, "Extends the underlying System Developer API role",
                 idSet(RoleConstants.SUPERUSER), idSet()));
 
-        install(role(_Role.APPLICATION_APPOINTMENT_VIEWER,
-                "Gives user the ability to view appointment schedules (but not to modify them)", idSet(), idSet(
-                _Privilege.APP_APPOINTMENTSCHEDULINGUI_HOME,
-                "App: appointmentschedulingui.viewAppointments")));
-
         install(role(_Role.APPLICATION_EDITS_EXISTING_ENCOUNTERS,
                 "Gives user the ability to edit patient encounter", idSet(), idSet(
                         _Privilege.TASK_EMR_PATIENT_ENCOUNTER_DELETE,
                         _Privilege.TASK_EMR_PATIENT_ENCOUNTER_EDIT)));
+
+        boolean areAppointmentSchedulingModulesInstalled = areAppointmentSchedulingModulesInstalled();
+
+        if (areAppointmentSchedulingModulesInstalled) {
+            assignAppointmentPrivilegesToRoles();
+        }
+
+        addInheritedRolesToDoctor(areAppointmentSchedulingModulesInstalled);
+        addInheritedRolesToNurse(areAppointmentSchedulingModulesInstalled);
+        addInheritedRolesToRegistrationClerk(areAppointmentSchedulingModulesInstalled);
+        addInheritedRolesToSystemAdmin(areAppointmentSchedulingModulesInstalled);
+        addInheritedRolesToHospitalAdmin(areAppointmentSchedulingModulesInstalled);
+    }
+
+    private boolean areAppointmentSchedulingModulesInstalled() {
+        Module appointmentSchedulingModule = ModuleFactory.getModuleById("appointmentscheduling");
+        Module appointmentSchedulingUiModule = ModuleFactory.getModuleById("appointmentschedulingui");
+        return appointmentSchedulingModule != null && appointmentSchedulingUiModule != null;
+    }
+
+    private void addInheritedRolesToHospitalAdmin(boolean areAppointmentSchedulingModulesInstalled) {
+        Set<String> inheritedRolesForHospitalAdmin = idSet();
+        if (areAppointmentSchedulingModulesInstalled) {
+            inheritedRolesForHospitalAdmin.addAll(idSet(
+                    _Role.APPLICATION_APPOINTMENT_ADMINISTRATOR,
+                    _Role.APPLICATION_APPOINTMENT_PROVIDER_SCHEDULE_MANAGER,
+                    _Role.APPLICATION_APPOINTMENT_OVERBOOK_SCHEDULER,
+                    _Role.APPLICATION_APPOINTMENT_REQUESTER
+            ));
+        }
+        install(role(_Role.ORGANIZATIONAL_HOSPITAL_ADMINISTRATOR, "Hospital Administrator", inheritedRolesForHospitalAdmin, idSet()));
+    }
+
+    private void addInheritedRolesToSystemAdmin(boolean areAppointmentSchedulingModulesInstalled) {
+        Set<String> inheritedRolesForSystemAdmin = idSet(
+                _Role.APPLICATION_ADMINISTERS_SYSTEM,
+                _Role.APPLICATION_MANAGES_ATLAS,
+                _Role.APPLICATION_CONFIGURES_METADATA,
+                _Role.APPLICATION_CONFIGURES_FORMS
+        );
+        if (areAppointmentSchedulingModulesInstalled) {
+            inheritedRolesForSystemAdmin.addAll(idSet(_Role.APPLICATION_APPOINTMENT_ADMINISTRATOR,
+                    _Role.APPLICATION_APPOINTMENT_PROVIDER_SCHEDULE_MANAGER));
+        }
+        install(role(_Role.ORGANIZATIONAL_SYSTEM_ADMINISTRATOR, "System Administrator", inheritedRolesForSystemAdmin, idSet()));
+    }
+
+    private void addInheritedRolesToRegistrationClerk(boolean areAppointmentSchedulingModulesInstalled) {
+        Set<String> inheritedRolesForRegistrationClerk = idSet(_Role.APPLICATION_REGISTERS_PATIENTS);
+        if (areAppointmentSchedulingModulesInstalled) {
+            inheritedRolesForRegistrationClerk.addAll(idSet(_Role.APPLICATION_APPOINTMENT_VIEWER,
+                    _Role.APPLICATION_APPOINTMENT_SCHEDULER));
+        }
+        install(role(_Role.ORGANIZATIONAL_REGISTRATION_CLERK, "Registration Clerk", inheritedRolesForRegistrationClerk, idSet()));
+    }
+
+    private void addInheritedRolesToNurse(boolean areAppointmentSchedulingModulesInstalled) {
+        Set<String> inheritedRolesForNurse = idSet(
+                _Role.APPLICATION_ENTERS_VITALS,
+                _Role.APPLICATION_USES_CAPTURE_VITALS_APP,
+                _Role.APPLICATION_USES_PATIENT_SUMMARY,
+                _Role.APPLICATION_ENTERS_ADT_EVENTS,
+                _Role.APPLICATION_RECORDS_ALLERGIES
+        );
+        if (areAppointmentSchedulingModulesInstalled) {
+            inheritedRolesForNurse.addAll(idSet(_Role.APPLICATION_APPOINTMENT_REQUESTER,
+                    _Role.APPLICATION_APPOINTMENT_VIEWER));
+        }
+        install(role(_Role.ORGANIZATIONAL_NURSE, "Nurse", inheritedRolesForNurse, idSet()));
+    }
+
+    private void addInheritedRolesToDoctor(boolean areAppointmentSchedulingModulesInstalled) {
+        Set<String> inheritedRolesForDoctor = idSet(
+                _Role.APPLICATION_USES_PATIENT_SUMMARY,
+                _Role.APPLICATION_WRITES_CLINICAL_NOTES,
+                _Role.APPLICATION_ENTERS_ADT_EVENTS,
+                _Role.APPLICATION_RECORDS_ALLERGIES
+        );
+        if (areAppointmentSchedulingModulesInstalled) {
+            inheritedRolesForDoctor.addAll(idSet(_Role.APPLICATION_APPOINTMENT_REQUESTER,
+                    _Role.APPLICATION_APPOINTMENT_VIEWER));
+        }
+        install(role(_Role.ORGANIZATIONAL_DOCTOR, "Doctor", inheritedRolesForDoctor, idSet()));
+    }
+
+    private void assignAppointmentPrivilegesToRoles() {
+        install(role(_Role.APPLICATION_APPOINTMENT_VIEWER,
+                "Gives user the ability to view appointment schedules (but not to modify them)", idSet(), idSet(
+                        _Privilege.APP_APPOINTMENTSCHEDULINGUI_HOME,
+                        "App: appointmentschedulingui.viewAppointments")));
 
         install(role(_Role.APPLICATION_APPOINTMENT_REQUESTER, "Gives user the ability to request appointments)", idSet(),
                 idSet("Task: appointmentschedulingui.requestAppointments")));
@@ -175,49 +264,7 @@ public class RolePrivilegeMetadata extends AbstractMetadataBundle {
 
         install(role(_Role.APPLICATION_APPOINTMENT_ADMINISTRATOR,
                 "Gives user the ability to add and edit appointment types", idSet(), idSet(
-                _Privilege.APP_APPOINTMENTSCHEDULINGUI_HOME,
-                "App: appointmentschedulingui.appointmentTypes")));
-
-        install(role(_Role.ORGANIZATIONAL_DOCTOR, "Doctor", idSet(
-                _Role.APPLICATION_USES_PATIENT_SUMMARY,
-                _Role.APPLICATION_WRITES_CLINICAL_NOTES,
-                _Role.APPLICATION_ENTERS_ADT_EVENTS,
-                _Role.APPLICATION_APPOINTMENT_REQUESTER,
-                _Role.APPLICATION_APPOINTMENT_VIEWER,
-                _Role.APPLICATION_RECORDS_ALLERGIES
-        ), idSet()));
-
-        install(role(_Role.ORGANIZATIONAL_NURSE, "Nurse", idSet(
-                _Role.APPLICATION_ENTERS_VITALS,
-                _Role.APPLICATION_USES_CAPTURE_VITALS_APP,
-                _Role.APPLICATION_USES_PATIENT_SUMMARY,
-                _Role.APPLICATION_ENTERS_ADT_EVENTS,
-                _Role.APPLICATION_APPOINTMENT_REQUESTER,
-                _Role.APPLICATION_APPOINTMENT_VIEWER,
-                _Role.APPLICATION_RECORDS_ALLERGIES
-        ), idSet()));
-
-        install(role(_Role.ORGANIZATIONAL_REGISTRATION_CLERK, "Registration Clerk", idSet(
-                _Role.APPLICATION_REGISTERS_PATIENTS,
-                _Role.APPLICATION_APPOINTMENT_VIEWER,
-                _Role.APPLICATION_APPOINTMENT_SCHEDULER
-        ), idSet()));
-
-        install(role(_Role.ORGANIZATIONAL_SYSTEM_ADMINISTRATOR, "System Administrator", idSet(
-                _Role.APPLICATION_ADMINISTERS_SYSTEM,
-                _Role.APPLICATION_MANAGES_ATLAS,
-                _Role.APPLICATION_CONFIGURES_METADATA,
-                _Role.APPLICATION_CONFIGURES_FORMS,
-                _Role.APPLICATION_APPOINTMENT_ADMINISTRATOR,
-                _Role.APPLICATION_APPOINTMENT_PROVIDER_SCHEDULE_MANAGER
-        ), idSet()));
-
-        install(role(_Role.ORGANIZATIONAL_HOSPITAL_ADMINISTRATOR, "Hospital Administrator", idSet(
-                _Role.APPLICATION_APPOINTMENT_ADMINISTRATOR,
-                _Role.APPLICATION_APPOINTMENT_PROVIDER_SCHEDULE_MANAGER,
-                _Role.APPLICATION_APPOINTMENT_OVERBOOK_SCHEDULER,
-                _Role.APPLICATION_APPOINTMENT_REQUESTER
-        ), idSet()));
+                        _Privilege.APP_APPOINTMENTSCHEDULINGUI_HOME,
+                        "App: appointmentschedulingui.appointmentTypes")));
     }
-
 }
