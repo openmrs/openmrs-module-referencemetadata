@@ -114,7 +114,7 @@
 						date_created="2016-07-07 08:14:50" voided="0" uuid="d16f8f93-83a3-4027-af42-3e2414f4b48b"/>
 
 	<obs obs_id="1" person_id="52" concept_id="1" encounter_id="1" obs_datetime="2015-06-18 22:21:32" location_id="1" value_coded="1" creator="1"
-	     date_created="2017-06-18 23:45:34" voided="0" uuid="8d3a3ea9-c8fd-4b7b-b6a8-6410500ad410"
+	     date_created="2017-06-18 23:45:34" voided="0" uuid="8d3a3ea9-c8fd-4b7b-b6a8-6410500ad410" status="FINAL"
 		/>
 
 
