@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+<concept_numeric concept_id="165614" hi_absolute="22.0" low_absolute="0.0" units="" allow_decimal="false"/>
+<concept_numeric concept_id="165836" units="" allow_decimal="true"/>
+<concept_numeric concept_id="165839" units="" allow_decimal="true"/>
+</dataset>
