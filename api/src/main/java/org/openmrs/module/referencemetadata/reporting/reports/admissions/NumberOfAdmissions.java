@@ -89,7 +89,7 @@ public class NumberOfAdmissions extends BaseReportManager {
 		stringBuilder.append("select count(*) as Count from encounter e ");
 		stringBuilder.append("where e.encounter_type=(select encounter_type_id from encounter_type where uuid='e22e39fd-7db2-45e7-80f1-60fa0d5a4378') ");
 		stringBuilder.append("and e.location_id=:location ");
-		stringBuilder.append("and e.voided = 0 ");
+		stringBuilder.append("and e.voided = false ");
 		stringBuilder.append("group by e.encounter_type ");
 
 		return stringBuilder.toString();

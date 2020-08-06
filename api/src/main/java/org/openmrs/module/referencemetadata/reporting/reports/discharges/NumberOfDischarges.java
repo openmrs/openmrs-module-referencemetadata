@@ -89,7 +89,7 @@ public class NumberOfDischarges extends BaseReportManager {
 		stringBuilder.append("select count(*) as Count from encounter e ");
 		stringBuilder.append("where e.encounter_type=(select encounter_type_id from encounter_type where uuid='181820aa-88c9-479b-9077-af92f5364329') ");
 		stringBuilder.append("and e.location_id=:location ");
-		stringBuilder.append("and e.voided = 0 ");
+		stringBuilder.append("and e.voided = false ");
 		stringBuilder.append("group by e.encounter_type ");
 
 		return stringBuilder.toString();

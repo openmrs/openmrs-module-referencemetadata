@@ -91,7 +91,7 @@ public class NumberOfAllAdmissions extends BaseReportManager {
         stringBuilder.append("select  max(loc.name) as Location, count(*) as Count from encounter e  ");
         stringBuilder.append("inner join location loc on loc.location_id=e.location_id ");
         stringBuilder.append("where e.encounter_type=(select encounter_type_id from encounter_type where uuid='e22e39fd-7db2-45e7-80f1-60fa0d5a4378') ");
-        stringBuilder.append("and e.voided = 0 ");
+		stringBuilder.append("and e.voided = false ");
         stringBuilder.append("group by e.location_id ");
 
         return stringBuilder.toString();
