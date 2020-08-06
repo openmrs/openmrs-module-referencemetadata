@@ -93,7 +93,7 @@ public class NumberOfVisits extends BaseReportManager {
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append("SELECT max(vt.name) as VisitType ,count(v.visit_id) as Count FROM visit v ");
 		stringBuilder.append("INNER JOIN visit_type vt ON v.visit_type_id=vt.visit_type_id ");
-		stringBuilder.append("WHERE v.location_id LIKE :location ");
+		stringBuilder.append("WHERE v.location_id = :location ");
 		stringBuilder.append("AND v.date_started >= :startDate ");
 		stringBuilder.append("AND (v.date_stopped <= :endDate OR True = :activeVisits) ");
 		stringBuilder.append("GROUP BY vt.visit_type_id ;");

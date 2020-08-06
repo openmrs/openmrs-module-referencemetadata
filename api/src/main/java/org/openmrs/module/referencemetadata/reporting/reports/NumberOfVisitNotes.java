@@ -97,7 +97,7 @@ public class NumberOfVisitNotes extends BaseReportManager {
 		stringBuilder.append("where et.uuid = 'd7151f82-c1f3-4152-a605-2f9ea7414a79')  ");
 		stringBuilder.append("AND v.date_started >= :startDate ");
 		stringBuilder.append("AND (v.date_stopped <= :endDate OR True = :activeVisits) ");
-		stringBuilder.append("and e.location_id LIKE :location ");
+		stringBuilder.append("and e.location_id = :location ");
 		stringBuilder.append("group by v.visit_type_id; ");
 
 		return stringBuilder.toString();
