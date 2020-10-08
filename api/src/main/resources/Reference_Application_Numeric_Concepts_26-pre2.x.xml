@@ -1,8 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <dataset>
-<concept_numeric concept_id="1343" units="cm" precise="true"/>
-<concept_numeric concept_id="5085" hi_absolute="250.0" low_absolute="0.0" units="mmHg" precise="false"/>
-<concept_numeric concept_id="5086" hi_absolute="150.0" low_absolute="0.0" units="mmHg" precise="false"/>
 <concept_numeric concept_id="5087" hi_absolute="230.0" low_absolute="0.0" units="beats/min" precise="false"/>
 <concept_numeric concept_id="5088" hi_absolute="43.0" low_absolute="25.0" units="DEG C" precise="true"/>
 <concept_numeric concept_id="5089" hi_absolute="250.0" low_absolute="0.0" units="kg" precise="true"/>
