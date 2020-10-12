@@ -79,7 +79,7 @@ public class ReferenceMetadataActivatorComponentTest extends BaseModuleContextSe
         activator.willStart();
         activator.started();
         
-       verifyMetadataPackagesConfigured();
+        verifyMetadataPackagesConfigured();
 
         verifySentinelData();
 
@@ -158,17 +158,17 @@ public class ReferenceMetadataActivatorComponentTest extends BaseModuleContextSe
         assertThat(conceptService.getConcept(5085).getUuid(), is("5085AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"));
         assertThat(conceptService.getConcept(159947).getUuid(), is("159947AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"));
         
-     assertThat(conceptService.getAllConcepts().size(), is(442));
-//        System.out.println(conceptService.getAllConcepts().size());
+        assertThat(conceptService.getAllConcepts().size(), is(442));
 
-      assertThat(getOrderFrequencyUuid(162135), is("162135OFAAAAAAAAAAAAAAA"));
-       assertThat(getOrderFrequencyUuid(162256), is("162256OFAAAAAAAAAAAAAAA"));
-      assertThat(getOrderFrequencyUuid(162135), is("162135OFAAAAAAAAAAAAAAA"));
-      assertThat(getOrderFrequencyUuid(162256), is("162256OFAAAAAAAAAAAAAAA"));
+        assertThat(getOrderFrequencyUuid(162135), is("162135OFAAAAAAAAAAAAAAA"));
+        assertThat(getOrderFrequencyUuid(162256), is("162256OFAAAAAAAAAAAAAAA"));
+        assertThat(getOrderFrequencyUuid(162135), is("162135OFAAAAAAAAAAAAAAA"));
+        assertThat(getOrderFrequencyUuid(162256), is("162256OFAAAAAAAAAAAAAAA"));
+
         assertThat(orderService.getOrderFrequencies(false).size(), is(30));
-   }
+    }
 
-   private String getOrderFrequencyUuid(int conceptId) {
-       return orderService.getOrderFrequencyByConcept(conceptService.getConcept(conceptId)).getUuid();
+    private String getOrderFrequencyUuid(int conceptId) {
+        return orderService.getOrderFrequencyByConcept(conceptService.getConcept(conceptId)).getUuid();
     }
 }
