@@ -158,16 +158,12 @@ public class ReferenceMetadataActivatorComponentTest extends BaseModuleContextSe
         assertThat(conceptService.getConcept(5085).getUuid(), is("5085AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"));
         assertThat(conceptService.getConcept(159947).getUuid(), is("159947AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"));
         
-<<<<<<< HEAD
         assertThat(conceptService.getAllConcepts().size(), is(442));
 
         assertThat(getOrderFrequencyUuid(162135), is("162135OFAAAAAAAAAAAAAAA"));
         assertThat(getOrderFrequencyUuid(162256), is("162256OFAAAAAAAAAAAAAAA"));
         assertThat(getOrderFrequencyUuid(162135), is("162135OFAAAAAAAAAAAAAAA"));
         assertThat(getOrderFrequencyUuid(162256), is("162256OFAAAAAAAAAAAAAAA"));
-=======
-     assertThat(conceptService.getAllConcepts().size(), is(442));
->>>>>>> d461e92f7cf440f21ac2fb9aed728f48645dc586
 
         assertThat(orderService.getOrderFrequencies(false).size(), is(30));
     }
