@@ -21,16 +21,16 @@
 	</organization>
 
     <properties>
-    	<openMRSVersion>2.3.2</openMRSVersion>
+    	<openMRSVersion>2.2.0</openMRSVersion>
     	<emrapiVersion>1.24.1</emrapiVersion>
     	<idgenVersion>4.4.0</idgenVersion>
     	<metadatasharingVersion>1.2.2</metadatasharingVersion>
         <metadatamappingVersion>1.2.1</metadatamappingVersion>
-    	<dataexchangeVersion>1.3.5</dataexchangeVersion>
+    	<dataexchangeVersion>1.3.6</dataexchangeVersion>
     	<metadatadeployVersion>1.10.0</metadatadeployVersion>
     	<eventVersion>2.8.0</eventVersion>
     	<providermanagementVersion>2.5.0</providermanagementVersion>
-    	<reportingVersion>1.21.0</reportingVersion>
+    	<reportingVersion>1.19.0</reportingVersion>
     	<calculationVersion>1.2</calculationVersion>
     	<serialization.xstreamVersion>0.2.14</serialization.xstreamVersion>
     	<appframeworkVersion>2.9</appframeworkVersion>
