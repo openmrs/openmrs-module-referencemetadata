@@ -95,7 +95,7 @@ public class ReferenceMetadataActivator extends BaseModuleActivator {
         	DataImporter dataImporter = Context.getRegisteredComponent("dataImporter", DataImporter.class);
             dataImporter.importData("Reference_Application_Concepts-26.xml");     
             
-            if (ModuleUtil.compareVersion(OpenmrsConstants.OPENMRS_VERSION_SHORT, "2.3") < 0) {
+            if (ModuleUtil.compareVersion(OpenmrsConstants.OPENMRS_VERSION_SHORT, "2.2") < 0) {
                 dataImporter.importData("Reference_Application_Numeric_Concepts-26-pre2.x.xml");
 			}
             else {
