@@ -93,17 +93,17 @@ public class ReferenceMetadataActivator extends BaseModuleActivator {
         	Context.flushSession(); //Flush so that purges are not deferred until after data import
         	
         	DataImporter dataImporter = Context.getRegisteredComponent("dataImporter", DataImporter.class);
-            dataImporter.importData("Reference_Application_Concepts-25.xml");     
+            dataImporter.importData("Reference_Application_Concepts-26.xml");     
             
             if (ModuleUtil.compareVersion(OpenmrsConstants.OPENMRS_VERSION_SHORT, "2.2") < 0) {
-                dataImporter.importData("Reference_Application_Numeric_Concepts-25-pre2.x.xml");
+                dataImporter.importData("Reference_Application_Numeric_Concepts-26-pre2.x.xml");
 			}
             else {
-                dataImporter.importData("Reference_Application_Numeric_Concepts-25-2.x.xml");
+                dataImporter.importData("Reference_Application_Numeric_Concepts-26-2.x.xml");
             }
             
-            dataImporter.importData("Reference_Application_Diagnoses-12.xml");
-            dataImporter.importData("Reference_Application_Order_Entry_and_Allergies_Concepts-19.xml");
+            dataImporter.importData("Reference_Application_Diagnoses-13.xml");
+            dataImporter.importData("Reference_Application_Order_Entry_and_Allergies_Concepts-20.xml");
             
             //1.11 requires building the index for the newly added concepts.
             //Without doing so, cs.getConceptByClassName() will return an empty list.
