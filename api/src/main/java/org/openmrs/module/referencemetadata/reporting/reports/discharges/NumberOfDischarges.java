@@ -9,13 +9,13 @@
  */
 package org.openmrs.module.referencemetadata.reporting.reports.discharges;
 
+import org.openmrs.module.referencemetadata.reporting.reports.ReferenceApplicationReportManager;
 import org.openmrs.module.reporting.ReportingConstants;
 import org.openmrs.module.reporting.dataset.definition.SqlDataSetDefinition;
 import org.openmrs.module.reporting.evaluation.parameter.Mapped;
 import org.openmrs.module.reporting.evaluation.parameter.Parameter;
 import org.openmrs.module.reporting.report.ReportDesign;
 import org.openmrs.module.reporting.report.definition.ReportDefinition;
-import org.openmrs.module.reporting.report.manager.BaseReportManager;
 import org.openmrs.module.reporting.report.manager.ReportManagerUtil;
 import org.springframework.stereotype.Component;
 
@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class NumberOfDischarges extends BaseReportManager {
+public class NumberOfDischarges extends ReferenceApplicationReportManager {
 
 	private static final String DATA_SET_UUID = "a6dd7f69-97cd-4789-b38c-f5c48c485d4b";
 

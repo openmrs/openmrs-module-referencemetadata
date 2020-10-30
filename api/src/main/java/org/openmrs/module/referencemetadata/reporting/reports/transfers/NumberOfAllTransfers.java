@@ -14,19 +14,19 @@
 
 package org.openmrs.module.referencemetadata.reporting.reports.transfers;
 
+import org.openmrs.module.referencemetadata.reporting.reports.ReferenceApplicationReportManager;
 import org.openmrs.module.reporting.dataset.definition.SqlDataSetDefinition;
 import org.openmrs.module.reporting.evaluation.parameter.Mapped;
 import org.openmrs.module.reporting.evaluation.parameter.Parameter;
 import org.openmrs.module.reporting.report.ReportDesign;
 import org.openmrs.module.reporting.report.definition.ReportDefinition;
-import org.openmrs.module.reporting.report.manager.BaseReportManager;
 import org.openmrs.module.reporting.report.manager.ReportManagerUtil;
 import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class NumberOfAllTransfers extends BaseReportManager {
+public class NumberOfAllTransfers extends ReferenceApplicationReportManager {
 
     private static final String DATA_SET_UUID = "ce3b4d0b-2567-4362-97ad-5d1c7d856a23";
 
