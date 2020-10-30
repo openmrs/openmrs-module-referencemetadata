@@ -44,7 +44,7 @@ import org.openmrs.module.metadatadeploy.api.MetadataDeployService;
 import org.openmrs.module.metadatadeploy.bundle.MetadataBundle;
 import org.openmrs.module.metadatamapping.MetadataTermMapping;
 import org.openmrs.module.metadatamapping.api.MetadataMappingService;
-import org.openmrs.module.reporting.report.manager.ReportManager;
+import org.openmrs.module.referencemetadata.reporting.reports.ReferenceApplicationReportManager;
 import org.openmrs.module.reporting.report.manager.ReportManagerUtil;
 import org.openmrs.util.OpenmrsConstants;
 
@@ -71,7 +71,7 @@ public class ReferenceMetadataActivator extends BaseModuleActivator {
         log.info("Started Reference Metadata module");
 
 	    //setup built-in reports from #org.openmrs.module.referenceapplication.reports
-	    ReportManagerUtil.setupAllReports(ReportManager.class);
+	    ReportManagerUtil.setupAllReports(ReferenceApplicationReportManager.class);
     }
 
 	private void installConcepts() {

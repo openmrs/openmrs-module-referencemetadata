@@ -9,20 +9,19 @@
  */
 package org.openmrs.module.referencemetadata.reporting.reports;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.openmrs.module.reporting.dataset.definition.SqlDataSetDefinition;
 import org.openmrs.module.reporting.evaluation.parameter.Mapped;
 import org.openmrs.module.reporting.evaluation.parameter.Parameter;
 import org.openmrs.module.reporting.report.ReportDesign;
 import org.openmrs.module.reporting.report.definition.ReportDefinition;
-import org.openmrs.module.reporting.report.manager.BaseReportManager;
 import org.openmrs.module.reporting.report.manager.ReportManagerUtil;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Component
-public class ListOfUsers extends BaseReportManager {
+public class ListOfUsers extends ReferenceApplicationReportManager {
 
 	private static final String DATA_SET_UUID = "6a26e06c-d38d-4470-abb7-86de417c1865";
 
