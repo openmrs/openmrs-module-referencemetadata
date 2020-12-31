@@ -3,4 +3,4 @@
 Reference Metadata Module
 ==========================
 
-Metadata for the Reference Application
+Metadata for the Reference Application Basically For Handling Concepts To Use in Concept Dictionary
