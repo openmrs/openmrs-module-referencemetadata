@@ -8,6 +8,6 @@
 <concept_numeric concept_id="5089" hi_absolute="250.0" low_absolute="0.0" units="kg" precise="true"/>
 <concept_numeric concept_id="5090" hi_absolute="272.0" low_absolute="10.0" units="cm" precise="true"/>
 <concept_numeric concept_id="5092" hi_absolute="100.0" low_absolute="0.0" units="%" precise="false"/>
-<concept_numeric concept_id="5242" hi_absolute="999.0" hi_critical="120.0" hi_normal="70.0" low_absolute="0.0" units="" precise="false"/>
+<concept_numeric concept_id="5242" hi_absolute="99.0" low_absolute="0.0" units="" precise="false"/>
 <concept_numeric concept_id="5314" low_absolute="0.0" units="cm" precise="true"/>
 </dataset>
