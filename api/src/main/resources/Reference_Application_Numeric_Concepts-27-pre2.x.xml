@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+<concept_numeric concept_id="1343" units="cm" precise="true"/>
+<concept_numeric concept_id="5085" hi_absolute="250.0" hi_critical="180.0" hi_normal="140.0" low_absolute="0.0" low_critical="90.0" low_normal="100.0" units="mmHg" precise="false"/>
+<concept_numeric concept_id="5086" hi_absolute="150.0" hi_critical="110.0" hi_normal="90.0" low_absolute="0.0" low_critical="50.0" low_normal="60.0" units="mmHg" precise="false"/>
+<concept_numeric concept_id="5087" hi_absolute="230.0" hi_critical="110.0" hi_normal="100.0" low_absolute="0.0" low_critical="45.0" low_normal="60.0" units="beats/min" precise="false"/>
+<concept_numeric concept_id="5088" hi_absolute="43.0" hi_critical="39.0" hi_normal="37.7" low_absolute="25.0" low_normal="35.0" units="DEG C" precise="true"/>
+<concept_numeric concept_id="5089" hi_absolute="250.0" low_absolute="0.0" units="kg" precise="true"/>
+<concept_numeric concept_id="5090" hi_absolute="272.0" low_absolute="10.0" units="cm" precise="true"/>
+<concept_numeric concept_id="5092" hi_absolute="100.0" low_absolute="0.0" low_critical="90.0" low_normal="95.0" units="%" precise="false"/>
+<concept_numeric concept_id="5242" hi_absolute="99.0" hi_critical="24.0" hi_normal="18.0" low_absolute="0.0" low_critical="10.0" low_normal="12.0" precise="false"/>
+<concept_numeric concept_id="5314" low_absolute="0.0" units="cm" precise="true"/>
+</dataset>
