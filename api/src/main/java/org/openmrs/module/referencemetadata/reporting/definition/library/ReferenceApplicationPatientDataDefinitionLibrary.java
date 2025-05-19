@@ -32,7 +32,7 @@ import org.openmrs.module.reporting.evaluation.parameter.Parameter;
 import org.openmrs.module.reporting.evaluation.parameter.ParameterizableUtil;
 import org.springframework.stereotype.Component;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
 import java.util.Map;
 
@@ -80,7 +80,7 @@ public class ReferenceApplicationPatientDataDefinitionLibrary extends BaseDefini
 		ConvertedPatientDataDefinition convertedDefinition = new ConvertedPatientDataDefinition();
 		convertedDefinition.setDefinitionToConvert(ParameterizableUtil.copyAndMap(pdd, convertedDefinition, renamedParameters));
 		if (converter != null) {
-			convertedDefinition.setConverters(Arrays.asList(converter));
+			convertedDefinition.setConverters(Collections.singletonList(converter));
 		}
 		return convertedDefinition;
 	}
