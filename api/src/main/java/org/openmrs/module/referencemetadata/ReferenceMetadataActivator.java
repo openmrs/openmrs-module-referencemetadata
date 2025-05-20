@@ -16,7 +16,7 @@ package org.openmrs.module.referencemetadata;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.Arrays;
+import java.util.Collections;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -131,8 +131,8 @@ public class ReferenceMetadataActivator extends BaseModuleActivator {
     public void deployMetadataPackages(MetadataDeployService service) {
         MetadataBundle rolesAndPrivileges = Context.getRegisteredComponent("referenceApplicationRolesAndPrivileges", MetadataBundle.class);
 	    MetadataBundle orderFrequencies = Context.getRegisteredComponent("referenceApplicationOrderFrequencies", MetadataBundle.class);
-	    service.installBundles(Arrays.asList(rolesAndPrivileges));
-	    service.installBundles(Arrays.asList(orderFrequencies));
+	    service.installBundles(Collections.singletonList(rolesAndPrivileges));
+	    service.installBundles(Collections.singletonList(orderFrequencies));
     }
 
 	public void installMetadataPackages() {
